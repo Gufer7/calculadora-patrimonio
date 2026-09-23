@@ -2,104 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <title>Net Worth Calculator - Calculate Your Net Worth</title>
+
+    <meta name="description" content="Use this free net worth calculator to calculate your net worth by comparing your assets and liabilities.">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Net Worth Calculator | Financial Calculators</title>
-
-    <meta name="description" content="Free net worth calculator to estimate how your savings and investments could grow over time.">
-
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f8;
+            margin: 0;
             color: #222;
         }
 
         header {
             background: #111827;
             color: white;
-            padding: 30px 20px 40px;
+            padding: 20px;
             text-align: center;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+        header h2 {
+            margin: 0 0 15px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            margin: 0 8px;
+            font-size: 14px;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 32px;
-        }
-
-        header p {
-            margin: 0;
-            color: #d1d5db;
-        }
-
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
-        .card {
+        .calculator,
+        .content,
+        .more-tools {
             background: white;
-            border-radius: 12px;
             padding: 25px;
+            border-radius: 10px;
             margin-bottom: 25px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .card h2 {
-            margin-top: 0;
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .form-group {
-            margin-bottom: 18px;
+        .intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
         }
 
         label {
             display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
             font-weight: bold;
-            margin-bottom: 7px;
         }
 
         input {
             width: 100%;
+            box-sizing: border-box;
             padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
             font-size: 16px;
         }
 
         button {
             width: 100%;
             padding: 14px;
+            margin-top: 25px;
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 17px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
         }
 
@@ -107,38 +103,59 @@
             background: #1d4ed8;
         }
 
-        .result {
-            display: none;
-            margin-top: 25px;
+        .results {
+            margin-top: 30px;
         }
 
         .result-box {
-            background: #eef2ff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 15px;
+            background: #f3f4f6;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 12px;
         }
 
-        .result-box h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
+        .result-box strong {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .amount {
-            font-size: 34px;
+        .result-value {
+            font-size: 24px;
             font-weight: bold;
         }
 
-        .explanation {
-            line-height: 1.7;
+        .positive {
+            color: #15803d;
+        }
+
+        .negative {
+            color: #b91c1c;
         }
 
         footer {
             text-align: center;
-            padding: 30px 20px;
-            color: #6b7280;
+            padding: 30px;
+            color: #777;
             font-size: 14px;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -146,90 +163,175 @@
 <body>
 
 <header>
+    <h2>Financial Calculators</h2>
 
     <nav>
         <a href="index.html">Home</a>
         <a href="net-worth-calculator.html">Net Worth Calculator</a>
         <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
+        <a href="savings-calculator.html">Savings Calculator</a>
         <a href="sobre-nosotros.html">About Us</a>
         <a href="contacto.html">Contact</a>
     </nav>
-
-    <h1>Net Worth Calculator</h1>
-
-    <p>
-        Estimate how your savings and investments could grow over time
-    </p>
-
 </header>
 
 <div class="container">
 
-    <div class="card">
+    <div class="calculator">
 
-        <h2>Calculate Your Future Net Worth</h2>
+        <h1>Net Worth Calculator</h1>
 
-        <div class="form-group">
-            <label for="initial">Current savings / investments ($)</label>
-            <input type="number" id="initial" value="10000" min="0">
-        </div>
+        <p class="intro">
+            Calculate your net worth by comparing everything you own
+            with what you owe.
+        </p>
 
-        <div class="form-group">
-            <label for="monthly">Monthly contribution ($)</label>
-            <input type="number" id="monthly" value="500" min="0">
-        </div>
+        <h2 class="section-title">Assets</h2>
 
-        <div class="form-group">
-            <label for="rate">Expected annual return (%)</label>
-            <input type="number" id="rate" value="7" step="0.1" min="0">
-        </div>
+        <label for="cash">Cash and checking accounts ($)</label>
+        <input type="number" id="cash" value="5000" min="0">
 
-        <div class="form-group">
-            <label for="years">Investment period (years)</label>
-            <input type="number" id="years" value="10" min="1">
-        </div>
+        <label for="savings">Savings accounts ($)</label>
+        <input type="number" id="savings" value="10000" min="0">
 
-        <button onclick="calculate()">Calculate</button>
+        <label for="investments">Investments ($)</label>
+        <input type="number" id="investments" value="5000" min="0">
 
-        <div class="result" id="result">
+        <label for="property">Property value ($)</label>
+        <input type="number" id="property" value="0" min="0">
+
+        <label for="otherAssets">Other assets ($)</label>
+        <input type="number" id="otherAssets" value="0" min="0">
+
+        <h2 class="section-title">Liabilities</h2>
+
+        <label for="creditCards">Credit card debt ($)</label>
+        <input type="number" id="creditCards" value="0" min="0">
+
+        <label for="loans">Personal or student loans ($)</label>
+        <input type="number" id="loans" value="0" min="0">
+
+        <label for="mortgage">Mortgage balance ($)</label>
+        <input type="number" id="mortgage" value="0" min="0">
+
+        <label for="otherDebts">Other debts ($)</label>
+        <input type="number" id="otherDebts" value="0" min="0">
+
+        <button onclick="calculateNetWorth()">
+            Calculate Net Worth
+        </button>
+
+        <div class="results">
 
             <div class="result-box">
-                <h3>Estimated future net worth</h3>
-                <div class="amount" id="finalAmount">$0.00</div>
+                <strong>Total Assets</strong>
+                <div id="totalAssets" class="result-value">$0.00</div>
             </div>
 
             <div class="result-box">
-                <h3>Total money contributed</h3>
-                <div class="amount" id="totalInvested">$0.00</div>
+                <strong>Total Liabilities</strong>
+                <div id="totalLiabilities" class="result-value">$0.00</div>
             </div>
 
             <div class="result-box">
-                <h3>Estimated investment growth</h3>
-                <div class="amount" id="profit">$0.00</div>
+                <strong>Net Worth</strong>
+                <div id="netWorth" class="result-value">$0.00</div>
             </div>
 
         </div>
 
     </div>
 
-    <div class="card explanation">
+    <div class="content">
 
-        <h2>What Is Net Worth?</h2>
+        <h2>What is net worth?</h2>
 
         <p>
-            Net worth is the value of your financial assets after accounting
-            for your liabilities. Building savings and investing consistently
-            can help increase your net worth over the long term.
+            Net worth is the value of everything you own minus the money
+            you owe. It provides a simple snapshot of your overall financial
+            position at a particular point in time.
         </p>
 
         <p>
-            This calculator estimates how your current savings and regular
-            contributions could grow if they earned a constant annual return.
+            Your assets can include cash, savings, investments, property
+            and other valuable possessions. Liabilities include debts such
+            as credit cards, loans and mortgages.
+        </p>
+
+        <h2>How is net worth calculated?</h2>
+
+        <p>
+            The basic formula is:
         </p>
 
         <p>
-            The results are estimates for educational purposes only.
-            Investment returns are not guaranteed and actual results may vary.
+            <strong>Net Worth = Total Assets − Total Liabilities</strong>
+        </p>
+
+        <p>
+            For example, if you have $50,000 in assets and $20,000 in
+            liabilities, your net worth would be $30,000.
+        </p>
+
+        <h2>Why calculate your net worth?</h2>
+
+        <p>
+            Tracking your net worth can help you understand how your
+            financial position changes over time. Updating your numbers
+            periodically can also help you monitor savings, investments
+            and debt.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What should I include in my net worth?</h3>
+
+        <p>
+            Include your major assets such as cash, savings, investments
+            and property, as well as your outstanding debts and other
+            liabilities.
+        </p>
+
+        <h3>Is a negative net worth possible?</h3>
+
+        <p>
+            Yes. If your total liabilities are greater than your total
+            assets, your net worth will be negative.
+        </p>
+
+        <h3>How often should I calculate my net worth?</h3>
+
+        <p>
+            You can calculate it whenever useful to you. Many people
+            choose to review their financial position periodically to
+            track changes in assets and debts.
+        </p>
+
+    </div>
+
+    <div class="more-tools">
+
+        <h2>More Financial Calculators</h2>
+
+        <p>
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+            — estimate how your savings could grow with regular
+            contributions and interest.
+        </p>
+
+        <p>
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
+            — explore how compound growth can affect investments over time.
+        </p>
+
+        <p>
+            <a href="index.html">
+                View all financial calculators
+            </a>
         </p>
 
     </div>
@@ -239,58 +341,70 @@
 <footer>
     © 2026 Financial Calculators
     <br><br>
-    <a href="sobre-nosotros.html" style="color: #6b7280; text-decoration: none;">About Us</a>
+
+    <a href="sobre-nosotros.html">About Us</a>
     &nbsp; | &nbsp;
-    <a href="contacto.html" style="color: #6b7280; text-decoration: none;">Contact</a>
+
+    <a href="contacto.html">Contact</a>
     &nbsp; | &nbsp;
-    <a href="aviso-legal.html" style="color: #6b7280; text-decoration: none;">Legal Notice</a>
+
+    <a href="aviso-legal.html">Legal Notice</a>
     &nbsp; | &nbsp;
-<a href="privacy-policy.html" style="color: #6b7280; text-decoration: none;">Privacy Policy</a>
+
+    <a href="privacy-policy.html">Privacy Policy</a>
 </footer>
 
 <script>
-
-function calculate() {
-
-    const initial = parseFloat(document.getElementById("initial").value) || 0;
-    const monthly = parseFloat(document.getElementById("monthly").value) || 0;
-    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
-    const years = parseInt(document.getElementById("years").value) || 0;
-
-    const monthlyRate = annualRate / 100 / 12;
-    const months = years * 12;
-
-    let balance = initial;
-
-    for (let i = 0; i < months; i++) {
-        balance = balance * (1 + monthlyRate);
-        balance += monthly;
+    function getValue(id) {
+        const value = parseFloat(document.getElementById(id).value);
+        return Number.isFinite(value) && value > 0 ? value : 0;
     }
 
-    const totalInvested = initial + (monthly * months);
-    const profit = balance - totalInvested;
+    function calculateNetWorth() {
 
-    document.getElementById("finalAmount").textContent =
-        formatMoney(balance);
+        const assets =
+            getValue("cash") +
+            getValue("savings") +
+            getValue("investments") +
+            getValue("property") +
+            getValue("otherAssets");
 
-    document.getElementById("totalInvested").textContent =
-        formatMoney(totalInvested);
+        const liabilities =
+            getValue("creditCards") +
+            getValue("loans") +
+            getValue("mortgage") +
+            getValue("otherDebts");
 
-    document.getElementById("profit").textContent =
-        formatMoney(profit);
+        const netWorth = assets - liabilities;
 
-    document.getElementById("result").style.display = "block";
-}
+        document.getElementById("totalAssets").textContent =
+            formatMoney(assets);
 
-function formatMoney(value) {
+        document.getElementById("totalLiabilities").textContent =
+            formatMoney(liabilities);
 
-    return "$" + value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
+        const netWorthElement = document.getElementById("netWorth");
 
-}
+        netWorthElement.textContent =
+            formatMoney(netWorth);
 
+        netWorthElement.classList.remove("positive", "negative");
+
+        if (netWorth > 0) {
+            netWorthElement.classList.add("positive");
+        } else if (netWorth < 0) {
+            netWorthElement.classList.add("negative");
+        }
+    }
+
+    function formatMoney(amount) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(amount);
+    }
+
+    calculateNetWorth();
 </script>
 
 </body>
