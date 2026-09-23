@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Savings Calculator – Calculate Your Savings Growth</title>
 
-<meta name="description" content="Use our free savings calculator to estimate how your money could grow with monthly contributions, compound interest and different savings periods.">
+    <title>Savings Calculator – Calculate Your Savings Growth</title>
+
+    <meta name="description" content="Use our free savings calculator to estimate how your money could grow with monthly contributions, compound interest and different savings periods.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
+            font-family: Arial, sans-serif;
             background: #f5f7fa;
             color: #1f2937;
         }
@@ -20,8 +27,16 @@
             text-align: center;
         }
 
+        header h2 {
+            margin: 0;
+        }
+
         nav {
             margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         nav a {
@@ -66,7 +81,6 @@
         input {
             width: 100%;
             padding: 12px;
-            box-sizing: border-box;
             border: 1px solid #d1d5db;
             border-radius: 6px;
             font-size: 16px;
@@ -137,6 +151,7 @@
 <body>
 
 <header>
+
     <h2>Financial Calculators</h2>
 
     <nav>
@@ -147,6 +162,7 @@
         <a href="sobre-nosotros.html">About Us</a>
         <a href="contacto.html">Contact</a>
     </nav>
+
 </header>
 
 <div class="container">
@@ -177,17 +193,17 @@
         <div class="results">
 
             <div class="result-box">
-                <div class="result-label">Estimated savings</div>
+                <div class="result-label">Estimated final balance</div>
                 <div class="result-value" id="futureValue">$0</div>
             </div>
 
             <div class="result-box">
-                <div class="result-label">Total money contributed</div>
+                <div class="result-label">Total amount contributed</div>
                 <div class="result-value" id="totalContributed">$0</div>
             </div>
 
             <div class="result-box">
-                <div class="result-label">Interest earned</div>
+                <div class="result-label">Estimated interest earned</div>
                 <div class="result-value" id="interestEarned">$0</div>
             </div>
 
@@ -212,26 +228,27 @@
         <h2>Why save regularly?</h2>
 
         <p>
-            <h2>How to grow your savings</h2>
-
-<p>
-    The amount you can save over time depends on several factors, including
-    your starting balance, monthly contributions, interest rate and the amount
-    of time your money remains in the account.
-</p>
-
-<p>
-    Increasing your monthly contribution can have a significant effect on your
-    final balance, especially when you continue saving for many years. A higher
-    interest rate can also increase your savings through compound growth.
-</p>
-
-<p>
-    Try different combinations of contributions, interest rates and time periods
-    above to compare different savings scenarios.
-</p>
             Making regular contributions can help build savings gradually and
             allows compound growth to work over longer periods of time.
+        </p>
+
+        <h2>How to grow your savings</h2>
+
+        <p>
+            The amount you can save over time depends on several factors, including
+            your starting balance, monthly contributions, interest rate and the
+            amount of time your money remains in the account.
+        </p>
+
+        <p>
+            Increasing your monthly contribution can have a significant effect on
+            your final balance, especially when you continue saving for many years.
+            A higher interest rate can also increase your savings through compound growth.
+        </p>
+
+        <p>
+            Try different combinations of contributions, interest rates and time
+            periods above to compare different savings scenarios.
         </p>
 
         <h2>Example</h2>
@@ -268,32 +285,36 @@
             Yes. The calculation applies the annual interest rate on a monthly basis.
         </p>
 
+        <div style="margin-top: 30px; padding: 20px; background: #f3f4f6; border-radius: 8px;">
+
+            <h2>More Financial Calculators</h2>
+
+            <p>
+                You may also find these tools useful:
+            </p>
+
+            <p>
+                <a href="compound-interest-calculator.html">
+                    Compound Interest Calculator
+                </a>
+            </p>
+
+            <p>
+                <a href="net-worth-calculator.html">
+                    Net Worth Calculator
+                </a>
+            </p>
+
+        </div>
+
     </div>
-<div style="margin-top: 30px; padding: 20px; background: #f3f4f6; border-radius: 8px;">
 
-    <h2>More Financial Calculators</h2>
-
-    <p>
-        You may also find these tools useful:
-    </p>
-
-    <p>
-        <a href="compound-interest-calculator.html">
-            Compound Interest Calculator
-        </a>
-    </p>
-
-    <p>
-        <a href="net-worth-calculator.html">
-            Net Worth Calculator
-        </a>
-    </p>
-
-</div>
 </div>
 
 <footer>
+
     © 2026 Financial Calculators
+
     <br><br>
 
     <a href="sobre-nosotros.html">About Us</a>
@@ -303,9 +324,11 @@
     <a href="aviso-legal.html">Legal Notice</a>
     &nbsp; | &nbsp;
     <a href="privacy-policy.html">Privacy Policy</a>
+
 </footer>
 
 <script>
+
 function calculateSavings() {
 
     const initial = parseFloat(document.getElementById("initial").value) || 0;
@@ -337,13 +360,16 @@ function calculateSavings() {
 }
 
 function formatMoney(amount) {
+
     return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD"
     }).format(amount);
+
 }
 
 calculateSavings();
+
 </script>
 
 </body>
