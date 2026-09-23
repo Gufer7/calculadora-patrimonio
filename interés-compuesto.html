@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora de Interés Compuesto | Calcula tus inversiones</title>
+
+    <meta name="description" content="Calcula cuánto puede crecer tu dinero con interés compuesto. Introduce tu inversión inicial, aportaciones, rentabilidad y años.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .result-box {
+            background: #eef2ff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-box h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .amount {
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .explanation {
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Calculadora de Interés Compuesto</h1>
+    <p>Descubre cómo puede crecer tu dinero con el paso del tiempo</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Calcula tu inversión</h2>
+
+        <div class="form-group">
+            <label for="initial">Inversión inicial (€)</label>
+            <input type="number" id="initial" value="1000" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="monthly">Aportación mensual (€)</label>
+            <input type="number" id="monthly" value="100" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="rate">Rentabilidad anual (%)</label>
+            <input type="number" id="rate" value="7" step="0.1" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="years">Número de años</label>
+            <input type="number" id="years" value="20" min="1">
+        </div>
+
+        <button onclick="calculate()">Calcular</button>
+
+        <div class="result" id="result">
+
+            <div class="result-box">
+                <h3>Patrimonio final estimado</h3>
+                <div class="amount" id="finalAmount">0 €</div>
+            </div>
+
+            <br>
+
+            <div class="result-box">
+                <h3>Dinero que has aportado</h3>
+                <div class="amount" id="totalInvested">0 €</div>
+            </div>
+
+            <br>
+
+            <div class="result-box">
+                <h3>Ganancia estimada</h3>
+                <div class="amount" id="profit">0 €</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card explanation">
+
+        <h2>¿Qué es el interés compuesto?</h2>
+
+        <p>
+            El interés compuesto permite que los rendimientos obtenidos
+            por una inversión se reinviertan y generen nuevos rendimientos.
+            Con el paso del tiempo, este efecto puede hacer que el crecimiento
+            del patrimonio sea cada vez mayor.
+        </p>
+
+        <p>
+            Por ejemplo, si inviertes dinero y obtienes una rentabilidad anual,
+            al año siguiente no solo puedes obtener rentabilidad sobre el dinero
+            que aportaste inicialmente, sino también sobre los rendimientos
+            acumulados.
+        </p>
+
+        <p>
+            Esta calculadora es una herramienta orientativa. Las inversiones
+            reales pueden tener rentabilidades diferentes y no existe ninguna
+            rentabilidad garantizada.
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Calculadoras Financieras
+</footer>
+
+<script>
+
+function calculate() {
+
+    const initial = parseFloat(document.getElementById("initial").value) || 0;
+    const monthly = parseFloat(document.getElementById("monthly").value) || 0;
+    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
+    const years = parseInt(document.getElementById("years").value) || 0;
+
+    const monthlyRate = annualRate / 100 / 12;
+    const months = years * 12;
+
+    let balance = initial;
+
+    for (let i = 0; i < months; i++) {
+        balance = balance * (1 + monthlyRate);
+        balance += monthly;
+    }
+
+    const totalInvested = initial + (monthly * months);
+    const profit = balance - totalInvested;
+
+    document.getElementById("finalAmount").textContent =
+        formatMoney(balance);
+
+    document.getElementById("totalInvested").textContent =
+        formatMoney(totalInvested);
+
+    document.getElementById("profit").textContent =
+        formatMoney(profit);
+
+    document.getElementById("result").style.display = "block";
+}
+
+function formatMoney(value) {
+
+    return value.toLocaleString("es-ES", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }) + " €";
+
+}
+
+</script>
+
+</body>
+</html>
