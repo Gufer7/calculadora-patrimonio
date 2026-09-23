@@ -720,200 +720,209 @@ function calculateInvestment() {
     );
 
 
-    const netAnnualReturn =
-        Math.max(
-            0,
-            annualReturn - annualFees
+    const grossMonthlyRate =
+    Math.pow(
+        1 + annualReturn / 100,
+        1 / 12
+    ) - 1;
+
+
+const inflationMonthlyRate =
+    Math.pow(
+        1 + inflation / 100,
+        1 / 12
+    ) - 1;
+
+
+const monthlyFeeRate =
+    Math.max(0, annualFees) / 100 / 12;
+
+
+let balance = initial;
+
+let totalContributed = initial;
+
+let estimatedFees = 0;
+
+let realBalance = initial;
+
+const yearlyData = [];
+
+
+for (
+    let month = 1;
+    month <= years * 12;
+    month++
+) {
+
+    const growth =
+        balance * grossMonthlyRate;
+
+    balance += growth;
+
+
+    const estimatedMonthlyFee =
+        balance * monthlyFeeRate;
+
+    estimatedFees += estimatedMonthlyFee;
+
+    balance -= estimatedMonthlyFee;
+
+
+    balance += monthly;
+
+    totalContributed += monthly;
+
+
+    realBalance =
+        balance /
+        Math.pow(
+            1 + inflationMonthlyRate,
+            month
         );
 
 
-    const monthlyRate =
-        Math.pow(
-            1 + netAnnualReturn / 100,
-            1 / 12
-        ) - 1;
-
-
-    const inflationMonthlyRate =
-        Math.pow(
-            1 + inflation / 100,
-            1 / 12
-        ) - 1;
-
-
-    let balance = initial;
-
-    let totalContributed = initial;
-
-    let estimatedFees = 0;
-
-    let realBalance = initial;
-
-    const yearlyData = [];
-
-
-    for (
-        let month = 1;
-        month <= years * 12;
-        month++
+    if (
+        month % 12 === 0
     ) {
 
-        const growth =
-            balance * monthlyRate;
+        const currentYear =
+            month / 12;
 
-        balance += growth;
-
-        const estimatedMonthlyFee =
-            balance *
-            (
-                Math.max(0, annualFees) / 100 / 12
-            );
-
-        estimatedFees += estimatedMonthlyFee;
-
-        balance -= estimatedMonthlyFee;
-
-        balance += monthly;
-
-        totalContributed += monthly;
-
-
-        realBalance =
-            balance /
-            Math.pow(
-                1 + inflationMonthlyRate,
-                month
-            );
-
-
-        if (
-            month % 12 === 0
-        ) {
-
-            const currentYear =
-                month / 12;
-
-            yearlyData.push({
-                year: currentYear,
-                contributed: totalContributed,
-                value: balance,
-                growth:
-                    balance - totalContributed
-            });
-
-        }
+        yearlyData.push({
+            year: currentYear,
+            contributed: totalContributed,
+            value: balance,
+            growth:
+                balance - totalContributed
+        });
 
     }
-
-
-    const investmentGrowth =
-        Math.max(
-            0,
-            balance - totalContributed
-        );
-
-
-    document.getElementById(
-        "finalValue"
-    ).textContent =
-        formatMoney(balance);
-
-
-    document.getElementById(
-        "totalContributed"
-    ).textContent =
-        formatMoney(totalContributed);
-
-
-    document.getElementById(
-        "investmentGrowth"
-    ).textContent =
-        formatMoney(investmentGrowth);
-
-
-    document.getElementById(
-        "realValue"
-    ).textContent =
-        formatMoney(realBalance);
-
-
-    document.getElementById(
-        "totalFees"
-    ).textContent =
-        formatMoney(estimatedFees);
-
-
-    document.getElementById(
-        "netReturn"
-    ).textContent =
-        netAnnualReturn.toFixed(2) + "%";
-
-
-    const contributionPercentage =
-        balance > 0
-            ? (
-                totalContributed /
-                balance
-            ) * 100
-            : 100;
-
-
-    const growthPercentage =
-        balance > 0
-            ? (
-                investmentGrowth /
-                balance
-            ) * 100
-            : 0;
-
-
-    document.getElementById(
-        "contributionsBar"
-    ).style.width =
-        contributionPercentage + "%";
-
-
-    document.getElementById(
-        "growthBar"
-    ).style.width =
-        growthPercentage + "%";
-
-
-    const table =
-        document.getElementById(
-            "yearTable"
-        );
-
-
-    table.innerHTML = "";
-
-
-    yearlyData.forEach(
-        function (item) {
-
-            const row =
-                document.createElement("tr");
-
-
-            row.innerHTML = `
-                <td>${item.year}</td>
-                <td>${formatMoney(item.contributed)}</td>
-                <td>${formatMoney(item.value)}</td>
-                <td>${formatMoney(item.growth)}</td>
-            `;
-
-
-            table.appendChild(row);
-
-        }
-    );
 
 }
 
 
+const investmentGrowth =
+    Math.max(
+        0,
+        balance - totalContributed
+    );
+
+
+document.getElementById(
+    "finalValue"
+).textContent =
+    formatMoney(balance);
+
+
+document.getElementById(
+    "totalContributed"
+).textContent =
+    formatMoney(totalContributed);
+
+
+document.getElementById(
+    "investmentGrowth"
+).textContent =
+    formatMoney(investmentGrowth);
+
+
+document.getElementById(
+    "realValue"
+).textContent =
+    formatMoney(realBalance);
+
+
+document.getElementById(
+    "totalFees"
+).textContent =
+    formatMoney(estimatedFees);
+
+
+/* Approximate effective annual return after fees */
+
+const netAnnualReturn =
+    (
+        Math.pow(
+            1 + grossMonthlyRate,
+            12
+        ) *
+        Math.pow(
+            1 - monthlyFeeRate,
+            12
+        )
+        - 1
+    ) * 100;
+
+
+document.getElementById(
+    "netReturn"
+).textContent =
+    netAnnualReturn.toFixed(2) + "%";
+
+
+const contributionPercentage =
+    balance > 0
+        ? (
+            totalContributed /
+            balance
+        ) * 100
+        : 100;
+
+
+const growthPercentage =
+    balance > 0
+        ? (
+            investmentGrowth /
+            balance
+        ) * 100
+        : 0;
+
+
+document.getElementById(
+    "contributionsBar"
+).style.width =
+    contributionPercentage + "%";
+
+
+document.getElementById(
+    "growthBar"
+).style.width =
+    growthPercentage + "%";
+
+
+const table =
+    document.getElementById(
+        "yearTable"
+    );
+
+
+table.innerHTML = "";
+
+
+yearlyData.forEach(
+    function (item) {
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+            <td>${item.year}</td>
+            <td>${formatMoney(item.contributed)}</td>
+            <td>${formatMoney(item.value)}</td>
+            <td>${formatMoney(item.growth)}</td>
+        `;
+
+
+        table.appendChild(row);
+
+    }
+);
+
+
+}
+
 calculateInvestment();
-
-</script>
-
 </body>
 </html>
