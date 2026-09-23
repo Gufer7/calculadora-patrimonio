@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Net Worth Calculator | Financial Calculators</title>
+
+    <meta name="description" content="Free net worth calculator to estimate how your savings and investments could grow over time.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 30px 20px 40px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .result-box {
+            background: #eef2ff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .result-box h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .amount {
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .explanation {
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="net-worth-calculator.html">Net Worth Calculator</a>
+        <a href="interes-compuesto.html">Compound Interest Calculator</a>
+        <a href="sobre-nosotros.html">About Us</a>
+        <a href="contacto.html">Contact</a>
+    </nav>
+
+    <h1>Net Worth Calculator</h1>
+
+    <p>
+        Estimate how your savings and investments could grow over time
+    </p>
+
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Calculate Your Future Net Worth</h2>
+
+        <div class="form-group">
+            <label for="initial">Current savings / investments ($)</label>
+            <input type="number" id="initial" value="10000" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="monthly">Monthly contribution ($)</label>
+            <input type="number" id="monthly" value="500" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="rate">Expected annual return (%)</label>
+            <input type="number" id="rate" value="7" step="0.1" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="years">Investment period (years)</label>
+            <input type="number" id="years" value="10" min="1">
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div class="result" id="result">
+
+            <div class="result-box">
+                <h3>Estimated future net worth</h3>
+                <div class="amount" id="finalAmount">$0.00</div>
+            </div>
+
+            <div class="result-box">
+                <h3>Total money contributed</h3>
+                <div class="amount" id="totalInvested">$0.00</div>
+            </div>
+
+            <div class="result-box">
+                <h3>Estimated investment growth</h3>
+                <div class="amount" id="profit">$0.00</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card explanation">
+
+        <h2>What Is Net Worth?</h2>
+
+        <p>
+            Net worth is the value of your financial assets after accounting
+            for your liabilities. Building savings and investing consistently
+            can help increase your net worth over the long term.
+        </p>
+
+        <p>
+            This calculator estimates how your current savings and regular
+            contributions could grow if they earned a constant annual return.
+        </p>
+
+        <p>
+            The results are estimates for educational purposes only.
+            Investment returns are not guaranteed and actual results may vary.
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Financial Calculators
+</footer>
+
+<script>
+
+function calculate() {
+
+    const initial = parseFloat(document.getElementById("initial").value) || 0;
+    const monthly = parseFloat(document.getElementById("monthly").value) || 0;
+    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
+    const years = parseInt(document.getElementById("years").value) || 0;
+
+    const monthlyRate = annualRate / 100 / 12;
+    const months = years * 12;
+
+    let balance = initial;
+
+    for (let i = 0; i < months; i++) {
+        balance = balance * (1 + monthlyRate);
+        balance += monthly;
+    }
+
+    const totalInvested = initial + (monthly * months);
+    const profit = balance - totalInvested;
+
+    document.getElementById("finalAmount").textContent =
+        formatMoney(balance);
+
+    document.getElementById("totalInvested").textContent =
+        formatMoney(totalInvested);
+
+    document.getElementById("profit").textContent =
+        formatMoney(profit);
+
+    document.getElementById("result").style.display = "block";
+}
+
+function formatMoney(value) {
+
+    return "$" + value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+}
+
+</script>
+
+</body>
+</html>
