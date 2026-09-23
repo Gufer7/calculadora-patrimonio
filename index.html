@@ -1,144 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calculadora de Inversión y Patrimonio | Calcula tu Futuro Financiero</title>
+<title>Calculadora de Inversión y Patrimonio</title>
 
-    <meta name="description" content="Calcula cuánto dinero puedes acumular invirtiendo una cantidad inicial y realizando aportaciones mensuales. Incluye rentabilidad, inflación y crecimiento de aportaciones.">
+<meta name="description" content="Calcula cuánto podría crecer tu patrimonio con una inversión inicial, aportaciones mensuales y una rentabilidad anual estimada.">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #172033;
-        }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
 
-        header {
-            background: #172033;
-            color: white;
-            padding: 45px 20px;
-            text-align: center;
-        }
+header {
+    background: #172033;
+    color: white;
+    padding: 45px 20px;
+    text-align: center;
+}
 
-        header h1 {
-            margin: 0 0 12px;
-            font-size: 38px;
-        }
+header h1 {
+    margin: 0 0 12px;
+    font-size: 38px;
+}
 
-        header p {
-            margin: 0;
-            color: #cbd5e1;
-            font-size: 18px;
-        }
+header p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 18px;
+}
 
-        .container {
-            width: min(1000px, 92%);
-            margin: 35px auto;
-        }
+.container {
+    width: min(1000px, 92%);
+    margin: 35px auto;
+}
 
-        .calculator {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
-        }
+.calculator {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
 
-        .calculator h2 {
-            margin-top: 0;
-            font-size: 26px;
-        }
+.calculator h2 {
+    margin-top: 0;
+    font-size: 26px;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
 
-        input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
 
-        button {
-            width: 100%;
-            margin-top: 25px;
-            padding: 15px;
-            border: none;
-            border-radius: 9px;
-            background: #2563eb;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+button:hover {
+    background: #1d4ed8;
+}
 
-        .results {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
+.results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
 
-        .result-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
+.result-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
 
-        .result-card span {
-            display: block;
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
+.result-card span {
+    display: block;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
 
-        .result-card strong {
-            font-size: 25px;
-        }
+.result-card strong {
+    font-size: 25px;
+}
 
-        .chart-container {
-            margin-top: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
-        }
+.chart-container {
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
 
-        .chart {
-            width: 100%;
-            height: 300px;
-            display: flex;
-            align-items: flex-end;
-            gap: 5px;
-            padding: 20px 10px 0;
-            border-bottom: 1px solid #cbd5e1;
-        }
+.chart {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 20px 10px 0;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.bar {
+    flex: 1;
+    background: #2563eb;
+    border-radius: 5px 5px 0 0;
+    min-width: 4px;
+    position: relative;
+}
+
+.bar:hover {
+    background: #1d4ed8;
+}
+
 .chart-labels {
     display: flex;
     gap: 5px;
@@ -178,277 +191,410 @@
     background: #f8fafc;
     font-size: 14px;
 }
-        .bar {
-            flex: 1;
-            background: #2563eb;
-            border-radius: 5px 5px 0 0;
-            min-width: 4px;
-            position: relative;
-        }
 
-        .bar:hover {
-            background: #1d4ed8;
-        }
+.info {
+    margin-top: 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    line-height: 1.7;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
 
-        .info {
-            margin-top: 30px;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            line-height: 1.7;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
-        }
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    color: #64748b;
+    font-size: 14px;
+}
 
-        footer {
-            text-align: center;
-            padding: 35px 20px;
-            color: #64748b;
-            font-size: 14px;
-        }
+@media (max-width: 700px) {
 
-        @media (max-width: 700px) {
-            header h1 {
-                font-size: 29px;
-            }
+    header h1 {
+        font-size: 29px;
+    }
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
+    .grid {
+        grid-template-columns: 1fr;
+    }
 
-            .results {
-                grid-template-columns: 1fr;
-            }
+    .results {
+        grid-template-columns: 1fr;
+    }
 
-            .calculator {
-                padding: 20px;
-            }
-        }
-    </style>
+    .calculator {
+        padding: 20px;
+    }
+
+    .chart {
+        height: 250px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Calculadora de Inversión</h1>
-    <p>Descubre cuánto podría crecer tu patrimonio con el paso del tiempo</p>
+
+<h1>Calculadora de Inversión</h1>
+
+<p>
+Descubre cuánto podría crecer tu patrimonio con el paso del tiempo
+</p>
+
 </header>
 
 <div class="container">
 
-    <div class="calculator">
+<div class="calculator">
 
-        <h2>Calcula tu patrimonio futuro</h2>
+<h2>Calcula tu patrimonio futuro</h2>
 
-        <div class="grid">
+<div class="grid">
 
-            <div>
-                <label for="initial">Inversión inicial (€)</label>
-                <input type="number" id="initial" value="5000" min="0">
-            </div>
+<div>
+<label for="initial">Inversión inicial (€)</label>
+<input type="number" id="initial" value="5000" min="0">
+</div>
 
-            <div>
-                <label for="monthly">Aportación mensual (€)</label>
-                <input type="number" id="monthly" value="200" min="0">
-            </div>
+<div>
+<label for="monthly">Aportación mensual (€)</label>
+<input type="number" id="monthly" value="200" min="0">
+</div>
 
-            <div>
-                <label for="return">Rentabilidad anual (%)</label>
-                <input type="number" id="return" value="7" step="0.1">
-            </div>
+<div>
+<label for="return">Rentabilidad anual (%)</label>
+<input type="number" id="return" value="7" step="0.1">
+</div>
 
-            <div>
-                <label for="increase">Aumento anual de la aportación (%)</label>
-                <input type="number" id="increase" value="0" step="0.1">
-            </div>
+<div>
+<label for="increase">Aumento anual de la aportación (%)</label>
+<input type="number" id="increase" value="0" step="0.1">
+</div>
 
-            <div>
-                <label for="inflation">Inflación anual (%)</label>
-                <input type="number" id="inflation" value="2" step="0.1">
-            </div>
+<div>
+<label for="inflation">Inflación anual (%)</label>
+<input type="number" id="inflation" value="2" step="0.1">
+</div>
 
-            <div>
-                <label for="years">Años de inversión</label>
-                <input type="number" id="years" value="20" min="1" max="100">
-            </div>
-
-        </div>
-
-        <button onclick="calculate()">Calcular mi patrimonio</button>
-
-        <div class="results">
-
-            <div class="result-card">
-                <span>Patrimonio final</span>
-                <strong id="finalValue">0 €</strong>
-            </div>
-
-            <div class="result-card">
-                <span>Dinero aportado</span>
-                <strong id="totalInvested">0 €</strong>
-            </div>
-
-            <div class="result-card">
-                <span>Beneficio generado</span>
-                <strong id="profit">0 €</strong>
-            </div>
-
-        </div>
-
-   <div class="chart-container">
-
-    <h2>Evolución estimada</h2>
-
-    <div id="chart" class="chart"></div>
-
-    <div id="chartLabels" class="chart-labels"></div>
-
-    <div id="yearTable" class="year-table"></div>
+<div>
+<label for="years">Años de inversión</label>
+<input type="number" id="years" value="20" min="1" max="100">
+</div>
 
 </div>
 
-    <div class="info">
+<button onclick="calculate()">
+Calcular mi patrimonio
+</button>
 
-        <h2>¿Cómo funciona esta calculadora?</h2>
+<div class="results">
 
-        <p>
-            Esta calculadora permite estimar cómo podría evolucionar una inversión
-            a largo plazo teniendo en cuenta una inversión inicial, aportaciones
-            periódicas y una rentabilidad anual estimada.
-        </p>
+<div class="result-card">
+<span>Patrimonio final</span>
+<strong id="finalValue">0 €</strong>
+</div>
 
-        <p>
-            También puedes introducir una tasa de inflación para conocer una
-            estimación del valor de tu patrimonio en términos reales.
-        </p>
+<div class="result-card">
+<span>Dinero aportado</span>
+<strong id="totalInvested">0 €</strong>
+</div>
 
-        <p>
-            Los resultados son una simulación matemática y no constituyen una
-            garantía de rentabilidad futura.
-        </p>
-
-    </div>
+<div class="result-card">
+<span>Beneficio generado</span>
+<strong id="profit">0 €</strong>
+</div>
 
 </div>
+
+</div>
+
+
+<div class="chart-container">
+
+<h2>Evolución estimada</h2>
+
+<div id="chart" class="chart"></div>
+
+<div id="chartLabels" class="chart-labels"></div>
+
+<div id="yearTable" class="year-table"></div>
+
+</div>
+
+
+<div class="info">
+
+<h2>¿Cómo funciona esta calculadora?</h2>
+
+<p>
+Esta calculadora permite estimar cómo podría evolucionar una inversión
+a largo plazo teniendo en cuenta una inversión inicial, aportaciones
+mensuales y una rentabilidad anual estimada.
+</p>
+
+<p>
+También puedes introducir un aumento anual de tus aportaciones para
+simular cómo evolucionaría tu inversión si aumentases progresivamente
+la cantidad que inviertes cada año.
+</p>
+
+<p>
+La inflación se muestra como referencia para poder analizar el efecto
+que tendría la pérdida de poder adquisitivo a lo largo del tiempo.
+</p>
+
+<p>
+Los resultados son una simulación matemática y no constituyen una
+garantía de rentabilidad futura ni asesoramiento financiero.
+</p>
+
+</div>
+
+</div>
+
 
 <footer>
-    © 2026 Calculadora de Inversión · Información educativa, no asesoramiento financiero
+
+© 2026 Calculadora de Inversión · Información educativa
+
 </footer>
+
 
 <script>
 
 function formatMoney(value) {
-    return new Intl.NumberFormat('es-ES', {
-        style: 'currency',
-        currency: 'EUR',
-        maximumFractionDigits: 0
-    }).format(value);
+
+return new Intl.NumberFormat('es-ES', {
+
+style: 'currency',
+
+currency: 'EUR',
+
+maximumFractionDigits: 0
+
+}).format(value);
+
 }
+
 
 function calculate() {
 
-    const initial = Number(document.getElementById("initial").value);
-    let monthly = Number(document.getElementById("monthly").value);
+const initial =
+Number(document.getElementById("initial").value) || 0;
 
-    const annualReturn = Number(document.getElementById("return").value) / 100;
-    const annualIncrease = Number(document.getElementById("increase").value) / 100;
-    const inflation = Number(document.getElementById("inflation").value) / 100;
+let monthly =
+Number(document.getElementById("monthly").value) || 0;
 
-    const years = Number(document.getElementById("years").value);
+const annualReturn =
+Number(document.getElementById("return").value) / 100 || 0;
 
-    const monthlyReturn = Math.pow(1 + annualReturn, 1 / 12) - 1;
+const annualIncrease =
+Number(document.getElementById("increase").value) / 100 || 0;
 
-    let balance = initial;
-    let totalInvested = initial;
+const inflation =
+Number(document.getElementById("inflation").value) / 100 || 0;
 
-    let yearlyValues = [];
+const years =
+Number(document.getElementById("years").value) || 1;
 
-    for (let month = 1; month <= years * 12; month++) {
 
-        balance = balance * (1 + monthlyReturn);
+const monthlyReturn =
+Math.pow(1 + annualReturn, 1 / 12) - 1;
 
-        balance += monthly;
 
-        totalInvested += monthly;
+let balance = initial;
 
-        if (month % 12 === 0) {
+let totalInvested = initial;
 
-            yearlyValues.push(balance);
+let yearlyValues = [];
 
-            monthly = monthly * (1 + annualIncrease);
+let yearlyInvested = [];
 
-        }
-    }
 
-    const profit = balance - totalInvested;
+for (
+let month = 1;
+month <= years * 12;
+month++
+) {
 
-    document.getElementById("finalValue").textContent = formatMoney(balance);
-    document.getElementById("totalInvested").textContent = formatMoney(totalInvested);
-    document.getElementById("profit").textContent = formatMoney(profit);
+balance =
+balance * (1 + monthlyReturn);
 
-    drawChart(yearlyValues);
+balance += monthly;
+
+totalInvested += monthly;
+
+
+if (month % 12 === 0) {
+
+yearlyValues.push(balance);
+
+yearlyInvested.push(totalInvested);
+
+monthly =
+monthly * (1 + annualIncrease);
 
 }
 
-function drawChart(values) {
-
-    const chart = document.getElementById("chart");
-    const labels = document.getElementById("chartLabels");
-    const table = document.getElementById("yearTable");
-
-    chart.innerHTML = "";
-    labels.innerHTML = "";
-    table.innerHTML = "";
-
-    const max = Math.max(...values);
-
-    values.forEach((value, index) => {
-
-        const bar = document.createElement("div");
-        bar.className = "bar";
-
-        const height = Math.max((value / max) * 100, 2);
-
-        bar.style.height = height + "%";
-        bar.title = "Año " + (index + 1) + ": " + formatMoney(value);
-
-        chart.appendChild(bar);
-
-        const label = document.createElement("div");
-        label.className = "chart-label";
-        label.textContent = "Año " + (index + 1);
-
-        labels.appendChild(label);
-    });
-
-    let html = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Año</th>
-                    <th>Patrimonio estimado</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    values.forEach((value, index) => {
-
-        html += `
-            <tr>
-                <td>Año ${index + 1}</td>
-                <td>${formatMoney(value)}</td>
-            </tr>
-        `;
-
-    });
-
-    html += `
-            </tbody>
-        </table>
-    `;
-
-    table.innerHTML = html;
 }
+
+
+const profit =
+balance - totalInvested;
+
+
+document.getElementById("finalValue").textContent =
+formatMoney(balance);
+
+document.getElementById("totalInvested").textContent =
+formatMoney(totalInvested);
+
+document.getElementById("profit").textContent =
+formatMoney(profit);
+
+
+drawChart(yearlyValues, yearlyInvested);
+
+}
+
+
+function drawChart(values, invested) {
+
+const chart =
+document.getElementById("chart");
+
+const labels =
+document.getElementById("chartLabels");
+
+const table =
+document.getElementById("yearTable");
+
+
+chart.innerHTML = "";
+
+labels.innerHTML = "";
+
+table.innerHTML = "";
+
+
+if (values.length === 0) {
+
+return;
+
+}
+
+
+const max =
+Math.max(...values);
+
+
+values.forEach((value, index) => {
+
+const bar =
+document.createElement("div");
+
+bar.className = "bar";
+
+
+const height =
+Math.max((value / max) * 100, 2);
+
+
+bar.style.height =
+height + "%";
+
+
+bar.title =
+"Año " +
+(index + 1) +
+": " +
+formatMoney(value);
+
+
+chart.appendChild(bar);
+
+
+const label =
+document.createElement("div");
+
+label.className =
+"chart-label";
+
+label.textContent =
+"Año " + (index + 1);
+
+
+labels.appendChild(label);
+
+});
+
+
+let html = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Año</th>
+
+<th>Patrimonio</th>
+
+<th>Dinero aportado</th>
+
+<th>Beneficio</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+`;
+
+
+values.forEach((value, index) => {
+
+const benefit =
+value - invested[index];
+
+
+html += `
+
+<tr>
+
+<td>Año ${index + 1}</td>
+
+<td>${formatMoney(value)}</td>
+
+<td>${formatMoney(invested[index])}</td>
+
+<td>${formatMoney(benefit)}</td>
+
+</tr>
+
+`;
+
+});
+
+
+html += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+table.innerHTML =
+html;
+
+}
+
 
 calculate();
 
