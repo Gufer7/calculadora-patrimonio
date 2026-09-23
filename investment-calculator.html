@@ -281,371 +281,423 @@
 
     <div class="calculator">
 
-        <h2>Investment Growth Calculator</h2>
+      <h2>Investment Growth Calculator</h2>
 
-        <div class="input-group">
-            <label for="initial">
-                Initial investment ($)
-            </label>
+<div class="input-group">
+    <label for="initial">
+        Initial investment ($)
+    </label>
 
-            <input
-                type="number"
-                id="initial"
-                value="5000"
-                min="0"
-                step="100"
-            >
-        </div>
+    <input
+        type="number"
+        id="initial"
+        value="5000"
+        min="0"
+        step="100"
+    >
+</div>
 
-        <div class="input-group">
-            <label for="monthly">
-                Monthly contribution ($)
-            </label>
+<div class="input-group">
+    <label for="monthly">
+        Monthly contribution ($)
+    </label>
 
-            <input
-                type="number"
-                id="monthly"
-                value="200"
-                min="0"
-                step="10"
-            >
-        </div>
+    <input
+        type="number"
+        id="monthly"
+        value="200"
+        min="0"
+        step="10"
+    >
+</div>
 
-        <div class="input-group">
-            <label for="returnRate">
-                Expected annual return (%)
-            </label>
+<div class="input-group">
+    <label for="returnRate">
+        Expected annual return (%)
+    </label>
 
-            <input
-                type="number"
-                id="returnRate"
-                value="7"
-                min="0"
-                step="0.1"
-            >
-        </div>
+    <input
+        type="number"
+        id="returnRate"
+        value="7"
+        min="0"
+        step="0.1"
+    >
+</div>
 
-        <div class="input-group">
-            <label for="fees">
-                Annual investment fees (%)
-            </label>
+<div class="input-group">
+    <label for="fees">
+        Annual investment fees (%)
+    </label>
 
-            <input
-                type="number"
-                id="fees"
-                value="0.2"
-                min="0"
-                step="0.05"
-            >
-        </div>
+    <input
+        type="number"
+        id="fees"
+        value="0.2"
+        min="0"
+        step="0.05"
+    >
+</div>
 
-        <div class="input-group">
-            <label for="inflation">
-                Estimated annual inflation (%)
-            </label>
+<div class="input-group">
+    <label for="inflation">
+        Estimated annual inflation (%)
+    </label>
 
-            <input
-                type="number"
-                id="inflation"
-                value="2"
-                min="0"
-                step="0.1"
-            >
-        </div>
+    <input
+        type="number"
+        id="inflation"
+        value="2"
+        min="0"
+        step="0.1"
+    >
+</div>
 
-        <div class="input-group">
-            <label for="years">
-                Investment period (years)
-            </label>
+<div class="input-group">
+    <label for="years">
+        Investment period (years)
+    </label>
 
-            <input
-                type="number"
-                id="years"
-                value="20"
-                min="1"
-                max="100"
-                step="1"
-            >
-        </div>
+    <input
+        type="number"
+        id="years"
+        value="20"
+        min="1"
+        max="100"
+        step="1"
+    >
+</div>
 
-        <button onclick="calculateInvestment()">
-            Calculate Investment Growth
-        </button>
+<button onclick="calculateInvestment()">
+    Calculate Investment Growth
+</button>
 
-        <div class="results">
+<div class="results">
 
-            <div class="result-box highlight">
-                Estimated final value
-                <strong id="finalValue">$0.00</strong>
-            </div>
+    <div class="result-box highlight">
+        Estimated final value
+        <strong id="finalValue">$0.00</strong>
+    </div>
 
-            <div class="result-box">
-                Total money contributed
-                <strong id="totalContributed">$0.00</strong>
-            </div>
+    <div class="result-box">
+        Total money contributed
+        <strong id="totalContributed">$0.00</strong>
+    </div>
 
-            <div class="result-box">
-                Investment growth
-                <strong id="investmentGrowth">$0.00</strong>
-            </div>
+    <div class="result-box">
+        Investment growth
+        <strong id="investmentGrowth">$0.00</strong>
+    </div>
 
-            <div class="result-box">
-                Estimated value after inflation
-                <strong id="realValue">$0.00</strong>
-            </div>
+    <div class="result-box">
+        Estimated value after inflation
+        <strong id="realValue">$0.00</strong>
+    </div>
 
-            <div class="result-box">
-                Estimated fees paid
-                <strong id="totalFees">$0.00</strong>
-            </div>
+    <div class="result-box">
+        Estimated fees paid
+        <strong id="totalFees">$0.00</strong>
+    </div>
 
-            <div class="result-box">
-                Effective annual return after fees
-                <strong id="netReturn">0.00%</strong>
-            </div>
+    <div class="result-box">
+        Effective annual return after fees
+        <strong id="netReturn">0.00%</strong>
+    </div>
 
-        </div>
+</div>
 
-        <div class="bar-container">
+<div class="bar-container">
 
-            <h3>Contributions vs. investment growth</h3>
+    <h3>Contributions vs. investment growth</h3>
 
-            <div class="bar">
-                <div
-                    id="contributionsBar"
-                    class="contributions-bar"
-                ></div>
+    <div class="bar">
+        <div
+            id="contributionsBar"
+            class="contributions-bar"
+        ></div>
 
-                <div
-                    id="growthBar"
-                    class="growth-bar"
-                ></div>
-            </div>
+        <div
+            id="growthBar"
+            class="growth-bar"
+        ></div>
+    </div>
 
-            <div class="legend">
-                <span>■ Money contributed</span>
-                <span>■ Investment growth</span>
-            </div>
+    <div class="legend">
+        <span>■ Money contributed</span>
+        <span>■ Investment growth</span>
+    </div>
 
-        </div>
+</div>
+
+</div>
+
+
+<section>
+
+    <h2>Investment Growth by Year</h2>
+
+    <p>
+        The table below shows how the estimated investment value could
+        develop over time based on the assumptions entered into the
+        calculator.
+    </p>
+
+    <p>
+        Each year's estimate includes your accumulated contributions and
+        the estimated investment growth after fees. These figures are
+        projections and are not guaranteed returns.
+    </p>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Contributed</th>
+                    <th>Estimated value</th>
+                    <th>Investment growth</th>
+                </tr>
+            </thead>
+
+            <tbody id="yearTable"></tbody>
+
+        </table>
 
     </div>
 
-
-    <section>
-
-        <h2>Investment Growth by Year</h2>
-
-        <p>
-            The table below shows how the estimated investment value could
-            develop over time under the assumptions entered above.
-        </p>
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>Contributed</th>
-                        <th>Estimated value</th>
-                        <th>Investment growth</th>
-                    </tr>
-                </thead>
-
-                <tbody id="yearTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <section>
+<section>
 
-        <h2>How does an investment calculator work?</h2>
+    <h2>How does an investment calculator work?</h2>
 
-        <p>
-            An investment calculator estimates how your money could grow when
-            an initial investment is combined with regular contributions and
-            an assumed annual return.
-        </p>
-
-        <p>
-            The calculation compounds the estimated return over the selected
-            investment period. Monthly contributions are added throughout the
-            period.
-        </p>
-
-        <p>
-            This calculator also allows you to include estimated investment
-            fees and inflation so you can see how these assumptions can affect
-            the long-term result.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>Why investment fees matter</h2>
-
-        <p>
-            Investment fees may appear small when viewed over a single year,
-            but their effect can become more significant over long periods
-            because money paid in fees is no longer available to compound.
-        </p>
-
-        <p>
-            For example, an investment with a 7% expected annual return and
-            0.2% annual fees is modeled using a net return of approximately
-            6.8% before considering inflation.
-        </p>
-
-        <p>
-            Actual investment costs can be more complicated and may include
-            fund expenses, platform fees, trading costs, taxes or other
-            charges that are not included in this calculator.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>Why inflation matters</h2>
-
-        <p>
-            Inflation reduces the purchasing power of money over time.
-            Therefore, a future investment balance may have less purchasing
-            power than the same amount of money today.
-        </p>
-
-        <p>
-            The inflation-adjusted result shown by this calculator is only an
-            estimate. Actual inflation can change from year to year.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>Example investment scenario</h2>
-
-        <p>
-            Suppose you invest $5,000 initially and contribute $200 every
-            month. If you assume a 7% annual return, 0.2% annual fees and 2%
-            annual inflation over 20 years, the calculator estimates how your
-            investment could develop under those assumptions.
-        </p>
-
-        <p>
-            The result should be viewed as a mathematical projection rather
-            than a prediction of future market performance.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>Frequently Asked Questions</h2>
-
-        <h3>What return should I use?</h3>
-
-        <p>
-            The appropriate assumption depends on the type of investment and
-            the period being considered. Historical returns do not guarantee
-            future results, so it can be useful to compare several different
-            scenarios rather than relying on a single assumption.
-        </p>
-
-        <h3>Does this calculator guarantee investment returns?</h3>
-
-        <p>
-            No. Investment returns are uncertain. This calculator only
-            produces a mathematical estimate based on the assumptions you
-            enter.
-        </p>
-
-        <h3>Does the calculator include investment fees?</h3>
-
-        <p>
-            Yes. You can enter an estimated annual investment fee and the
-            calculator subtracts it from the expected annual return.
-        </p>
-
-        <h3>Does it account for inflation?</h3>
-
-        <p>
-            Yes. The calculator provides an estimated inflation-adjusted
-            value to illustrate the potential effect of inflation on future
-            purchasing power.
-        </p>
-
-        <h3>Can I use this calculator for stocks or ETFs?</h3>
-
-        <p>
-            You can use it for educational projections involving investments
-            such as stocks, ETFs or diversified portfolios. However, actual
-            returns, fees, taxes and volatility can differ substantially from
-            the assumptions entered.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>More Financial Calculators</h2>
-
-        <p>
-            Explore our other free financial calculators to compare different
-            saving and investing scenarios.
-        </p>
-
-        <p>
-            <a href="savings-calculator.html">
-                Savings Calculator
-            </a>
-            — estimate how regular savings could grow over time.
-        </p>
-
-        <p>
-            <a href="compound-interest-calculator.html">
-                Compound Interest Calculator
-            </a>
-            — see how compounding can affect an initial investment and
-            regular contributions.
-        </p>
-
-        <p>
-            <a href="net-worth-calculator.html">
-                Net Worth Calculator
-            </a>
-            — calculate your current net worth by comparing assets and
-            liabilities.
-        </p>
-
-        <p>
-            <a href="index.html">
-                View all financial calculators
-            </a>
-            — explore the complete collection of free financial tools.
-        </p>
-
-    </section>
-
-
-    <p class="disclaimer">
-        Disclaimer: This calculator is provided for educational and
-        informational purposes only. It does not constitute financial,
-        investment, tax or legal advice. Investment returns are uncertain
-        and actual results may differ from these estimates.
+    <p>
+        An investment calculator estimates how an investment could grow over
+        time based on an initial amount, regular contributions and an
+        assumed annual rate of return.
     </p>
+
+    <p>
+        Enter your starting investment, monthly contribution, expected annual
+        return and investment period. The calculator compounds the assumed
+        return over time and adds your regular contributions throughout
+        the investment period.
+    </p>
+
+    <p>
+        You can also enter estimated investment fees and inflation. This
+        allows you to see how costs and changes in purchasing power could
+        affect the estimated value of your investment over the long term.
+    </p>
+
+    <p>
+        The results are mathematical projections based on the assumptions
+        you enter. They should not be interpreted as a prediction of actual
+        market performance.
+    </p>
+
+</section>
+
+
+<section>
+
+    <h2>Why investment fees matter</h2>
+
+    <p>
+        Investment fees can reduce the amount of money available to remain
+        invested and generate future returns. Even relatively small annual
+        fees can have a noticeable effect when an investment is held for
+        many years.
+    </p>
+
+    <p>
+        For example, if an investment has an expected annual return of 7%
+        and annual investment fees of 0.2%, the estimated effective return
+        after fees is approximately 6.8% under the assumptions used by this
+        calculator.
+    </p>
+
+    <p>
+        Real investment costs can vary depending on the product and provider.
+        They may include fund expenses, management fees, platform fees,
+        trading costs, taxes or other charges that are not necessarily
+        included in this calculator.
+    </p>
+
+</section>
+
+
+<section>
+
+    <h2>Why inflation matters for investments</h2>
+
+    <p>
+        Inflation reduces the purchasing power of money over time. As a
+        result, an investment balance that looks large in the future may
+        have less purchasing power than the same amount of money today.
+    </p>
+
+    <p>
+        This calculator provides an estimated inflation-adjusted value to
+        illustrate how inflation could affect the future purchasing power
+        of your investment.
+    </p>
+
+    <p>
+        The inflation assumption is not a prediction. Actual inflation can
+        vary over time and can be higher or lower than the percentage entered
+        into the calculator.
+    </p>
+
+</section>
+
+
+<section>
+
+    <h2>Example investment scenario</h2>
+
+    <p>
+        Suppose you invest $5,000 initially and contribute $200 every month.
+        If you assume a 7% annual return, 0.2% annual investment fees and
+        2% annual inflation over 20 years, the calculator estimates how
+        your investment could develop under those assumptions.
+    </p>
+
+    <p>
+        In this example, you would contribute $53,000 over the 20-year
+        period. The calculator then estimates the potential investment
+        growth, fees and inflation-adjusted value.
+    </p>
+
+    <p>
+        The example is purely hypothetical. Investment returns can vary
+        significantly from year to year, and actual results may be higher
+        or lower than the estimate.
+    </p>
+
+</section>
+
+
+<section>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What return should I use in an investment calculator?</h3>
+
+    <p>
+        There is no single return that applies to every investment. The
+        appropriate assumption depends on the type of investment, the
+        investment period and the level of risk involved. It can be useful
+        to compare several different return assumptions rather than relying
+        on a single projection.
+    </p>
+
+    <h3>Does this investment calculator guarantee returns?</h3>
+
+    <p>
+        No. The calculator only produces a mathematical estimate based on
+        the assumptions you enter. Actual investment returns are uncertain
+        and can be significantly different from the estimated results.
+    </p>
+
+    <h3>Does the calculator include investment fees?</h3>
+
+    <p>
+        Yes. You can enter an estimated annual investment fee. The calculator
+        estimates the effect of these fees on the investment balance over
+        time and also shows the estimated total fees paid.
+    </p>
+
+    <h3>Does the investment calculator account for inflation?</h3>
+
+    <p>
+        Yes. You can enter an estimated annual inflation rate, and the
+        calculator provides an estimated value adjusted for inflation to
+        illustrate the potential effect on future purchasing power.
+    </p>
+
+    <h3>Can I use this calculator for stocks or ETFs?</h3>
+
+    <p>
+        Yes. You can use it for educational projections involving stocks,
+        ETFs or diversified investment portfolios. However, actual returns,
+        volatility, fees and taxes can differ substantially from the
+        assumptions entered.
+    </p>
+
+    <h3>What is the difference between investment growth and money contributed?</h3>
+
+    <p>
+        Money contributed is the amount you personally put into the
+        investment, including your initial investment and regular
+        contributions. Investment growth is the estimated increase in value
+        resulting from the assumed investment returns after fees.
+    </p>
+
+    <h3>Why is the value after inflation lower than the final value?</h3>
+
+    <p>
+        The final value is expressed in future dollars, while the
+        inflation-adjusted value estimates what that future amount could be
+        worth in today's purchasing power. Higher inflation generally means
+        lower purchasing power in the future.
+    </p>
+
+</section>
+
+
+<section>
+
+    <h2>More Financial Calculators</h2>
+
+    <p>
+        Explore our other free financial calculators to compare different
+        saving, investing and financial planning scenarios.
+    </p>
+
+    <p>
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+        — estimate how regular savings contributions and interest could
+        affect your future balance.
+    </p>
+
+    <p>
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+        — explore how an initial investment and regular contributions could
+        grow through compound interest over time.
+    </p>
+
+    <p>
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+        — calculate your current net worth by comparing your assets and
+        liabilities.
+    </p>
+
+    <p>
+        <a href="index.html">
+            View all financial calculators
+        </a>
+        — explore the complete collection of free financial tools.
+    </p>
+
+</section>
+
+
+<p class="disclaimer">
+    Disclaimer: This calculator is provided for educational and
+    informational purposes only. It does not constitute financial,
+    investment, tax or legal advice. Investment returns are uncertain,
+    and actual results may differ from these estimates.
+</p>
 
 </main>
 
