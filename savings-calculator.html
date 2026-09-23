@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Calculator | Financial Calculators</title>
+    <meta name="description" content="Use our free savings calculator to estimate how much your savings could grow with regular monthly contributions and interest.">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .intro {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+
+        .result-box {
+            margin: 12px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .result-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .result-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .content {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6b7280;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Financial Calculators</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="net-worth-calculator.html">Net Worth Calculator</a>
+        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
+        <a href="savings-calculator.html">Savings Calculator</a>
+        <a href="sobre-nosotros.html">About Us</a>
+        <a href="contacto.html">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h1>Savings Calculator</h1>
+
+        <p class="intro">
+            Estimate how much your savings could grow over time based on your
+            initial savings, monthly contributions, interest rate, and savings period.
+        </p>
+
+        <label for="initial">Initial savings ($)</label>
+        <input type="number" id="initial" value="1000" min="0">
+
+        <label for="monthly">Monthly contribution ($)</label>
+        <input type="number" id="monthly" value="200" min="0">
+
+        <label for="rate">Annual interest rate (%)</label>
+        <input type="number" id="rate" value="4" min="0" step="0.1">
+
+        <label for="years">Savings period (years)</label>
+        <input type="number" id="years" value="10" min="1">
+
+        <button onclick="calculateSavings()">Calculate Savings</button>
+
+        <div class="results">
+
+            <div class="result-box">
+                <div class="result-label">Estimated savings</div>
+                <div class="result-value" id="futureValue">$0</div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-label">Total money contributed</div>
+                <div class="result-value" id="totalContributed">$0</div>
+            </div>
+
+            <div class="result-box">
+                <div class="result-label">Interest earned</div>
+                <div class="result-value" id="interestEarned">$0</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <h2>How does the savings calculator work?</h2>
+
+        <p>
+            This savings calculator estimates how your money could grow when you
+            make regular monthly contributions and earn interest over time.
+        </p>
+
+        <p>
+            The calculation uses monthly compounding. This means that interest
+            earned can itself generate additional interest during future months.
+        </p>
+
+        <h2>Why save regularly?</h2>
+
+        <p>
+            Making regular contributions can help build savings gradually and
+            allows compound growth to work over longer periods of time.
+        </p>
+
+        <h2>Example</h2>
+
+        <p>
+            If you start with $1,000, contribute $200 every month and earn an
+            average annual interest rate of 4% for 10 years, the calculator
+            estimates the potential value of your savings at the end of the period.
+        </p>
+
+        <p>
+            Actual results may vary depending on interest rates, account fees,
+            taxes, inflation, and the timing of deposits.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Does this calculator guarantee my future savings?</h3>
+
+        <p>
+            No. The result is only an estimate based on the assumptions entered.
+            Actual savings growth may be different.
+        </p>
+
+        <h3>Can I change the monthly contribution?</h3>
+
+        <p>
+            Yes. Enter the amount you expect to save each month.
+        </p>
+
+        <h3>Does the calculator include compound interest?</h3>
+
+        <p>
+            Yes. The calculation applies the annual interest rate on a monthly basis.
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Financial Calculators
+    <br><br>
+
+    <a href="sobre-nosotros.html">About Us</a>
+    &nbsp; | &nbsp;
+    <a href="contacto.html">Contact</a>
+    &nbsp; | &nbsp;
+    <a href="aviso-legal.html">Legal Notice</a>
+    &nbsp; | &nbsp;
+    <a href="privacy-policy.html">Privacy Policy</a>
+</footer>
+
+<script>
+function calculateSavings() {
+
+    const initial = parseFloat(document.getElementById("initial").value) || 0;
+    const monthly = parseFloat(document.getElementById("monthly").value) || 0;
+    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
+    const years = parseFloat(document.getElementById("years").value) || 0;
+
+    const monthlyRate = annualRate / 100 / 12;
+    const months = years * 12;
+
+    let balance = initial;
+
+    for (let i = 0; i < months; i++) {
+        balance = balance * (1 + monthlyRate);
+        balance += monthly;
+    }
+
+    const totalContributed = initial + (monthly * months);
+    const interestEarned = balance - totalContributed;
+
+    document.getElementById("futureValue").textContent =
+        formatMoney(balance);
+
+    document.getElementById("totalContributed").textContent =
+        formatMoney(totalContributed);
+
+    document.getElementById("interestEarned").textContent =
+        formatMoney(interestEarned);
+}
+
+function formatMoney(amount) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    }).format(amount);
+}
+
+calculateSavings();
+</script>
+
+</body>
+</html>
