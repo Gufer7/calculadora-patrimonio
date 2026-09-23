@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora de Inversión y Patrimonio | Calcula tu Futuro Financiero</title>
+
+    <meta name="description" content="Calcula cuánto dinero puedes acumular invirtiendo una cantidad inicial y realizando aportaciones mensuales. Incluye rentabilidad, inflación y crecimiento de aportaciones.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #172033;
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 38px;
+        }
+
+        header p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .container {
+            width: min(1000px, 92%);
+            margin: 35px auto;
+        }
+
+        .calculator {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        }
+
+        .calculator h2 {
+            margin-top: 0;
+            font-size: 26px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .result-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-card span {
+            display: block;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .result-card strong {
+            font-size: 25px;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            padding: 20px 10px 0;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .bar {
+            flex: 1;
+            background: #2563eb;
+            border-radius: 5px 5px 0 0;
+            min-width: 4px;
+            position: relative;
+        }
+
+        .bar:hover {
+            background: #1d4ed8;
+        }
+
+        .info {
+            margin-top: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            line-height: 1.7;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 29px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Calculadora de Inversión</h1>
+    <p>Descubre cuánto podría crecer tu patrimonio con el paso del tiempo</p>
+</header>
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h2>Calcula tu patrimonio futuro</h2>
+
+        <div class="grid">
+
+            <div>
+                <label for="initial">Inversión inicial (€)</label>
+                <input type="number" id="initial" value="5000" min="0">
+            </div>
+
+            <div>
+                <label for="monthly">Aportación mensual (€)</label>
+                <input type="number" id="monthly" value="200" min="0">
+            </div>
+
+            <div>
+                <label for="return">Rentabilidad anual (%)</label>
+                <input type="number" id="return" value="7" step="0.1">
+            </div>
+
+            <div>
+                <label for="increase">Aumento anual de la aportación (%)</label>
+                <input type="number" id="increase" value="0" step="0.1">
+            </div>
+
+            <div>
+                <label for="inflation">Inflación anual (%)</label>
+                <input type="number" id="inflation" value="2" step="0.1">
+            </div>
+
+            <div>
+                <label for="years">Años de inversión</label>
+                <input type="number" id="years" value="20" min="1" max="100">
+            </div>
+
+        </div>
+
+        <button onclick="calculate()">Calcular mi patrimonio</button>
+
+        <div class="results">
+
+            <div class="result-card">
+                <span>Patrimonio final</span>
+                <strong id="finalValue">0 €</strong>
+            </div>
+
+            <div class="result-card">
+                <span>Dinero aportado</span>
+                <strong id="totalInvested">0 €</strong>
+            </div>
+
+            <div class="result-card">
+                <span>Beneficio generado</span>
+                <strong id="profit">0 €</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="chart-container">
+
+        <h2>Evolución estimada</h2>
+
+        <div id="chart" class="chart"></div>
+
+    </div>
+
+    <div class="info">
+
+        <h2>¿Cómo funciona esta calculadora?</h2>
+
+        <p>
+            Esta calculadora permite estimar cómo podría evolucionar una inversión
+            a largo plazo teniendo en cuenta una inversión inicial, aportaciones
+            periódicas y una rentabilidad anual estimada.
+        </p>
+
+        <p>
+            También puedes introducir una tasa de inflación para conocer una
+            estimación del valor de tu patrimonio en términos reales.
+        </p>
+
+        <p>
+            Los resultados son una simulación matemática y no constituyen una
+            garantía de rentabilidad futura.
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Calculadora de Inversión · Información educativa, no asesoramiento financiero
+</footer>
+
+<script>
+
+function formatMoney(value) {
+    return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0
+    }).format(value);
+}
+
+function calculate() {
+
+    const initial = Number(document.getElementById("initial").value);
+    let monthly = Number(document.getElementById("monthly").value);
+
+    const annualReturn = Number(document.getElementById("return").value) / 100;
+    const annualIncrease = Number(document.getElementById("increase").value) / 100;
+    const inflation = Number(document.getElementById("inflation").value) / 100;
+
+    const years = Number(document.getElementById("years").value);
+
+    const monthlyReturn = Math.pow(1 + annualReturn, 1 / 12) - 1;
+
+    let balance = initial;
+    let totalInvested = initial;
+
+    let yearlyValues = [];
+
+    for (let month = 1; month <= years * 12; month++) {
+
+        balance = balance * (1 + monthlyReturn);
+
+        balance += monthly;
+
+        totalInvested += monthly;
+
+        if (month % 12 === 0) {
+
+            yearlyValues.push(balance);
+
+            monthly = monthly * (1 + annualIncrease);
+
+        }
+    }
+
+    const profit = balance - totalInvested;
+
+    document.getElementById("finalValue").textContent = formatMoney(balance);
+    document.getElementById("totalInvested").textContent = formatMoney(totalInvested);
+    document.getElementById("profit").textContent = formatMoney(profit);
+
+    drawChart(yearlyValues);
+
+}
+
+function drawChart(values) {
+
+    const chart = document.getElementById("chart");
+
+    chart.innerHTML = "";
+
+    const max = Math.max(...values);
+
+    values.forEach((value, index) => {
+
+        const bar = document.createElement("div");
+
+        bar.className = "bar";
+
+        const height = (value / max) * 100;
+
+        bar.style.height = height + "%";
+
+        bar.title = "Año " + (index + 1) + ": " + formatMoney(value);
+
+        chart.appendChild(bar);
+
+    });
+
+}
+
+calculate();
+
+</script>
+
+</body>
+</html>
