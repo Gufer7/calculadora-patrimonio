@@ -2,104 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <title>Compound Interest Calculator - See How Your Money Can Grow</title>
+
+    <meta name="description" content="Use this free compound interest calculator to estimate investment growth from an initial deposit, monthly contributions and compound returns over time.">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Compound Interest Calculator | Investment Growth</title>
-
-    <meta name="description" content="Calculate how your money could grow with compound interest. Enter your initial investment, monthly contributions, annual return and investment period.">
-
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f8;
+            margin: 0;
             color: #222;
         }
 
         header {
             background: #111827;
             color: white;
-            padding: 30px 20px 40px;
+            padding: 20px;
             text-align: center;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+        header h2 {
+            margin: 0 0 15px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            margin: 0 8px;
+            font-size: 14px;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 32px;
-        }
-
-        header p {
-            margin: 0;
-            color: #d1d5db;
-        }
-
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
-        .card {
+        .calculator,
+        .content,
+        .more-tools {
             background: white;
-            border-radius: 12px;
             padding: 25px;
+            border-radius: 10px;
             margin-bottom: 25px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .card h2 {
-            margin-top: 0;
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .form-group {
-            margin-bottom: 18px;
+        .intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
         }
 
         label {
             display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
             font-weight: bold;
-            margin-bottom: 7px;
         }
 
         input {
             width: 100%;
+            box-sizing: border-box;
             padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
             font-size: 16px;
         }
 
         button {
             width: 100%;
             padding: 14px;
+            margin-top: 25px;
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 17px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
         }
 
@@ -107,37 +97,102 @@
             background: #1d4ed8;
         }
 
-        .result {
-            display: none;
-            margin-top: 25px;
+        .results {
+            margin-top: 30px;
         }
 
         .result-box {
-            background: #eef2ff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+            background: #f3f4f6;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 12px;
         }
 
-        .result-box h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
+        .result-box strong {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .amount {
-            font-size: 34px;
+        .result-value {
+            font-size: 24px;
             font-weight: bold;
         }
 
-        .explanation {
-            line-height: 1.7;
+        .breakdown {
+            margin-top: 25px;
+        }
+
+        .bar-container {
+            height: 28px;
+            display: flex;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e5e7eb;
+            margin-top: 15px;
+        }
+
+        .contributions-bar {
+            background: #6b7280;
+            height: 100%;
+        }
+
+        .growth-bar {
+            background: #2563eb;
+            height: 100%;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .legend-box {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .contribution-color {
+            background: #6b7280;
+        }
+
+        .growth-color {
+            background: #2563eb;
         }
 
         footer {
             text-align: center;
-            padding: 30px 20px;
-            color: #6b7280;
+            padding: 30px;
+            color: #777;
             font-size: 14px;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -145,97 +200,207 @@
 <body>
 
 <header>
+    <h2>Financial Calculators</h2>
 
-   <nav>
-    <a href="index.html">Home</a>
-    <a href="net-worth-calculator.html">Net Worth Calculator</a>
-    <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-    <a href="sobre-nosotros.html">About Us</a>
-    <a href="contacto.html">Contact</a>
-</nav>
-
-    <h1>Compound Interest Calculator</h1>
-
-    <p>
-        Discover how your money could grow over time
-    </p>
-
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="net-worth-calculator.html">Net Worth Calculator</a>
+        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
+        <a href="savings-calculator.html">Savings Calculator</a>
+        <a href="sobre-nosotros.html">About Us</a>
+        <a href="contacto.html">Contact</a>
+    </nav>
 </header>
 
 <div class="container">
 
-    <div class="card">
+    <div class="calculator">
 
-        <h2>Calculate Your Investment</h2>
+        <h1>Compound Interest Calculator</h1>
 
-        <div class="form-group">
-            <label for="initial">Initial investment ($)</label>
-            <input type="number" id="initial" value="1000" min="0">
-        </div>
+        <p class="intro">
+            Estimate how your investment could grow through compound
+            interest and regular monthly contributions.
+        </p>
 
-        <div class="form-group">
-            <label for="monthly">Monthly contribution ($)</label>
-            <input type="number" id="monthly" value="100" min="0">
-        </div>
+        <label for="initial">Initial investment ($)</label>
+        <input type="number" id="initial" value="1000" min="0">
 
-        <div class="form-group">
-            <label for="rate">Annual return (%)</label>
-            <input type="number" id="rate" value="7" step="0.1" min="0">
-        </div>
+        <label for="monthly">Monthly contribution ($)</label>
+        <input type="number" id="monthly" value="100" min="0">
 
-        <div class="form-group">
-            <label for="years">Investment period (years)</label>
-            <input type="number" id="years" value="20" min="1">
-        </div>
+        <label for="rate">Expected annual return (%)</label>
+        <input type="number" id="rate" value="7" min="0" step="0.1">
 
-        <button onclick="calculate()">Calculate</button>
+        <label for="years">Investment period (years)</label>
+        <input type="number" id="years" value="20" min="1" step="1">
 
-        <div class="result" id="result">
+        <button onclick="calculateCompoundInterest()">
+            Calculate Compound Interest
+        </button>
+
+        <div class="results">
 
             <div class="result-box">
-                <h3>Estimated final balance</h3>
-                <div class="amount" id="finalAmount">$0.00</div>
+                <strong>Future Investment Value</strong>
+                <div id="futureValue" class="result-value">$0.00</div>
             </div>
 
-            <br>
-
             <div class="result-box">
-                <h3>Total amount contributed</h3>
-                <div class="amount" id="totalInvested">$0.00</div>
+                <strong>Total Money Contributed</strong>
+                <div id="totalContributed" class="result-value">$0.00</div>
             </div>
 
-            <br>
-
             <div class="result-box">
-                <h3>Estimated investment gain</h3>
-                <div class="amount" id="profit">$0.00</div>
+                <strong>Estimated Compound Growth</strong>
+                <div id="compoundGrowth" class="result-value">$0.00</div>
+            </div>
+
+            <div class="breakdown">
+
+                <strong>Contributions vs. compound growth</strong>
+
+                <div class="bar-container">
+                    <div id="contributionBar" class="contributions-bar"></div>
+                    <div id="growthBar" class="growth-bar"></div>
+                </div>
+
+                <div class="legend">
+
+                    <div class="legend-item">
+                        <span class="legend-box contribution-color"></span>
+                        Money contributed
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-box growth-color"></span>
+                        Compound growth
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-    <div class="card explanation">
+    <div class="content">
 
-        <h2>What Is Compound Interest?</h2>
+        <h2>What is compound interest?</h2>
 
         <p>
-            Compound interest allows the returns generated by an investment
-            to be reinvested and potentially generate additional returns.
-            Over time, this effect can significantly increase the growth
-            of your investment.
+            Compound interest is the process of earning returns on your
+            original investment as well as on returns that have already
+            accumulated.
         </p>
 
         <p>
-            For example, if you invest money and earn an annual return,
-            future returns can be generated not only from your original
-            investment but also from the returns accumulated over time.
+            Over long periods, this can make a significant difference to
+            the growth of an investment. The longer the money remains
+            invested and the higher the assumed return, the greater the
+            potential effect of compounding.
+        </p>
+
+        <h2>How does the compound interest calculator work?</h2>
+
+        <p>
+            Enter your initial investment, monthly contribution, expected
+            annual return and investment period. The calculator applies
+            the annual return monthly and estimates the value of the
+            investment over the selected period.
         </p>
 
         <p>
-            This calculator is provided for informational and educational
-            purposes. Actual investment returns can vary, and past or
-            estimated returns do not guarantee future results.
+            The result separates the money you contributed from the
+            estimated investment growth. This makes it easier to see how
+            much of the final balance comes from your own contributions
+            and how much comes from compound growth.
+        </p>
+
+        <h2>Why does time matter?</h2>
+
+        <p>
+            Compounding becomes more noticeable over longer periods because
+            accumulated returns can themselves generate additional returns.
+            This is one reason why starting early can have a meaningful
+            effect on long-term investment growth.
+        </p>
+
+        <h2>Example of compound growth</h2>
+
+        <p>
+            Suppose you invest $1,000 initially, contribute $100 each month
+            and achieve an average annual return of 7%. Over several years,
+            the investment can grow beyond the amount you personally
+            contributed because returns are added to the investment and can
+            generate further returns.
+        </p>
+
+        <p>
+            The example is hypothetical. Actual investment returns vary
+            and are not guaranteed.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is the compound interest formula?</h3>
+
+        <p>
+            A basic compound interest formula is
+            <strong>A = P(1 + r/n)<sup>nt</sup></strong>, where P is the
+            principal, r is the annual interest rate, n is the number of
+            compounding periods and t is the time.
+        </p>
+
+        <h3>Does this calculator include monthly contributions?</h3>
+
+        <p>
+            Yes. You can enter a regular monthly contribution to estimate
+            how recurring investments could affect the final value.
+        </p>
+
+        <h3>Does compound interest guarantee investment returns?</h3>
+
+        <p>
+            No. The calculator uses an assumed annual return for
+            educational purposes. Actual investment performance can be
+            higher or lower, and investments can lose value.
+        </p>
+
+        <h3>Is compound interest better over longer periods?</h3>
+
+        <p>
+            Longer periods give compounding more time to affect the value
+            of an investment. However, the final result depends on the
+            return achieved and the contributions made.
+        </p>
+
+    </div>
+
+    <div class="more-tools">
+
+        <h2>More Financial Calculators</h2>
+
+        <p>
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+            — estimate how regular saving and interest could affect your
+            future savings balance.
+        </p>
+
+        <p>
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
+            — calculate your total assets minus your liabilities.
+        </p>
+
+        <p>
+            <a href="index.html">
+                View all financial calculators
+            </a>
         </p>
 
     </div>
@@ -245,58 +410,84 @@
 <footer>
     © 2026 Financial Calculators
     <br><br>
-    <a href="sobre-nosotros.html" style="color: #6b7280; text-decoration: none;">About Us</a>
+
+    <a href="sobre-nosotros.html">About Us</a>
     &nbsp; | &nbsp;
-    <a href="contacto.html" style="color: #6b7280; text-decoration: none;">Contact</a>
+
+    <a href="contacto.html">Contact</a>
     &nbsp; | &nbsp;
-    <a href="aviso-legal.html" style="color: #6b7280; text-decoration: none;">Legal Notice</a>
+
+    <a href="aviso-legal.html">Legal Notice</a>
     &nbsp; | &nbsp;
-<a href="privacy-policy.html" style="color: #6b7280; text-decoration: none;">Privacy Policy</a>
+
+    <a href="privacy-policy.html">Privacy Policy</a>
 </footer>
 
 <script>
-
-function calculate() {
-
-    const initial = parseFloat(document.getElementById("initial").value) || 0;
-    const monthly = parseFloat(document.getElementById("monthly").value) || 0;
-    const annualRate = parseFloat(document.getElementById("rate").value) || 0;
-    const years = parseInt(document.getElementById("years").value) || 0;
-
-    const monthlyRate = annualRate / 100 / 12;
-    const months = years * 12;
-
-    let balance = initial;
-
-    for (let i = 0; i < months; i++) {
-        balance = balance * (1 + monthlyRate);
-        balance += monthly;
+    function getValue(id) {
+        const value = parseFloat(document.getElementById(id).value);
+        return Number.isFinite(value) && value >= 0 ? value : 0;
     }
 
-    const totalInvested = initial + (monthly * months);
-    const profit = balance - totalInvested;
+    function calculateCompoundInterest() {
 
-    document.getElementById("finalAmount").textContent =
-        formatMoney(balance);
+        const initial = getValue("initial");
+        const monthly = getValue("monthly");
+        const annualRate = getValue("rate");
+        const years = Math.max(1, getValue("years"));
 
-    document.getElementById("totalInvested").textContent =
-        formatMoney(totalInvested);
+        const monthlyRate = annualRate / 100 / 12;
+        const months = Math.round(years * 12);
 
-    document.getElementById("profit").textContent =
-        formatMoney(profit);
+        let balance = initial;
 
-    document.getElementById("result").style.display = "block";
-}
+        for (let i = 0; i < months; i++) {
+            balance = balance * (1 + monthlyRate);
+            balance += monthly;
+        }
 
-function formatMoney(value) {
+        const totalContributed =
+            initial + (monthly * months);
 
-    return "$" + value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
+        const compoundGrowth =
+            Math.max(0, balance - totalContributed);
 
-}
+        document.getElementById("futureValue").textContent =
+            formatMoney(balance);
 
+        document.getElementById("totalContributed").textContent =
+            formatMoney(totalContributed);
+
+        document.getElementById("compoundGrowth").textContent =
+            formatMoney(compoundGrowth);
+
+        const total = totalContributed + compoundGrowth;
+
+        let contributionPercentage = 100;
+
+        if (total > 0) {
+            contributionPercentage =
+                (totalContributed / total) * 100;
+        }
+
+        const growthPercentage =
+            100 - contributionPercentage;
+
+        document.getElementById("contributionBar").style.width =
+            contributionPercentage + "%";
+
+        document.getElementById("growthBar").style.width =
+            growthPercentage + "%";
+    }
+
+    function formatMoney(amount) {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(amount);
+    }
+
+    calculateCompoundInterest();
 </script>
 
 </body>
