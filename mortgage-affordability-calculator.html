@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mortgage Affordability Calculator - How Much Home Can You Afford?</title>
+
+    <meta
+        name="description"
+        content="Use this free mortgage affordability calculator to estimate how much home you may be able to afford based on your income, debts, down payment and mortgage rate."
+    >
+
+    <link
+        rel="canonical"
+        href="https://gufer7.github.io/calculadora-patrimonio/mortgage-affordability-calculator.html"
+    >
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fa;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #1f2937;
+            padding: 15px;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .intro {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 30px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .results {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .result {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result h3 {
+            margin-top: 0;
+            font-size: 15px;
+        }
+
+        .result strong {
+            display: block;
+            font-size: 24px;
+            margin-top: 8px;
+        }
+
+        .explanation {
+            margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .warning {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+        }
+
+        .faq {
+            margin-top: 40px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px 20px;
+            background: #1f2937;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 8px;
+        }
+
+        @media (max-width: 700px) {
+
+            .results {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .calculator,
+            .explanation {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+
+        <a href="investment-calculator.html">
+            Investment Calculator
+        </a>
+
+        <a href="mortgage-calculator.html">
+            Mortgage Calculator
+        </a>
+
+        <a href="mortgage-affordability-calculator.html">
+            Mortgage Affordability Calculator
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>Mortgage Affordability Calculator</h1>
+
+    <p class="intro">
+        Estimate how much home you may be able to afford based on your
+        household income, monthly debts, down payment, mortgage rate
+        and loan term.
+    </p>
+
+    <section class="calculator">
+
+        <div class="input-group">
+
+            <label for="income">
+                Gross Monthly Income ($)
+            </label>
+
+            <input
+                type="number"
+                id="income"
+                value="6000"
+                min="0"
+                step="100"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="debts">
+                Monthly Debt Payments ($)
+            </label>
+
+            <input
+                type="number"
+                id="debts"
+                value="500"
+                min="0"
+                step="50"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="downPayment">
+                Down Payment ($)
+            </label>
+
+            <input
+                type="number"
+                id="downPayment"
+                value="60000"
+                min="0"
+                step="1000"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="interestRate">
+                Annual Mortgage Interest Rate (%)
+            </label>
+
+            <input
+                type="number"
+                id="interestRate"
+                value="6"
+                min="0"
+                step="0.01"
+            >
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="loanTerm">
+                Loan Term (Years)
+            </label>
+
+            <input
+                type="number"
+                id="loanTerm"
+                value="30"
+                min="1"
+                max="50"
+                step="1"
+            >
+
+        </div>
+
+        <button onclick="calculateAffordability()">
+            Calculate Affordability
+        </button>
+
+        <div class="results">
+
+            <div class="result">
+
+                <h3>
+                    Estimated Maximum Monthly Housing Payment
+                </h3>
+
+                <strong id="maxPayment">
+                    $0
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <h3>
+                    Estimated Maximum Loan
+                </h3>
+
+                <strong id="maxLoan">
+                    $0
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <h3>
+                    Estimated Home Price
+                </h3>
+
+                <strong id="homePrice">
+                    $0
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <h3>
+                    Estimated Down Payment
+                </h3>
+
+                <strong id="displayDownPayment">
+                    $0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="explanation">
+
+        <h2>How does a mortgage affordability calculator work?</h2>
+
+        <p>
+            A mortgage affordability calculator estimates a potential
+            housing budget using your income and existing monthly debt
+            payments.
+        </p>
+
+        <p>
+            This calculator uses a housing payment limit of 28% of gross
+            monthly income. Existing monthly debt payments are then
+            considered separately when estimating the potential mortgage
+            amount.
+        </p>
+
+        <p>
+            The result is an estimate rather than a lending decision.
+            Actual mortgage approval depends on factors such as credit
+            history, employment, assets, lender requirements, taxes,
+            insurance and other costs.
+        </p>
+
+        <h2>Why does income matter?</h2>
+
+        <p>
+            Higher gross monthly income generally allows for a larger
+            potential housing payment under the assumptions used by the
+            calculator.
+        </p>
+
+        <h2>How do existing debts affect affordability?</h2>
+
+        <p>
+            Existing debt payments reduce the amount of your income
+            available for housing and can affect the mortgage amount a
+            lender may consider affordable.
+        </p>
+
+        <h2>How does the down payment affect affordability?</h2>
+
+        <p>
+            A larger down payment means you need to borrow less money
+            for the same home price. It can also reduce the loan-to-value
+            ratio of the mortgage.
+        </p>
+
+        <h2>How does the interest rate affect affordability?</h2>
+
+        <p>
+            A higher interest rate increases the monthly payment required
+            for the same loan amount. A lower rate can reduce the monthly
+            payment.
+        </p>
+
+        <div class="warning">
+
+            <strong>Important:</strong>
+
+            This calculator provides an educational estimate only.
+            It does not determine how much a lender will approve.
+            Property taxes, homeowners insurance, maintenance,
+            mortgage insurance and other costs may also affect the
+            amount you can comfortably afford.
+
+        </div>
+
+    </section>
+
+    <section class="faq">
+
+        <h2>Mortgage Affordability Calculator FAQ</h2>
+
+        <h3>How much house can I afford?</h3>
+
+        <p>
+            The answer depends on your income, existing debts, down
+            payment, interest rate, loan term and other housing costs.
+            Use the calculator above to explore different scenarios.
+        </p>
+
+        <h3>Does this calculator guarantee mortgage approval?</h3>
+
+        <p>
+            No. The result is only an estimate. Mortgage lenders use
+            their own underwriting criteria and may consider many
+            additional factors.
+        </p>
+
+        <h3>Does the calculator include taxes and insurance?</h3>
+
+        <p>
+            No. The basic calculation focuses on the mortgage payment
+            and does not include property taxes, homeowners insurance,
+            maintenance or other ownership costs.
+        </p>
+
+        <h3>Can I change the interest rate?</h3>
+
+        <p>
+            Yes. Enter a different expected annual mortgage interest
+            rate to compare different scenarios.
+        </p>
+
+    </section>
+
+    <section class="explanation">
+
+        <h2>More Financial Calculators</h2>
+
+        <p>
+            Explore our other free financial calculators:
+        </p>
+
+        <ul>
+
+            <li>
+                <a href="mortgage-calculator.html">
+                    Mortgage Calculator
+                </a>
+            </li>
+
+            <li>
+                <a href="investment-calculator.html">
+                    Investment Calculator
+                </a>
+            </li>
+
+            <li>
+                <a href="compound-interest-calculator.html">
+                    Compound Interest Calculator
+                </a>
+            </li>
+
+            <li>
+                <a href="savings-calculator.html">
+                    Savings Calculator
+                </a>
+            </li>
+
+            <li>
+                <a href="net-worth-calculator.html">
+                    Net Worth Calculator
+                </a>
+            </li>
+
+        </ul>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>
+        Financial Calculators
+    </p>
+
+    <p>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
+        <a href="aviso-legal.html">
+            Legal Notice
+        </a>
+
+        <a href="privacy-policy.html">
+            Privacy Policy
+        </a>
+
+    </p>
+
+</footer>
+
+<script>
+
+function formatMoney(value) {
+
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 2
+        }
+    ).format(value);
+
+}
+
+function calculateAffordability() {
+
+    const income =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "income"
+                ).value
+            ) || 0
+        );
+
+    const debts =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "debts"
+                ).value
+            ) || 0
+        );
+
+    const downPayment =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "downPayment"
+                ).value
+            ) || 0
+        );
+
+    const annualRate =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "interestRate"
+                ).value
+            ) || 0
+        );
+
+    const years =
+        Math.max(
+            1,
+            Math.min(
+                50,
+                parseInt(
+                    document.getElementById(
+                        "loanTerm"
+                    ).value
+                ) || 1
+            )
+        );
+
+    const maximumHousingPayment =
+        income * 0.28;
+
+    const availableForMortgage =
+        Math.max(
+            0,
+            maximumHousingPayment
+        );
+
+    const months =
+        years * 12;
+
+    const monthlyRate =
+        annualRate / 100 / 12;
+
+    let maxLoan = 0;
+
+    if (availableForMortgage > 0) {
+
+        if (monthlyRate === 0) {
+
+            maxLoan =
+                availableForMortgage *
+                months;
+
+        } else {
+
+            maxLoan =
+                availableForMortgage *
+                (
+                    1 -
+                    Math.pow(
+                        1 + monthlyRate,
+                        -months
+                    )
+                ) /
+                monthlyRate;
+
+        }
+
+    }
+
+    const estimatedHomePrice =
+        maxLoan + downPayment;
+
+    document.getElementById(
+        "maxPayment"
+    ).textContent =
+        formatMoney(
+            availableForMortgage
+        );
+
+    document.getElementById(
+        "maxLoan"
+    ).textContent =
+        formatMoney(
+            maxLoan
+        );
+
+    document.getElementById(
+        "homePrice"
+    ).textContent =
+        formatMoney(
+            estimatedHomePrice
+        );
+
+    document.getElementById(
+        "displayDownPayment"
+    ).textContent =
+        formatMoney(
+            downPayment
+        );
+
+}
+
+calculateAffordability();
+
+</script>
+
+</body>
+
+</html>
