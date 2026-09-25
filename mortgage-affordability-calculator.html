@@ -7,11 +7,16 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mortgage Affordability Calculator - How Much Home Can You Afford?</title>
+    <title>Mortgage Affordability Calculator - How Much House Can I Afford?</title>
 
     <meta
         name="description"
-        content="Use this free mortgage affordability calculator to estimate how much home you may be able to afford based on income, monthly debts, down payment, mortgage rate and loan term."
+        content="Use this free mortgage affordability calculator to estimate how much house you can afford based on income, monthly debts, down payment, mortgage rate and loan term."
+    >
+
+    <meta
+        name="keywords"
+        content="mortgage affordability calculator, how much house can I afford, home affordability calculator, house affordability calculator, mortgage affordability"
     >
 
     <link
@@ -37,6 +42,11 @@
             background: #1f2937;
             color: white;
             padding: 25px 15px;
+        }
+
+        header .header-container {
+            max-width: 1100px;
+            margin: auto;
         }
 
         header h1 {
@@ -158,6 +168,14 @@
             border-radius: 10px;
         }
 
+        section.explanation h2 {
+            margin-top: 0;
+        }
+
+        section.explanation h2:not(:first-child) {
+            margin-top: 30px;
+        }
+
         .warning {
             margin-top: 20px;
             padding: 15px;
@@ -166,6 +184,22 @@
         }
 
         .faq {
+            margin-top: 40px;
+        }
+
+        .faq h2 {
+            margin-bottom: 25px;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+        }
+
+        .faq-item h3 {
+            margin-bottom: 8px;
+        }
+
+        .more-tools {
             margin-top: 40px;
         }
 
@@ -214,52 +248,56 @@
 
 <header>
 
-    <h1>Mortgage Affordability Calculator</h1>
+    <div class="header-container">
 
-    <p>
-        Estimate how much home you may be able to afford based on your
-        income, debts and mortgage assumptions.
-    </p>
+        <h1>Mortgage Affordability Calculator</h1>
 
-    <nav>
+        <p>
+            Estimate how much house you may be able to afford based on your
+            income, debts and mortgage assumptions.
+        </p>
 
-        <a href="index.html">
-            Home
-        </a>
+        <nav>
 
-        <a href="net-worth-calculator.html">
-            Net Worth Calculator
-        </a>
+            <a href="index.html">
+                Home
+            </a>
 
-        <a href="compound-interest-calculator.html">
-            Compound Interest Calculator
-        </a>
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
 
-        <a href="savings-calculator.html">
-            Savings Calculator
-        </a>
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
 
-        <a href="investment-calculator.html">
-            Investment Calculator
-        </a>
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
 
-        <a href="mortgage-calculator.html">
-            Mortgage Calculator
-        </a>
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
 
-        <a href="mortgage-affordability-calculator.html">
-            Mortgage Affordability Calculator
-        </a>
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
 
-        <a href="sobre-nosotros.html">
-            About Us
-        </a>
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
 
-        <a href="contacto.html">
-            Contact
-        </a>
+            <a href="sobre-nosotros.html">
+                About Us
+            </a>
 
-    </nav>
+            <a href="contacto.html">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
 
 </header>
 
@@ -268,10 +306,18 @@
 
 
     <p class="intro">
-        Use this free mortgage affordability calculator to estimate a
-        potential home price based on gross monthly income, existing
-        monthly debt payments, down payment, mortgage interest rate
+        Use this free mortgage affordability calculator to estimate how much
+        home you may be able to afford based on gross monthly income,
+        existing monthly debt payments, down payment, mortgage interest rate
         and loan term.
+    </p>
+
+
+    <p>
+        If you are asking "How much house can I afford?", this calculator gives
+        you a simple estimate using your income, current debt payments and
+        mortgage assumptions. You can change the numbers to compare different
+        home-buying scenarios.
     </p>
 
 
@@ -285,7 +331,7 @@
 
     <section class="calculator">
 
-        <h2>How Much Home Can I Afford?</h2>
+        <h2>How Much House Can I Afford?</h2>
 
 
         <div class="input-group">
@@ -375,7 +421,7 @@
 
 
         <button onclick="calculateAffordability()">
-            Calculate Affordability
+            Calculate How Much House You Can Afford
         </button>
 
 
@@ -457,9 +503,17 @@
         </p>
 
         <p>
-            These percentages are commonly used as general affordability
-            guidelines, but they are not universal lending requirements.
-            Actual mortgage underwriting can use different criteria.
+            The calculator then estimates the mortgage loan that could
+            correspond to that monthly housing payment using the selected
+            interest rate and loan term. Your down payment is added to the
+            estimated loan amount to calculate an estimated home price.
+        </p>
+
+        <p>
+            These percentages are general affordability guidelines, not
+            universal lending requirements. Actual mortgage underwriting
+            can use different criteria depending on the lender, loan type,
+            borrower and other circumstances.
         </p>
 
 
@@ -467,66 +521,126 @@
 
         <p>
             Gross monthly income is one of the main inputs used when
-            estimating mortgage affordability. A higher income generally
-            provides more room for housing payments under a fixed
-            affordability ratio.
-        </p>
-
-
-        <h2>How Do Existing Debts Affect Affordability?</h2>
-
-        <p>
-            Existing monthly debt payments reduce the amount of income
-            available for a new mortgage when using a debt-to-income
-            approach.
+            estimating mortgage affordability. A higher income can support
+            a larger housing payment under the assumptions used by this
+            calculator, while a lower income generally results in a lower
+            estimated housing budget.
         </p>
 
         <p>
-            For example, car loans, student loans and other qualifying
-            monthly debt payments can reduce the amount of additional
-            housing debt that fits within a target debt-to-income ratio.
+            Enter your gross monthly income before taxes and other deductions.
+            The calculator uses this figure as the starting point for its
+            simplified affordability calculation.
         </p>
 
 
-        <h2>How Does the Down Payment Affect Home Affordability?</h2>
+        <h2>How Do Existing Debts Affect Home Affordability?</h2>
 
         <p>
-            A larger down payment means less money needs to be borrowed
-            for the same home price. In this calculator, the estimated
-            home price is the maximum estimated mortgage amount plus the
-            down payment entered.
+            Existing monthly debt payments can reduce the amount available
+            for a new mortgage payment. This calculator includes debts such
+            as other recurring loan or credit payments when applying its
+            simplified total-debt limit.
         </p>
 
         <p>
-            A larger down payment can also reduce the loan-to-value ratio.
-            Lenders may use loan-to-value when evaluating a mortgage and
-            determining whether mortgage insurance or other conditions
-            apply. :contentReference[oaicite:2]{index=2}
+            For example, two people with the same income can receive
+            different affordability estimates if one person has substantially
+            higher existing monthly debt payments.
         </p>
 
 
-        <h2>How Does the Interest Rate Affect Affordability?</h2>
+        <h2>How Does the Down Payment Affect Affordability?</h2>
 
         <p>
-            The mortgage interest rate affects how much you can borrow
-            for a given monthly payment. A higher interest rate generally
-            means that the same monthly payment supports a smaller loan.
+            The down payment is the amount you plan to contribute toward the
+            purchase price of the home. In this calculator, the estimated
+            home price is calculated by adding the estimated maximum mortgage
+            loan to the down payment.
         </p>
 
         <p>
-            A lower interest rate can allow a larger loan for the same
-            monthly payment, assuming the loan term and other assumptions
-            remain unchanged.
+            A larger down payment can increase the estimated purchase price
+            supported by a given mortgage amount. It can also reduce the
+            amount that needs to be financed.
         </p>
 
 
-        <h2>Why Does the Loan Term Matter?</h2>
+        <h2>How Does the Mortgage Interest Rate Affect the Result?</h2>
 
         <p>
-            A longer loan term spreads repayment over more monthly
-            payments. This can allow a given monthly payment to support
-            a larger loan, although the borrower may pay more interest
-            over the full life of the mortgage.
+            The mortgage interest rate affects the monthly payment required
+            for a given loan amount. A higher interest rate generally means
+            that the same monthly payment supports a smaller loan, while a
+            lower rate generally supports a larger loan under the same
+            assumptions.
+        </p>
+
+        <p>
+            Because mortgage rates can change over time, you can use this
+            calculator with different interest-rate assumptions to compare
+            potential scenarios.
+        </p>
+
+
+        <h2>How Does the Loan Term Affect Home Affordability?</h2>
+
+        <p>
+            The loan term is the number of years over which the mortgage is
+            repaid. A longer loan term generally produces a lower required
+            monthly payment for the same loan amount, while a shorter term
+            generally produces a higher monthly payment.
+        </p>
+
+        <p>
+            Changing the loan term in this calculator can therefore change
+            the estimated maximum mortgage loan that fits within the
+            calculated monthly housing payment.
+        </p>
+
+
+        <h2>What Is the 28/36 Rule?</h2>
+
+        <p>
+            The 28/36 approach used by this calculator is a simplified
+            budgeting method. It limits estimated housing costs to 28% of
+            gross monthly income and total monthly debt obligations to 36%
+            of gross monthly income.
+        </p>
+
+        <p>
+            Under this calculator's assumptions, the maximum housing payment
+            is the lower of the 28% housing limit and the amount remaining
+            after existing debts are considered against the 36% total-debt
+            limit.
+        </p>
+
+        <p>
+            This is only a simplified calculation. It does not account for
+            every expense, lending rule, mortgage product, property cost or
+            borrower characteristic that a lender may consider.
+        </p>
+
+
+        <h2>Example: How Much House Can I Afford?</h2>
+
+        <p>
+            Suppose you enter $6,000 in gross monthly income, $500 in existing
+            monthly debt payments, a $60,000 down payment, a 6% mortgage
+            interest rate and a 30-year loan term.
+        </p>
+
+        <p>
+            With these inputs, the calculator applies its 28/36 assumptions
+            to estimate a maximum monthly housing payment. It then uses the
+            mortgage rate and loan term to estimate the corresponding maximum
+            loan and adds the down payment to estimate a potential home price.
+        </p>
+
+        <p>
+            You can change any of these inputs to see how different income,
+            debt, down payment, interest-rate and loan-term assumptions affect
+            the result.
         </p>
 
 
@@ -534,254 +648,206 @@
 
             <strong>Important:</strong>
 
-            This calculator provides an educational estimate only.
-            It does not determine how much a lender will approve or how
-            much home you should buy.
+            <p>
+                This mortgage affordability calculator provides an estimate
+                for educational and planning purposes. It is not a mortgage
+                approval, financial recommendation or guarantee of how much a
+                lender will allow you to borrow.
+            </p>
 
-            Actual affordability can also depend on property taxes,
-            homeowners insurance, mortgage insurance, HOA fees,
-            maintenance, closing costs, credit history, assets and
-            other financial circumstances.
+            <p>
+                Actual affordability can also depend on taxes, insurance,
+                property costs, credit history, employment, loan type,
+                lender requirements, closing costs and other financial
+                obligations.
+            </p>
 
         </div>
 
     </section>
 
 
-    <section class="explanation">
-
-        <h2>28/36 Affordability Rule Explained</h2>
-
-        <p>
-            The 28/36 approach is a commonly referenced mortgage
-            affordability guideline. The 28% portion compares housing
-            costs with gross monthly income, while the 36% portion
-            considers total monthly debt obligations.
-        </p>
-
-        <p>
-            For example, if gross monthly income is $6,000, 28% equals
-            $1,680. If existing monthly debt is $500, a 36% total-debt
-            limit would leave up to $1,660 for the new housing payment.
-        </p>
-
-        <p>
-            Because these are simplified guidelines rather than universal
-            lending rules, the result should be treated as a starting
-            point for comparing scenarios rather than a borrowing limit.
-        </p>
-
-        <p>
-            Current mortgage underwriting rules can allow different debt
-            ratios depending on the borrower, loan type and underwriting
-            method. For example, Fannie Mae's current guidance includes
-            different maximum DTI limits depending on the underwriting
-            method. :contentReference[oaicite:3]{index=3}
-        </p>
-
-    </section>
-
-
-    <section class="faq">
+    <section class="explanation faq">
 
         <h2>Mortgage Affordability Calculator FAQ</h2>
 
 
-        <h3>How much house can I afford?</h3>
+        <div class="faq-item">
 
-        <p>
-            It depends on your income, existing debts, down payment,
-            mortgage rate, loan term and other housing costs. This
-            calculator provides an estimate using simplified affordability
-            assumptions.
-        </p>
+            <h3>How much house can I afford based on my income?</h3>
 
+            <p>
+                Your estimated home-buying budget depends on several factors,
+                including income, existing monthly debts, down payment,
+                mortgage interest rate and loan term. Enter these values into
+                the calculator above to estimate a potential home price.
+            </p>
 
-        <h3>What is the 28% rule for buying a house?</h3>
-
-        <p>
-            The 28% rule is a general guideline suggesting that housing
-            costs should not exceed roughly 28% of gross monthly income.
-            It is a guideline rather than a universal lender requirement.
-            Fannie Mae and the Consumer Financial Protection Bureau both
-            reference 28% as a common mortgage affordability benchmark.
-            :contentReference[oaicite:4]{index=4}
-        </p>
+        </div>
 
 
-        <h3>What is the 36% rule?</h3>
+        <div class="faq-item">
 
-        <p>
-            The 36% rule is a general debt-to-income guideline that
-            considers total monthly debt relative to gross income.
-            Different lenders and mortgage programs may use different
-            thresholds.
-        </p>
+            <h3>What is a mortgage affordability calculator?</h3>
 
+            <p>
+                A mortgage affordability calculator estimates how much you may
+                be able to spend on a home based on income, debt and mortgage
+                assumptions. It is useful for comparing hypothetical
+                home-buying scenarios before applying for a mortgage.
+            </p>
 
-        <h3>Does this calculator guarantee mortgage approval?</h3>
-
-        <p>
-            No. The result is only an estimate. Lenders can consider
-            credit history, income stability, assets, reserves, property
-            characteristics, loan type and other factors when evaluating
-            a mortgage application. :contentReference[oaicite:5]{index=5}
-        </p>
+        </div>
 
 
-        <h3>Does the calculator include property taxes and insurance?</h3>
+        <div class="faq-item">
 
-        <p>
-            No. The calculator estimates the mortgage payment based on
-            the loan assumptions entered. Property taxes, homeowners
-            insurance, mortgage insurance, HOA fees and maintenance are
-            not included in the estimated home price.
-        </p>
+            <h3>What income should I enter?</h3>
 
-        <p>
-            Actual mortgage underwriting can include housing expenses such
-            as taxes, insurance, mortgage insurance and association dues.
-            :contentReference[oaicite:6]{index=6}
-        </p>
+            <p>
+                Enter your gross monthly income before taxes and other
+                deductions. The calculator uses this amount to estimate the
+                housing and total-debt limits in its simplified 28/36 model.
+            </p>
+
+        </div>
 
 
-        <h3>Can I change the mortgage interest rate?</h3>
+        <div class="faq-item">
 
-        <p>
-            Yes. Enter a different annual mortgage interest rate to compare
-            how changing the rate affects your estimated loan amount and
-            home price.
-        </p>
+            <h3>Should I include my existing monthly debts?</h3>
 
+            <p>
+                Yes. Enter the monthly payments you currently have for debts
+                that you want included in the affordability estimate. Higher
+                existing debt payments can reduce the estimated amount
+                available for a mortgage payment.
+            </p>
 
-        <h3>Does a larger down payment increase how much house I can afford?</h3>
-
-        <p>
-            Under this calculator's simplified model, yes. The estimated
-            home price equals the estimated maximum loan plus the down
-            payment entered. A larger down payment can therefore increase
-            the estimated purchase price while reducing the amount borrowed.
-        </p>
+        </div>
 
 
-        <h3>Should I buy the most expensive home I can afford?</h3>
+        <div class="faq-item">
 
-        <p>
-            Not necessarily. A lender's maximum loan amount and a household's
-            comfortable budget are not necessarily the same thing. Other
-            expenses, savings goals, emergencies, maintenance and future
-            changes in income can affect what is financially comfortable.
-            :contentReference[oaicite:7]{index=7}
-        </p>
+            <h3>Does a larger down payment increase how much house I can afford?</h3>
 
+            <p>
+                A larger down payment can increase the estimated home price
+                because the calculator adds the down payment to the estimated
+                mortgage loan. It also means less of the purchase price needs
+                to be financed.
+            </p>
 
-        <h3>What debts should I include?</h3>
-
-        <p>
-            Enter recurring monthly debt payments such as car loans,
-            student loans and other qualifying debt obligations. The exact
-            debts considered by a lender can vary depending on the mortgage
-            program and underwriting rules.
-        </p>
+        </div>
 
 
-        <h3>Can I use this calculator to compare different scenarios?</h3>
+        <div class="faq-item">
 
-        <p>
-            Yes. Change the income, debt payments, down payment, interest
-            rate or loan term and calculate again to compare hypothetical
-            mortgage affordability scenarios.
-        </p>
+            <h3>Does this calculator include property taxes and insurance?</h3>
 
+            <p>
+                No. This simplified calculator does not separately calculate
+                property taxes, homeowners insurance, maintenance, closing
+                costs or other property-related expenses. These costs should
+                be considered separately when evaluating a real home purchase.
+            </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Is the 28/36 rule a guarantee of mortgage approval?</h3>
+
+            <p>
+                No. The 28/36 approach in this calculator is a simplified
+                affordability guideline. Mortgage lenders can use different
+                criteria and may consider additional financial and property
+                information when evaluating an application.
+            </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Can I use this calculator for different mortgage rates?</h3>
+
+            <p>
+                Yes. Enter the annual mortgage interest rate you want to
+                evaluate. You can change the rate to compare different
+                hypothetical mortgage scenarios.
+            </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <h3>Can I use this calculator for a 30-year mortgage?</h3>
+
+            <p>
+                Yes. Enter 30 in the loan-term field. You can also compare
+                different loan terms by changing the number of years.
+            </p>
+
+        </div>
 
     </section>
 
 
     <section class="explanation more-tools">
 
-        <h2>More Financial Calculators</h2>
+        <h2>Related Financial Calculators</h2>
 
         <p>
-            Explore our other free financial calculators to compare
-            different personal finance, saving, investing and home-buying
-            scenarios.
+            Use these related tools to explore other parts of your personal
+            finance and home-buying decisions:
         </p>
 
+        <ul>
 
-        <p>
-            <a href="mortgage-calculator.html">
-                Mortgage Calculator
-            </a>
-            — estimate monthly mortgage payments, total interest and
-            total mortgage cost.
-        </p>
+            <li>
+                <a href="mortgage-calculator.html">
+                    Mortgage Calculator
+                </a>
+                - estimate monthly mortgage payments, total payments and
+                interest.
+            </li>
 
+            <li>
+                <a href="investment-calculator.html">
+                    Investment Calculator
+                </a>
+                - estimate investment growth using an initial amount,
+                monthly contributions, returns, fees and inflation.
+            </li>
 
-        <p>
-            <a href="investment-calculator.html">
-                Investment Calculator
-            </a>
-            — estimate how an initial investment and regular contributions
-            could grow over time.
-        </p>
+            <li>
+                <a href="savings-calculator.html">
+                    Savings Calculator
+                </a>
+                - estimate how savings can grow with regular monthly
+                contributions and interest.
+            </li>
 
+            <li>
+                <a href="compound-interest-calculator.html">
+                    Compound Interest Calculator
+                </a>
+                - calculate the potential effect of compound growth and
+                recurring contributions.
+            </li>
 
-        <p>
-            <a href="compound-interest-calculator.html">
-                Compound Interest Calculator
-            </a>
-            — explore how compound growth can affect an investment over time.
-        </p>
+            <li>
+                <a href="net-worth-calculator.html">
+                    Net Worth Calculator
+                </a>
+                - calculate your net worth by comparing assets and
+                liabilities.
+            </li>
 
-
-        <p>
-            <a href="savings-calculator.html">
-                Savings Calculator
-            </a>
-            — estimate how regular savings contributions and interest can
-            affect your future balance.
-        </p>
-
-
-        <p>
-            <a href="net-worth-calculator.html">
-                Net Worth Calculator
-            </a>
-            — calculate your net worth by comparing assets and liabilities.
-        </p>
-
-
-        <p>
-            <a href="index.html">
-                View all financial calculators
-            </a>
-            — explore the complete collection of free financial tools.
-        </p>
-
-    </section>
-
-
-    <section class="explanation">
-
-        <h2>Mortgage Affordability Disclaimer</h2>
-
-        <p>
-            This mortgage affordability calculator is provided for
-            educational and informational purposes only. It does not
-            constitute financial, mortgage, tax or legal advice.
-        </p>
-
-        <p>
-            The results are estimates based on the assumptions entered
-            and the simplified affordability methodology described on
-            this page. Actual mortgage approval, borrowing capacity and
-            housing costs can differ substantially.
-        </p>
-
-        <p>
-            Consider speaking with a qualified mortgage professional
-            before making decisions about purchasing a property.
-        </p>
+        </ul>
 
     </section>
 
@@ -792,14 +858,10 @@
 <footer>
 
     <p>
-        Financial Calculators
+        © 2026 Financial Calculators
     </p>
 
     <p>
-
-        <a href="index.html">
-            Home
-        </a>
 
         <a href="sobre-nosotros.html">
             About Us
@@ -824,109 +886,57 @@
 
 <script>
 
-function formatMoney(value) {
-
-    return new Intl.NumberFormat(
-        "en-US",
-        {
-            style: "currency",
-            currency: "USD",
-            minimumFractionDigits: 2
-        }
-    ).format(value);
-
-}
-
-
 function calculateAffordability() {
 
     const income =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "income"
-                ).value
-            ) || 0
-        );
-
+        parseFloat(document.getElementById("income").value) || 0;
 
     const debts =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "debts"
-                ).value
-            ) || 0
-        );
-
+        parseFloat(document.getElementById("debts").value) || 0;
 
     const downPayment =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "downPayment"
-                ).value
-            ) || 0
-        );
-
+        parseFloat(document.getElementById("downPayment").value) || 0;
 
     const annualRate =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "interestRate"
-                ).value
-            ) || 0
-        );
-
+        parseFloat(document.getElementById("interestRate").value) || 0;
 
     const years =
-        Math.max(
-            1,
-            Math.min(
-                50,
-                parseInt(
-                    document.getElementById(
-                        "loanTerm"
-                    ).value
-                ) || 1
-            )
-        );
+        parseFloat(document.getElementById("loanTerm").value) || 0;
+
+
+    if (income <= 0 || years <= 0) {
+
+        document.getElementById("maxPayment").textContent = "$0.00";
+        document.getElementById("maxLoan").textContent = "$0.00";
+        document.getElementById("homePrice").textContent = "$0.00";
+        document.getElementById("displayDownPayment").textContent = "$0.00";
+
+        return;
+    }
 
 
     /*
-        Simplified 28/36 affordability approach.
+        Simplified 28/36 affordability approach:
 
         Housing limit:
-        28% of gross monthly income.
+        28% of gross monthly income
 
         Total debt limit:
-        36% of gross monthly income.
+        36% of gross monthly income
 
-        Existing monthly debt is subtracted from
-        the total debt limit.
+        Available housing payment:
+        36% income - existing monthly debts
 
-        The lower of these two limits is used.
+        Maximum housing payment:
+        lower of the two limits
     */
 
-    const housingLimit =
-        income * 0.28;
+    const housingLimit = income * 0.28;
 
-
-    const totalDebtLimit =
-        income * 0.36;
-
+    const totalDebtLimit = income * 0.36;
 
     const debtBasedHousingLimit =
-        Math.max(
-            0,
-            totalDebtLimit - debts
-        );
-
+        Math.max(0, totalDebtLimit - debts);
 
     const maximumHousingPayment =
         Math.min(
@@ -935,41 +945,35 @@ function calculateAffordability() {
         );
 
 
-    const months =
-        years * 12;
-
-
     const monthlyRate =
         annualRate / 100 / 12;
 
+    const numberOfPayments =
+        years * 12;
 
-    let maxLoan = 0;
+
+    let maximumLoan = 0;
 
 
-    if (
-        maximumHousingPayment > 0
-    ) {
+    if (maximumHousingPayment > 0) {
 
-        if (
-            monthlyRate === 0
-        ) {
+        if (monthlyRate === 0) {
 
-            maxLoan =
-                maximumHousingPayment *
-                months;
+            maximumLoan =
+                maximumHousingPayment * numberOfPayments;
 
         } else {
 
-            maxLoan =
+            maximumLoan =
                 maximumHousingPayment *
                 (
-                    1 -
-                    Math.pow(
+                    (1 - Math.pow(
                         1 + monthlyRate,
-                        -months
-                    )
-                ) /
-                monthlyRate;
+                        -numberOfPayments
+                    ))
+                    /
+                    monthlyRate
+                );
 
         }
 
@@ -977,38 +981,46 @@ function calculateAffordability() {
 
 
     const estimatedHomePrice =
-        maxLoan + downPayment;
+        maximumLoan + downPayment;
 
 
-    document.getElementById(
-        "maxPayment"
-    ).textContent =
-        formatMoney(
-            maximumHousingPayment
+    document.getElementById("maxPayment").textContent =
+        maximumHousingPayment.toLocaleString(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
         );
 
 
-    document.getElementById(
-        "maxLoan"
-    ).textContent =
-        formatMoney(
-            maxLoan
+    document.getElementById("maxLoan").textContent =
+        maximumLoan.toLocaleString(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
         );
 
 
-    document.getElementById(
-        "homePrice"
-    ).textContent =
-        formatMoney(
-            estimatedHomePrice
+    document.getElementById("homePrice").textContent =
+        estimatedHomePrice.toLocaleString(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
         );
 
 
-    document.getElementById(
-        "displayDownPayment"
-    ).textContent =
-        formatMoney(
-            downPayment
+    document.getElementById("displayDownPayment").textContent =
+        downPayment.toLocaleString(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
         );
 
 }
