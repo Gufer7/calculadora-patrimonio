@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +20,7 @@
     >
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -237,6 +240,7 @@
         }
 
         @media (max-width: 700px) {
+
             .results {
                 grid-template-columns: 1fr;
             }
@@ -254,31 +258,63 @@
             .result-box strong {
                 font-size: 22px;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
 <header>
+
     <div class="container">
 
         <h1>Investment Calculator</h1>
 
         <nav>
+
             <a href="index.html">Home</a>
-            <a href="net-worth-calculator.html">Net Worth Calculator</a>
-            <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-            <a href="savings-calculator.html">Savings Calculator</a>
-            <a href="investment-calculator.html">Investment Calculator</a>
-            <a href="mortgage-calculator.html">Mortgage Calculator</a>
-            <a href="mortgage-affordability-calculator.html">Mortgage Affordability Calculator</a>
-            <a href="sobre-nosotros.html">About Us</a>
-            <a href="contacto.html">Contact</a>
+
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
+
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
+
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
+
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
+
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
+
+            <a href="sobre-nosotros.html">
+                About Us
+            </a>
+
+            <a href="contacto.html">
+                Contact
+            </a>
+
         </nav>
 
     </div>
+
 </header>
+
 
 <main>
 
@@ -289,16 +325,19 @@
     </p>
 
     <p>
-        You can also include estimated investment fees and inflation to compare
-        different long-term investment scenarios and understand how costs and
-        changes in purchasing power could affect your estimated results.
+        This investment growth calculator also lets you include estimated
+        investment fees and inflation so you can compare different long-term
+        investment scenarios and understand how fees and purchasing power may
+        affect your results.
     </p>
+
 
     <div class="calculator">
 
         <h2>Investment Growth Calculator</h2>
 
         <div class="input-group">
+
             <label for="initial">
                 Initial investment ($)
             </label>
@@ -310,9 +349,12 @@
                 min="0"
                 step="100"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label for="monthly">
                 Monthly contribution ($)
             </label>
@@ -324,9 +366,12 @@
                 min="0"
                 step="10"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label for="returnRate">
                 Expected annual return (%)
             </label>
@@ -338,9 +383,12 @@
                 min="0"
                 step="0.1"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label for="fees">
                 Annual investment fees (%)
             </label>
@@ -352,9 +400,12 @@
                 min="0"
                 step="0.05"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label for="inflation">
                 Estimated annual inflation (%)
             </label>
@@ -366,9 +417,12 @@
                 min="0"
                 step="0.1"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label for="years">
                 Investment period (years)
             </label>
@@ -381,51 +435,91 @@
                 max="100"
                 step="1"
             >
+
         </div>
+
 
         <button onclick="calculateInvestment()">
             Calculate Investment Growth
         </button>
 
+
         <div class="results">
 
             <div class="result-box highlight">
+
                 Estimated final value
-                <strong id="finalValue">$0.00</strong>
+
+                <strong id="finalValue">
+                    $0.00
+                </strong>
+
             </div>
 
+
             <div class="result-box">
+
                 Total money contributed
-                <strong id="totalContributed">$0.00</strong>
+
+                <strong id="totalContributed">
+                    $0.00
+                </strong>
+
             </div>
 
+
             <div class="result-box">
+
                 Investment growth
-                <strong id="investmentGrowth">$0.00</strong>
+
+                <strong id="investmentGrowth">
+                    $0.00
+                </strong>
+
             </div>
 
+
             <div class="result-box">
+
                 Estimated value after inflation
-                <strong id="realValue">$0.00</strong>
+
+                <strong id="realValue">
+                    $0.00
+                </strong>
+
             </div>
 
+
             <div class="result-box">
+
                 Estimated fees paid
-                <strong id="totalFees">$0.00</strong>
+
+                <strong id="totalFees">
+                    $0.00
+                </strong>
+
             </div>
 
+
             <div class="result-box">
+
                 Effective annual return after fees
-                <strong id="netReturn">0.00%</strong>
+
+                <strong id="netReturn">
+                    0.00%
+                </strong>
+
             </div>
 
         </div>
+
 
         <div class="bar-container">
 
             <h3>Contributions vs. Investment Growth</h3>
 
             <div class="bar">
+
                 <div
                     id="contributionsBar"
                     class="contributions-bar"
@@ -435,16 +529,26 @@
                     id="growthBar"
                     class="growth-bar"
                 ></div>
+
             </div>
 
+
             <div class="legend">
-                <span>■ Money contributed</span>
-                <span>■ Investment growth</span>
+
+                <span>
+                    ■ Money contributed
+                </span>
+
+                <span>
+                    ■ Investment growth
+                </span>
+
             </div>
 
         </div>
 
     </div>
+
 
     <section>
 
@@ -459,22 +563,31 @@
         <p>
             Each year's estimate includes your accumulated contributions and
             estimated investment growth after fees. These figures are
-            projections based on the assumptions entered and are not
-            guaranteed returns.
+            mathematical projections based on the assumptions entered and
+            are not guaranteed investment returns.
         </p>
+
 
         <div class="table-wrapper">
 
             <table>
 
                 <thead>
+
                     <tr>
+
                         <th>Year</th>
+
                         <th>Contributed</th>
+
                         <th>Estimated value</th>
+
                         <th>Investment growth</th>
+
                     </tr>
+
                 </thead>
+
 
                 <tbody id="yearTable"></tbody>
 
@@ -483,6 +596,7 @@
         </div>
 
     </section>
+
 
     <section>
 
@@ -503,8 +617,9 @@
 
         <p>
             You can also enter estimated annual investment fees and inflation.
-            This allows you to compare the potential effect of investment
-            costs and changes in purchasing power on your long-term results.
+            This makes it possible to compare the potential effect of
+            investment costs and changes in purchasing power on long-term
+            investment projections.
         </p>
 
         <p>
@@ -514,6 +629,34 @@
         </p>
 
     </section>
+
+
+    <section>
+
+        <h2>Investment Calculator With Monthly Contributions</h2>
+
+        <p>
+            Regular monthly contributions can have a significant effect on
+            long-term investment growth. Instead of investing only an initial
+            amount, you can use this calculator to model an investment strategy
+            that adds money every month.
+        </p>
+
+        <p>
+            Each monthly contribution becomes part of the invested balance
+            and can potentially generate future returns. The longer the
+            investment period, the more opportunities those contributions
+            have to participate in compound growth.
+        </p>
+
+        <p>
+            This is useful when estimating scenarios such as investing a fixed
+            amount every month into a diversified portfolio, retirement account,
+            index fund or other long-term investment.
+        </p>
+
+    </section>
+
 
     <section>
 
@@ -528,8 +671,8 @@
         <p>
             Compound growth means that investment returns can generate
             additional returns over time. Regular contributions can also
-            increase the amount of money that remains invested and potentially
-            benefits from future growth.
+            increase the amount of money invested and potentially benefit
+            from future growth.
         </p>
 
         <p>
@@ -539,6 +682,7 @@
         </p>
 
     </section>
+
 
     <section>
 
@@ -554,8 +698,8 @@
         <p>
             For example, if an investment has an expected annual return of 7%
             and annual investment fees of 0.2%, the estimated effective annual
-            return after fees is approximately 6.8% under the assumptions used
-            by this calculator.
+            return after fees is approximately 6.8% under the assumptions
+            used by this calculator.
         </p>
 
         <p>
@@ -566,6 +710,7 @@
         </p>
 
     </section>
+
 
     <section>
 
@@ -591,6 +736,7 @@
 
     </section>
 
+
     <section>
 
         <h2>Example Investment Scenario</h2>
@@ -599,35 +745,52 @@
             Suppose you invest $5,000 initially and contribute $200 every
             month. If you assume a 7% annual return, 0.2% annual investment
             fees and 2% annual inflation over 20 years, the calculator
-            estimates a final investment value of approximately $117,666.
+            estimates a final investment value of approximately
+            <strong>$117,666</strong>.
         </p>
 
         <p>
-            You would contribute a total of $53,000 during the 20-year period.
-            Under these assumptions, the estimated investment growth would be
-            approximately $64,666 before considering the separate effect of
-            inflation on purchasing power.
+            You would contribute a total of <strong>$53,000</strong> during
+            the 20-year period. Under these assumptions, the estimated
+            investment growth would be approximately
+            <strong>$64,666</strong>.
         </p>
 
         <p>
             The estimated inflation-adjusted value would be approximately
-            $79,186 in today's purchasing power based on the 2% annual
-            inflation assumption.
+            <strong>$79,186</strong> in today's purchasing power based on
+            the 2% annual inflation assumption.
         </p>
 
         <p>
             This example is purely hypothetical. Investment returns can vary
-            significantly from year to year, and actual results may be higher
-            or lower than the estimate.
+            significantly from year to year, and actual results may be
+            higher or lower than the estimate.
         </p>
 
     </section>
+
 
     <section>
 
         <h2>Frequently Asked Questions</h2>
 
-        <h3>What return should I use in an investment calculator?</h3>
+
+        <h3>
+            What is an investment calculator?
+        </h3>
+
+        <p>
+            An investment calculator is a financial planning tool that
+            estimates how an investment could grow over time based on inputs
+            such as an initial investment, regular contributions, expected
+            return and investment period.
+        </p>
+
+
+        <h3>
+            What return should I use in an investment calculator?
+        </h3>
 
         <p>
             There is no single return that applies to every investment.
@@ -637,7 +800,10 @@
             relying on a single projection.
         </p>
 
-        <h3>Does this investment calculator guarantee returns?</h3>
+
+        <h3>
+            Does this investment calculator guarantee returns?
+        </h3>
 
         <p>
             No. The calculator only produces a mathematical estimate based
@@ -646,7 +812,10 @@
             results.
         </p>
 
-        <h3>Does the calculator include investment fees?</h3>
+
+        <h3>
+            Does the calculator include investment fees?
+        </h3>
 
         <p>
             Yes. You can enter an estimated annual investment fee. The
@@ -654,7 +823,10 @@
             balance over time and also shows the estimated total fees paid.
         </p>
 
-        <h3>Does the investment calculator account for inflation?</h3>
+
+        <h3>
+            Does the investment calculator account for inflation?
+        </h3>
 
         <p>
             Yes. You can enter an estimated annual inflation rate, and the
@@ -662,7 +834,10 @@
             illustrate the potential effect on future purchasing power.
         </p>
 
-        <h3>Can I use this calculator for stocks or ETFs?</h3>
+
+        <h3>
+            Can I use this calculator for stocks or ETFs?
+        </h3>
 
         <p>
             Yes. You can use it for educational projections involving stocks,
@@ -671,7 +846,10 @@
             from the assumptions entered.
         </p>
 
-        <h3>What is the difference between investment growth and money contributed?</h3>
+
+        <h3>
+            What is the difference between investment growth and money contributed?
+        </h3>
 
         <p>
             Money contributed is the amount you personally put into the
@@ -680,7 +858,10 @@
             value resulting from the assumed investment returns after fees.
         </p>
 
-        <h3>Why is the value after inflation lower than the final value?</h3>
+
+        <h3>
+            Why is the value after inflation lower than the final value?
+        </h3>
 
         <p>
             The final value is expressed in future dollars, while the
@@ -689,16 +870,22 @@
             means lower purchasing power in the future.
         </p>
 
-        <h3>How does a monthly contribution affect investment growth?</h3>
+
+        <h3>
+            How does a monthly contribution affect investment growth?
+        </h3>
 
         <p>
-            Regular monthly contributions increase the amount of money invested
-            over time. Each contribution can potentially participate in future
-            investment growth, so increasing the monthly contribution can
-            increase the estimated final portfolio value.
+            Regular monthly contributions increase the amount of money
+            invested over time. Each contribution can potentially participate
+            in future investment growth, so increasing the monthly contribution
+            can increase the estimated final portfolio value.
         </p>
 
-        <h3>How long should I keep an investment invested?</h3>
+
+        <h3>
+            How long should I keep an investment invested?
+        </h3>
 
         <p>
             The appropriate investment period depends on your financial goals,
@@ -709,6 +896,7 @@
 
     </section>
 
+
     <section>
 
         <h2>More Financial Calculators</h2>
@@ -718,77 +906,116 @@
             saving, investing and financial planning scenarios.
         </p>
 
+
         <p>
+
             <a href="savings-calculator.html">
                 Savings Calculator
             </a>
+
             — estimate how regular savings contributions and interest could
             affect your future balance.
+
         </p>
 
+
         <p>
+
             <a href="compound-interest-calculator.html">
                 Compound Interest Calculator
             </a>
+
             — explore how an initial investment and regular contributions
             could grow through compound interest over time.
+
         </p>
 
+
         <p>
+
             <a href="net-worth-calculator.html">
                 Net Worth Calculator
             </a>
+
             — calculate your current net worth by comparing your assets
             and liabilities.
+
         </p>
 
+
         <p>
+
             <a href="mortgage-calculator.html">
                 Mortgage Calculator
             </a>
+
             — estimate your monthly mortgage payment based on the loan
             amount, interest rate and mortgage term.
+
         </p>
 
+
         <p>
+
             <a href="mortgage-affordability-calculator.html">
                 Mortgage Affordability Calculator
             </a>
+
             — estimate how much you may be able to afford based on your
             income, expenses and mortgage assumptions.
+
         </p>
 
+
         <p>
+
             <a href="index.html">
                 View all financial calculators
             </a>
+
             — explore the complete collection of free financial tools.
+
         </p>
 
     </section>
 
+
     <p class="disclaimer">
+
         Disclaimer: This calculator is provided for educational and
         informational purposes only. It does not constitute financial,
         investment, tax or legal advice. Investment returns are uncertain,
         and actual results may differ from these estimates.
+
     </p>
 
 </main>
+
 
 <footer>
 
     <div class="container">
 
         <p>
-            <a href="sobre-nosotros.html">About Us</a>
 
-            <a href="contacto.html">Contact</a>
+            <a href="sobre-nosotros.html">
+                About Us
+            </a>
 
-            <a href="aviso-legal.html">Legal Notice</a>
+            <a href="contacto.html">
+                Contact
+            </a>
 
-            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="aviso-legal.html">
+                Legal Notice
+            </a>
+
+            <a href="privacy-policy.html">
+                Privacy Policy
+            </a>
+
         </p>
+
 
         <p>
             © 2026 Financial Calculators. All rights reserved.
@@ -797,6 +1024,7 @@
     </div>
 
 </footer>
+
 
 <script>
 
@@ -809,6 +1037,7 @@ function getNumber(id) {
     return Number.isFinite(value) && value >= 0
         ? value
         : 0;
+
 }
 
 
@@ -821,28 +1050,42 @@ function formatMoney(value) {
             maximumFractionDigits: 2
         }
     );
+
 }
 
 
 function calculateInvestment() {
 
-    const initial = getNumber("initial");
+    const initial =
+        getNumber("initial");
 
-    const monthly = getNumber("monthly");
 
-    const annualReturn = getNumber("returnRate");
+    const monthly =
+        getNumber("monthly");
 
-    const annualFees = getNumber("fees");
 
-    const inflation = getNumber("inflation");
+    const annualReturn =
+        getNumber("returnRate");
 
-    const years = Math.min(
-        100,
-        Math.max(
-            1,
-            Math.round(getNumber("years"))
-        )
-    );
+
+    const annualFees =
+        getNumber("fees");
+
+
+    const inflation =
+        getNumber("inflation");
+
+
+    const years =
+        Math.min(
+            100,
+            Math.max(
+                1,
+                Math.round(
+                    getNumber("years")
+                )
+            )
+        );
 
 
     const grossMonthlyRate =
@@ -860,16 +1103,27 @@ function calculateInvestment() {
 
 
     const monthlyFeeRate =
-        Math.max(0, annualFees) / 100 / 12;
+        Math.max(
+            0,
+            annualFees
+        ) / 100 / 12;
 
 
-    let balance = initial;
+    let balance =
+        initial;
 
-    let totalContributed = initial;
 
-    let estimatedFees = 0;
+    let totalContributed =
+        initial;
 
-    let realBalance = initial;
+
+    let estimatedFees =
+        0;
+
+
+    let realBalance =
+        initial;
+
 
     const yearlyData = [];
 
@@ -883,20 +1137,28 @@ function calculateInvestment() {
         const growth =
             balance * grossMonthlyRate;
 
+
         balance += growth;
 
 
         const estimatedMonthlyFee =
             balance * monthlyFeeRate;
 
-        estimatedFees += estimatedMonthlyFee;
 
-        balance -= estimatedMonthlyFee;
+        estimatedFees +=
+            estimatedMonthlyFee;
 
 
-        balance += monthly;
+        balance -=
+            estimatedMonthlyFee;
 
-        totalContributed += monthly;
+
+        balance +=
+            monthly;
+
+
+        totalContributed +=
+            monthly;
 
 
         realBalance =
@@ -914,12 +1176,24 @@ function calculateInvestment() {
             const currentYear =
                 month / 12;
 
+
             yearlyData.push({
-                year: currentYear,
-                contributed: totalContributed,
-                value: balance,
+
+                year:
+                    currentYear,
+
+                contributed:
+                    totalContributed,
+
+                value:
+                    balance,
+
                 growth:
-                    balance - totalContributed
+                    Math.max(
+                        0,
+                        balance - totalContributed
+                    )
+
             });
 
         }
@@ -981,7 +1255,8 @@ function calculateInvestment() {
     document.getElementById(
         "netReturn"
     ).textContent =
-        netAnnualReturn.toFixed(2) + "%";
+        netAnnualReturn.toFixed(2)
+        + "%";
 
 
     const contributionPercentage =
@@ -1024,17 +1299,38 @@ function calculateInvestment() {
 
 
     yearlyData.forEach(
-        function (item) {
+        function(item) {
 
             const row =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             row.innerHTML = `
-                <td>${item.year}</td>
-                <td>${formatMoney(item.contributed)}</td>
-                <td>${formatMoney(item.value)}</td>
-                <td>${formatMoney(item.growth)}</td>
+
+                <td>
+                    ${item.year}
+                </td>
+
+                <td>
+                    ${formatMoney(
+                        item.contributed
+                    )}
+                </td>
+
+                <td>
+                    ${formatMoney(
+                        item.value
+                    )}
+                </td>
+
+                <td>
+                    ${formatMoney(
+                        item.growth
+                    )}
+                </td>
+
             `;
 
 
@@ -1050,5 +1346,7 @@ calculateInvestment();
 
 </script>
 
+
 </body>
+
 </html>
