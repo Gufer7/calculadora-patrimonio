@@ -1,19 +1,31 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-site-verification" content="wTjbZL1cT3yIfLzj5MKi3TJykEqVwzF2OknGcIvak7Y">
+    <meta
+        name="google-site-verification"
+        content="wTjbZL1cT3yIfLzj5MKi3TJykEqVwzF2OknGcIvak7Y"
+    >
 
-    <title>Financial Calculators | Savings, Investment, Mortgage & Net Worth</title>
+    <title>Financial Calculators - Free Savings, Investment & Mortgage Tools</title>
 
-    <meta name="description" content="Free financial calculators for savings, investments, compound interest, mortgages and net worth. Calculate payments, growth and financial scenarios online.">
+    <meta
+        name="description"
+        content="Free financial calculators for savings, investments, compound interest, mortgages, home affordability and net worth. Explore financial scenarios and estimate payments, growth and costs."
+    >
 
-    <link rel="canonical" href="https://gufer7.github.io/calculadora-patrimonio/">
+    <link
+        rel="canonical"
+        href="https://gufer7.github.io/calculadora-patrimonio/"
+    >
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -38,17 +50,19 @@
         }
 
         header p {
-            margin: 0;
+            max-width: 800px;
+            margin: 0 auto;
             color: #d1d5db;
             font-size: 18px;
+            line-height: 1.6;
         }
 
         nav {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 22px;
             flex-wrap: wrap;
         }
 
@@ -70,7 +84,7 @@
 
         .intro {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .intro h2 {
@@ -78,6 +92,23 @@
         }
 
         .intro p {
+            color: #555;
+            line-height: 1.7;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .category {
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        .category h2 {
+            margin-bottom: 8px;
+        }
+
+        .category p {
             color: #555;
             line-height: 1.6;
         }
@@ -124,9 +155,43 @@
         .info {
             background: white;
             border-radius: 14px;
-            padding: 25px;
-            margin-top: 30px;
+            padding: 30px;
+            margin-top: 35px;
             line-height: 1.7;
+        }
+
+        .info h2 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .info h2:not(:first-child) {
+            margin-top: 35px;
+        }
+
+        .info p {
+            color: #444;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .quick-links a {
+            display: block;
+            background: #f4f6f8;
+            padding: 14px;
+            border-radius: 8px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .quick-links a:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -134,8 +199,54 @@
             padding: 35px 20px;
             color: #6b7280;
             font-size: 14px;
+            line-height: 1.6;
         }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 25px 15px 35px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            nav {
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .container {
+                margin-top: 25px;
+                padding: 0 15px;
+            }
+
+            .tool,
+            .info {
+                padding: 22px;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
@@ -143,42 +254,87 @@
 <header>
 
     <nav>
+
         <a href="index.html">Home</a>
-        <a href="net-worth-calculator.html">Net Worth Calculator</a>
-        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-        <a href="savings-calculator.html">Savings Calculator</a>
-        <a href="investment-calculator.html">Investment Calculator</a>
-        <a href="mortgage-calculator.html">Mortgage Calculator</a>
-        <a href="mortgage-affordability-calculator.html">Mortgage Affordability Calculator</a>
-        <a href="sobre-nosotros.html">About Us</a>
-        <a href="contacto.html">Contact</a>
+
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+
+        <a href="investment-calculator.html">
+            Investment Calculator
+        </a>
+
+        <a href="mortgage-calculator.html">
+            Mortgage Calculator
+        </a>
+
+        <a href="mortgage-affordability-calculator.html">
+            Mortgage Affordability Calculator
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
     </nav>
 
-    <h1>Financial Calculators</h1>
+    <h1>Free Financial Calculators</h1>
 
     <p>
-        Free online financial calculators to help you estimate savings growth,
-        compound interest, investment growth, mortgage payments and net worth.
+        Free online financial calculators to help you estimate savings,
+        investment growth, compound interest, mortgage payments,
+        home affordability and net worth.
     </p>
 
 </header>
 
+
 <div class="container">
+
 
     <div class="intro">
 
-        <h2>Free Financial Calculators</h2>
+        <h2>Financial Calculators for Everyday Money Decisions</h2>
 
         <p>
-            Use our free financial calculators to explore different financial
-            scenarios, including saving money, investing regularly, calculating
-            compound growth, estimating mortgage payments and tracking your net worth.
+            Use our free financial calculators to explore different
+            personal finance scenarios. Estimate how your savings could
+            grow, compare investment assumptions, calculate mortgage
+            payments and understand your current net worth.
         </p>
 
         <p>
-            Enter your own numbers and compare different assumptions to see
-            how contributions, interest, investment returns, fees and
-            inflation could affect your estimated results over time.
+            Enter your own numbers and compare different scenarios to
+            understand how contributions, interest rates, investment
+            returns, fees, inflation, debts and loan terms can affect
+            your estimated results over time.
+        </p>
+
+    </div>
+
+
+    <!-- PERSONAL FINANCE -->
+
+    <div class="category">
+
+        <h2>Personal Finance</h2>
+
+        <p>
+            Understand your current financial position and track the
+            relationship between your assets and liabilities.
         </p>
 
     </div>
@@ -191,16 +347,40 @@
             <h3>🧮 Net Worth Calculator</h3>
 
             <p>
-                Calculate your current net worth by adding your assets and
-                subtracting your debts and other liabilities.
+                Calculate your current net worth by adding your assets
+                and subtracting your debts and other liabilities.
+                Use it to get a simple snapshot of your overall
+                financial position.
             </p>
 
-            <a class="button" href="net-worth-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="net-worth-calculator.html"
+            >
+                Open Net Worth Calculator
             </a>
 
         </div>
 
+    </div>
+
+
+    <!-- SAVING AND INVESTING -->
+
+    <div class="category">
+
+        <h2>Saving & Investment Calculators</h2>
+
+        <p>
+            Explore savings growth, compound interest and long-term
+            investment scenarios using different contributions,
+            returns, fees and time periods.
+        </p>
+
+    </div>
+
+
+    <div class="tools">
 
         <div class="tool">
 
@@ -208,11 +388,15 @@
 
             <p>
                 Estimate how an initial investment and regular monthly
-                contributions could grow through compound interest over time.
+                contributions could grow through compound interest
+                over time.
             </p>
 
-            <a class="button" href="compound-interest-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="compound-interest-calculator.html"
+            >
+                Open Compound Interest Calculator
             </a>
 
         </div>
@@ -223,12 +407,16 @@
             <h3>💰 Savings Calculator</h3>
 
             <p>
-                Estimate how your savings could grow with an initial balance,
-                monthly contributions and an assumed interest rate.
+                Estimate how your savings could grow with an initial
+                balance, regular monthly contributions and an assumed
+                interest rate.
             </p>
 
-            <a class="button" href="savings-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="savings-calculator.html"
+            >
+                Open Savings Calculator
             </a>
 
         </div>
@@ -239,30 +427,55 @@
             <h3>📊 Investment Calculator</h3>
 
             <p>
-                Estimate potential investment growth using an initial
+                Explore potential investment growth using an initial
                 investment, regular contributions, expected returns,
                 investment fees and inflation.
             </p>
 
-            <a class="button" href="investment-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="investment-calculator.html"
+            >
+                Open Investment Calculator
             </a>
 
         </div>
 
+    </div>
+
+
+    <!-- MORTGAGES -->
+
+    <div class="category">
+
+        <h2>Mortgage & Home Affordability Calculators</h2>
+
+        <p>
+            Estimate mortgage payments and explore how income, debts,
+            down payments, interest rates and loan terms can affect
+            potential home affordability.
+        </p>
+
+    </div>
+
+
+    <div class="tools">
 
         <div class="tool">
 
             <h3>🏠 Mortgage Calculator</h3>
 
             <p>
-                Estimate your monthly mortgage payment, total interest and
-                total cost of a home loan based on the home price, down payment,
-                interest rate and loan term.
+                Estimate your monthly mortgage payment, total interest
+                and total cost of a home loan based on the home price,
+                down payment, interest rate and loan term.
             </p>
 
-            <a class="button" href="mortgage-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="mortgage-calculator.html"
+            >
+                Open Mortgage Calculator
             </a>
 
         </div>
@@ -273,12 +486,16 @@
             <h3>🏠 Mortgage Affordability Calculator</h3>
 
             <p>
-                Estimate how much home you may be able to afford based on your
-                income, down payment, interest rate and loan term.
+                Estimate how much home you may be able to afford based
+                on your income, existing monthly debts, down payment,
+                interest rate and loan term.
             </p>
 
-            <a class="button" href="mortgage-affordability-calculator.html">
-                Open calculator
+            <a
+                class="button"
+                href="mortgage-affordability-calculator.html"
+            >
+                Open Mortgage Affordability Calculator
             </a>
 
         </div>
@@ -286,73 +503,117 @@
     </div>
 
 
+    <!-- INFORMATION -->
+
     <div class="info">
 
         <h2>How Financial Calculators Can Help</h2>
 
         <p>
-            Financial calculators can make it easier to explore the potential
-            effect of different financial assumptions. Changing the amount
-            you save, the time you invest, the interest rate or the expected
-            return can produce very different results over the long term.
+            Financial calculators make it easier to explore the
+            potential effect of different financial assumptions.
+            Changing the amount you save, the time you invest,
+            the interest rate or the expected return can produce
+            significantly different results over the long term.
         </p>
 
         <p>
-            Our Savings Calculator focuses on regular saving and estimated
-            interest. The Compound Interest Calculator shows how an initial
-            investment and recurring contributions could benefit from
-            compound growth.
+            A savings calculation can help you understand how regular
+            contributions may accumulate over time. A compound interest
+            calculation focuses on how an initial amount and recurring
+            contributions can potentially grow through compounding.
         </p>
 
         <p>
-            The Investment Calculator allows you to explore potential
-            investment growth while accounting for expected returns,
-            investment fees and inflation. The Net Worth Calculator provides
-            a snapshot of your current financial position by comparing your
-            assets and liabilities.
+            Investment calculations can help you explore different
+            return, contribution, fee and inflation assumptions.
+            Mortgage calculations can help you estimate monthly
+            payments and understand how interest and loan terms
+            affect the overall cost of borrowing.
         </p>
 
         <p>
-            The Mortgage Calculator estimates monthly mortgage payments,
-            total interest and the overall cost of a home loan. The Mortgage
-            Affordability Calculator focuses on estimating how much home
-            you may be able to afford based on your income and other
-            financial assumptions.
+            The Net Worth Calculator provides a snapshot of your
+            financial position by comparing your assets with your
+            liabilities.
         </p>
 
 
         <h2>Compare Different Financial Scenarios</h2>
 
         <p>
-            You can use the calculators to compare different assumptions
-            rather than relying on a single estimate. For example, you could
-            change your monthly contribution, investment period, mortgage
-            interest rate or expected return and see how the estimated result changes.
+            Financial planning often involves comparing several
+            scenarios rather than relying on a single estimate.
+            For example, you could compare different monthly
+            contributions, investment periods, mortgage rates,
+            loan terms or expected investment returns.
         </p>
 
         <p>
-            This can help you understand the relationship between time,
-            contributions, interest, investment growth, mortgage costs,
-            fees and inflation. The results are estimates based on the
-            information you enter and are intended for educational and
-            informational purposes.
+            Comparing scenarios can help you understand the
+            relationship between time, contributions, interest,
+            investment growth, mortgage costs, fees and inflation.
+            The calculators are designed to make these comparisons
+            easier to explore.
         </p>
 
 
         <h2>Explore Our Financial Calculators</h2>
 
         <p>
-            Start with the calculator that matches what you want to explore.
-            You can also move between the calculators to compare different
-            aspects of saving, investing, home financing and personal finances.
+            Choose a calculator based on the financial question
+            you want to explore. You can also use several calculators
+            together to examine different parts of the same financial
+            scenario.
+        </p>
+
+        <div class="quick-links">
+
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
+
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
+
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
+
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
+
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
+
+        </div>
+
+
+        <h2>Important Information</h2>
+
+        <p>
+            All calculator results are estimates based on the
+            information and assumptions entered by the user.
+            Actual savings growth, investment returns, mortgage
+            costs, taxes, fees and other financial outcomes may
+            differ.
         </p>
 
         <p>
-            All calculator results are estimates and should not be considered
+            These calculators are provided for educational and
+            informational purposes only and should not be considered
             personalized financial, investment, tax or legal advice.
         </p>
 
     </div>
+
 
 </div>
 
@@ -363,37 +624,38 @@
 
     <br><br>
 
-    <a href="index.html" style="color: #6b7280; text-decoration: none;">
+    <a href="index.html">
         Financial Calculators
     </a>
 
     &nbsp; | &nbsp;
 
-    <a href="sobre-nosotros.html" style="color: #6b7280; text-decoration: none;">
+    <a href="sobre-nosotros.html">
         About Us
     </a>
 
     &nbsp; | &nbsp;
 
-    <a href="contacto.html" style="color: #6b7280; text-decoration: none;">
+    <a href="contacto.html">
         Contact
     </a>
 
     &nbsp; | &nbsp;
 
-    <a href="aviso-legal.html" style="color: #6b7280; text-decoration: none;">
+    <a href="aviso-legal.html">
         Legal Notice
     </a>
 
     &nbsp; | &nbsp;
 
-    <a href="privacy-policy.html" style="color: #6b7280; text-decoration: none;">
+    <a href="privacy-policy.html">
         Privacy Policy
     </a>
 
 </footer>
 
+
 </body>
+
 </html>
-```
 
