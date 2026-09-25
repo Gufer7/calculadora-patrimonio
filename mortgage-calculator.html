@@ -7,11 +7,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mortgage Calculator - Calculate Monthly Payments</title>
+    <title>Mortgage Calculator - Calculate Monthly Mortgage Payments</title>
 
     <meta
         name="description"
-        content="Use this free mortgage calculator to estimate monthly payments, total interest and total mortgage cost based on home price, down payment, interest rate and loan term."
+        content="Use this free mortgage calculator to estimate monthly mortgage payments, total interest, loan cost and amortization based on home price, down payment, interest rate and loan term."
     >
 
     <link
@@ -37,25 +37,28 @@
             background: #111827;
             color: white;
             padding: 30px 20px;
-            text-align: center;
+        }
+
+        header .header-container {
+            max-width: 1000px;
+            margin: auto;
         }
 
         header h1 {
             margin-top: 0;
+            margin-bottom: 10px;
         }
 
         nav {
             margin-top: 20px;
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 5px;
             font-size: 14px;
         }
 
@@ -63,10 +66,10 @@
             text-decoration: underline;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .intro {
@@ -75,9 +78,10 @@
 
         .calculator {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-top: 25px;
         }
 
         .input-group {
@@ -108,6 +112,7 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 5px;
         }
 
         button:hover {
@@ -193,6 +198,16 @@
         footer a {
             color: #6b7280;
             text-decoration: none;
+            margin: 0 6px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            font-size: 14px;
+            color: #666;
         }
 
         @media (max-width: 650px) {
@@ -206,13 +221,13 @@
                 gap: 8px;
             }
 
-            nav a {
-                margin: 0;
-            }
-
             .calculator,
             section {
                 padding: 20px;
+            }
+
+            .result-value {
+                font-size: 22px;
             }
 
         }
@@ -227,57 +242,61 @@
 
 <header>
 
-    <h1>Mortgage Calculator</h1>
+    <div class="header-container">
 
-    <p>
-        Estimate your monthly mortgage payment, total interest and total
-        mortgage cost.
-    </p>
+        <h1>Mortgage Calculator</h1>
 
-    <nav>
+        <p>
+            Estimate your monthly mortgage payment, total interest and total
+            mortgage cost.
+        </p>
 
-        <a href="index.html">
-            Home
-        </a>
+        <nav>
 
-        <a href="net-worth-calculator.html">
-            Net Worth Calculator
-        </a>
+            <a href="index.html">
+                Home
+            </a>
 
-        <a href="compound-interest-calculator.html">
-            Compound Interest Calculator
-        </a>
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
 
-        <a href="savings-calculator.html">
-            Savings Calculator
-        </a>
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
 
-        <a href="investment-calculator.html">
-            Investment Calculator
-        </a>
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
 
-        <a href="mortgage-calculator.html">
-            Mortgage Calculator
-        </a>
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
 
-        <a href="mortgage-affordability-calculator.html">
-            Mortgage Affordability Calculator
-        </a>
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
 
-        <a href="sobre-nosotros.html">
-            About Us
-        </a>
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
 
-        <a href="contacto.html">
-            Contact
-        </a>
+            <a href="sobre-nosotros.html">
+                About Us
+            </a>
 
-    </nav>
+            <a href="contacto.html">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
 
 </header>
 
 
-<div class="container">
+<main>
 
 
     <p class="intro">
@@ -368,7 +387,7 @@
 
 
         <button onclick="calculateMortgage()">
-            Calculate Mortgage
+            Calculate Mortgage Payment
         </button>
 
 
@@ -377,7 +396,7 @@
             <div class="result-box highlight">
 
                 <div class="result-label">
-                    Monthly payment
+                    Monthly mortgage payment
                 </div>
 
                 <div
@@ -457,6 +476,7 @@
             mortgage balance.
         </p>
 
+
         <div class="table-wrapper">
 
             <table>
@@ -504,9 +524,9 @@
         </p>
 
         <p>
-            The results can help you compare different mortgage scenarios
-            and understand how the interest rate, down payment and loan term
-            affect the overall cost of borrowing.
+            You can use a mortgage payment calculator to compare different
+            home loan scenarios and understand how the interest rate,
+            down payment and loan term affect the overall cost of borrowing.
         </p>
 
     </section>
@@ -523,12 +543,13 @@
         </p>
 
         <p>
-            The basic formula is:
+            The basic mortgage payment formula is:
         </p>
 
         <p>
             <strong>
-                M = P × [r(1 + r)<sup>n</sup>] / [(1 + r)<sup>n</sup> − 1]
+                M = P × [r(1 + r)<sup>n</sup>] /
+                [(1 + r)<sup>n</sup> − 1]
             </strong>
         </p>
 
@@ -549,12 +570,85 @@
 
     <section>
 
-        <h2>Why Does the Interest Rate Matter?</h2>
+        <h2>What Affects Your Monthly Mortgage Payment?</h2>
+
+        <p>
+            Several factors can affect the monthly principal and interest
+            payment on a mortgage. The main factors included in this
+            calculator are the home price, down payment, interest rate and
+            loan term.
+        </p>
+
+        <h3>Home price and loan amount</h3>
+
+        <p>
+            A higher home price generally means a larger mortgage loan if
+            the down payment remains the same. Borrowing more money generally
+            results in a higher monthly payment.
+        </p>
+
+        <h3>Interest rate</h3>
 
         <p>
             The interest rate affects how much you pay to borrow money.
-            A higher interest rate generally increases the monthly payment
-            and the total amount of interest paid over the life of the loan.
+            A higher rate generally increases both the monthly payment and
+            the total interest paid over the life of the mortgage.
+        </p>
+
+        <h3>Down payment</h3>
+
+        <p>
+            A larger down payment reduces the amount you need to borrow.
+            This can reduce the monthly mortgage payment and the total
+            interest paid over the life of the loan.
+        </p>
+
+        <h3>Loan term</h3>
+
+        <p>
+            A longer mortgage term generally reduces the required monthly
+            payment but can increase the total amount of interest paid.
+            A shorter term can result in higher monthly payments but may
+            reduce total interest because the loan is repaid faster.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>Mortgage Calculator With Down Payment</h2>
+
+        <p>
+            Your down payment is an important part of estimating the size
+            of a mortgage. To calculate the loan amount, subtract the
+            down payment from the home price.
+        </p>
+
+        <p>
+            For example, a $300,000 home with a $60,000 down payment would
+            result in an estimated mortgage loan of $240,000 before any
+            additional costs.
+        </p>
+
+        <p>
+            Increasing the down payment generally reduces the amount borrowed,
+            which can lower the monthly principal and interest payment and
+            reduce the total interest paid.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>How Does the Interest Rate Affect a Mortgage?</h2>
+
+        <p>
+            The interest rate is one of the most important variables in a
+            mortgage calculation. A higher rate generally means a higher
+            monthly payment and a higher total cost of borrowing when the
+            loan amount and term remain the same.
         </p>
 
         <p>
@@ -563,23 +657,9 @@
             repaid over several decades.
         </p>
 
-    </section>
-
-
-    <section>
-
-        <h2>How Does the Down Payment Affect a Mortgage?</h2>
-
         <p>
-            A larger down payment reduces the amount you need to borrow.
-            This can reduce the monthly mortgage payment and the total
-            interest paid over the life of the loan.
-        </p>
-
-        <p>
-            The appropriate down payment depends on your financial situation,
-            available savings, the property and the mortgage terms offered
-            by the lender.
+            You can change the interest rate in the calculator above to
+            compare different hypothetical mortgage scenarios.
         </p>
 
     </section>
@@ -587,24 +667,7 @@
 
     <section>
 
-        <h2>How Does the Loan Term Affect Mortgage Costs?</h2>
-
-        <p>
-            A longer mortgage term generally reduces the required monthly
-            payment but can increase the total amount of interest paid.
-        </p>
-
-        <p>
-            A shorter term can result in higher monthly payments but may
-            reduce the total interest paid because the loan is repaid faster.
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>Example: $300,000 Home With a $60,000 Down Payment</h2>
+        <h2>30-Year Mortgage Calculator Example</h2>
 
         <p>
             Suppose you purchase a $300,000 home and make a $60,000 down
@@ -614,13 +677,13 @@
         <p>
             At an assumed annual interest rate of 6% over 30 years, the
             estimated monthly principal and interest payment would be
-            approximately $1,438.92.
+            approximately <strong>$1,438.92</strong>.
         </p>
 
         <p>
             Over 30 years, the estimated total of these mortgage payments
-            would be approximately $517,971, including approximately
-            $277,971 in interest.
+            would be approximately <strong>$517,971</strong>, including
+            approximately <strong>$277,971</strong> in interest.
         </p>
 
         <p>
@@ -637,17 +700,32 @@
         <h2>Frequently Asked Questions</h2>
 
 
-        <h3>What is included in a mortgage payment?</h3>
+        <h3>
+            What is a mortgage calculator?
+        </h3>
+
+        <p>
+            A mortgage calculator is a tool that estimates the monthly
+            principal and interest payment for a home loan based on the
+            loan amount, interest rate and repayment period.
+        </p>
+
+
+        <h3>
+            What is included in a mortgage payment?
+        </h3>
 
         <p>
             This calculator estimates principal and interest. Actual housing
             costs can also include property taxes, homeowners insurance,
-            mortgage insurance, maintenance and other expenses, which are not
-            included in this calculator.
+            mortgage insurance, maintenance and other expenses, which are
+            not included in this calculator.
         </p>
 
 
-        <h3>Does this mortgage calculator include property taxes?</h3>
+        <h3>
+            Does this mortgage calculator include property taxes?
+        </h3>
 
         <p>
             No. This calculator estimates principal and interest only.
@@ -656,12 +734,14 @@
         </p>
 
 
-        <h3>How much house can I afford?</h3>
+        <h3>
+            How much house can I afford?
+        </h3>
 
         <p>
             A mortgage payment calculator estimates the payment for a loan,
             but it does not determine how much home you can personally afford.
-            Your income, existing debts, expenses, savings and other financial
+            Income, existing debts, expenses, savings and other financial
             circumstances also affect an affordable housing budget.
         </p>
 
@@ -674,7 +754,9 @@
         </p>
 
 
-        <h3>Does a larger down payment reduce interest?</h3>
+        <h3>
+            Does a larger down payment reduce interest?
+        </h3>
 
         <p>
             Generally, yes. A larger down payment reduces the amount borrowed,
@@ -682,7 +764,9 @@
         </p>
 
 
-        <h3>Is a 30-year mortgage always cheaper?</h3>
+        <h3>
+            Is a 30-year mortgage always cheaper?
+        </h3>
 
         <p>
             A longer loan term can result in a lower monthly payment but may
@@ -691,7 +775,9 @@
         </p>
 
 
-        <h3>What happens if mortgage interest rates increase?</h3>
+        <h3>
+            What happens if mortgage interest rates increase?
+        </h3>
 
         <p>
             For a new fixed-rate mortgage, a higher interest rate generally
@@ -701,16 +787,20 @@
         </p>
 
 
-        <h3>Are mortgage calculator results guaranteed?</h3>
+        <h3>
+            Are mortgage calculator results guaranteed?
+        </h3>
 
         <p>
             No. The results are estimates based on the assumptions entered.
-            Actual mortgage costs depend on the lender, interest rate,
-            fees, taxes, insurance and other factors.
+            Actual mortgage costs depend on the lender, interest rate, fees,
+            taxes, insurance and other factors.
         </p>
 
 
-        <h3>Can I use this calculator to compare mortgage scenarios?</h3>
+        <h3>
+            Can I use this calculator to compare mortgage scenarios?
+        </h3>
 
         <p>
             Yes. You can change the home price, down payment, interest rate
@@ -718,7 +808,9 @@
         </p>
 
 
-        <h3>Does this calculator include mortgage insurance?</h3>
+        <h3>
+            Does this calculator include mortgage insurance?
+        </h3>
 
         <p>
             No. Mortgage insurance and other lender-specific costs are not
@@ -735,7 +827,19 @@
 
         <p>
             Explore our other free financial calculators to compare different
-            saving, investing and personal finance scenarios.
+            saving, investing, mortgage and personal finance scenarios.
+        </p>
+
+
+        <p>
+
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
+
+            — estimate a potential home budget based on income, expenses
+            and mortgage assumptions.
+
         </p>
 
 
@@ -787,18 +891,6 @@
 
         <p>
 
-            <a href="mortgage-affordability-calculator.html">
-                Mortgage Affordability Calculator
-            </a>
-
-            — estimate a potential home budget based on income, expenses
-            and mortgage assumptions.
-
-        </p>
-
-
-        <p>
-
             <a href="index.html">
                 View all financial calculators
             </a>
@@ -829,7 +921,7 @@
     </section>
 
 
-</div>
+</main>
 
 
 <footer>
@@ -842,25 +934,25 @@
         Financial Calculators
     </a>
 
-    &nbsp; | &nbsp;
+    |
 
     <a href="sobre-nosotros.html">
         About Us
     </a>
 
-    &nbsp; | &nbsp;
+    |
 
     <a href="contacto.html">
         Contact
     </a>
 
-    &nbsp; | &nbsp;
+    |
 
     <a href="aviso-legal.html">
         Legal Notice
     </a>
 
-    &nbsp; | &nbsp;
+    |
 
     <a href="privacy-policy.html">
         Privacy Policy
@@ -878,9 +970,24 @@ function formatMoney(value) {
         {
             style: "currency",
             currency: "USD",
-            minimumFractionDigits: 2
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }
     ).format(value);
+
+}
+
+
+function getNumber(id) {
+
+    const value =
+        parseFloat(
+            document.getElementById(id).value
+        );
+
+    return Number.isFinite(value) && value >= 0
+        ? value
+        : 0;
 
 }
 
@@ -888,36 +995,15 @@ function formatMoney(value) {
 function calculateMortgage() {
 
     const homePrice =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "homePrice"
-                ).value
-            ) || 0
-        );
+        getNumber("homePrice");
 
 
     const downPayment =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "downPayment"
-                ).value
-            ) || 0
-        );
+        getNumber("downPayment");
 
 
     const annualRate =
-        Math.max(
-            0,
-            parseFloat(
-                document.getElementById(
-                    "interestRate"
-                ).value
-            ) || 0
-        );
+        getNumber("interestRate");
 
 
     const years =
@@ -1047,22 +1133,35 @@ function calculateMortgage() {
             month++
         ) {
 
+            if (balance <= 0) {
+                break;
+            }
+
+
             const interest =
                 balance * monthlyRate;
 
 
             const principal =
                 Math.min(
-                    monthlyPayment - interest,
+                    Math.max(
+                        0,
+                        monthlyPayment - interest
+                    ),
                     balance
                 );
 
 
-            yearlyInterest += interest;
+            yearlyInterest +=
+                interest;
 
-            yearlyPrincipal += principal;
 
-            balance -= principal;
+            yearlyPrincipal +=
+                principal;
+
+
+            balance -=
+                principal;
 
 
             if (balance < 0.01) {
@@ -1073,9 +1172,7 @@ function calculateMortgage() {
 
 
         const row =
-            document.createElement(
-                "tr"
-            );
+            document.createElement("tr");
 
 
         row.innerHTML = `
