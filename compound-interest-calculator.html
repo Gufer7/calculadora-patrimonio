@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-
-    <title>Compound Interest Calculator - Calculate Investment Growth</title>
-
-    <meta name="description" content="Use this free compound interest calculator to estimate investment growth with an initial investment, monthly contributions and compound returns over time.">
-
-    <link rel="canonical" href="https://gufer7.github.io/calculadora-patrimonio/compound-interest-calculator.html">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Compound Interest Calculator - Calculate Investment Growth</title>
+
+    <meta
+        name="description"
+        content="Use this free compound interest calculator to estimate investment growth with an initial investment, monthly contributions and compound returns over time."
+    >
+
+    <link
+        rel="canonical"
+        href="https://gufer7.github.io/calculadora-patrimonio/compound-interest-calculator.html"
+    >
+
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f8;
-            margin: 0;
             color: #222;
         }
 
@@ -30,11 +43,18 @@
             margin: 0 0 15px;
         }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 8px;
             font-size: 14px;
+            font-weight: bold;
         }
 
         nav a:hover {
@@ -42,7 +62,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 20px;
         }
@@ -65,10 +85,15 @@
             text-align: center;
             color: #555;
             margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         h2 {
             margin-top: 25px;
+        }
+
+        .calculator h2 {
+            margin-top: 0;
         }
 
         label {
@@ -80,7 +105,6 @@
 
         input {
             width: 100%;
-            box-sizing: border-box;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
@@ -96,6 +120,7 @@
             border: none;
             border-radius: 6px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -177,6 +202,39 @@
             background: #2563eb;
         }
 
+        .example {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 18px;
+            margin-top: 20px;
+            line-height: 1.7;
+        }
+
+        .content {
+            line-height: 1.7;
+        }
+
+        .content p {
+            color: #444;
+        }
+
+        .content h3 {
+            margin-top: 25px;
+        }
+
+        .faq h3 {
+            margin-bottom: 6px;
+        }
+
+        .faq p {
+            margin-top: 0;
+        }
+
+        .more-tools a {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -189,7 +247,12 @@
             text-decoration: none;
         }
 
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
+
             nav a {
                 display: inline-block;
                 margin: 5px;
@@ -199,104 +262,242 @@
                 margin: 20px auto;
                 padding: 15px;
             }
+
+            .calculator,
+            .content,
+            .more-tools {
+                padding: 20px;
+            }
+
+            .result-value {
+                font-size: 21px;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
 <header>
+
     <h2>Financial Calculators</h2>
 
     <nav>
+
         <a href="index.html">Home</a>
-        <a href="net-worth-calculator.html">Net Worth Calculator</a>
-        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-        <a href="savings-calculator.html">Savings Calculator</a>
-        <a href="investment-calculator.html">Investment Calculator</a>
-        <a href="mortgage-calculator.html">Mortgage Calculator</a>
-        <a href="mortgage-affordability-calculator.html">Mortgage Affordability Calculator</a>
-        <a href="sobre-nosotros.html">About Us</a>
-        <a href="contacto.html">Contact</a>
+
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+
+        <a href="investment-calculator.html">
+            Investment Calculator
+        </a>
+
+        <a href="mortgage-calculator.html">
+            Mortgage Calculator
+        </a>
+
+        <a href="mortgage-affordability-calculator.html">
+            Mortgage Affordability Calculator
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
     </nav>
+
 </header>
 
+
 <div class="container">
+
 
     <div class="calculator">
 
         <h1>Compound Interest Calculator</h1>
 
         <p class="intro">
-            Use this free compound interest calculator to estimate how an initial
-            investment and regular monthly contributions could grow over time.
+            Use this free compound interest calculator to estimate how an
+            initial investment and regular monthly contributions could grow
+            over time.
         </p>
 
         <p>
-            Enter your starting amount, monthly contribution, expected annual return
-            and investment period to estimate your future investment value and see
-            how much of the result could come from your contributions versus
-            compound growth.
+            Enter your starting amount, monthly contribution, expected annual
+            return and investment period to estimate your future investment
+            value and see how much of the result could come from your
+            contributions versus compound growth.
         </p>
 
         <p>
-            This compound interest calculator is useful for comparing different
-            investment scenarios and understanding how regular contributions,
-            estimated returns and time can affect potential investment growth.
+            This calculator is useful for comparing different investment
+            scenarios and understanding how regular contributions, estimated
+            returns and time can affect potential investment growth.
         </p>
 
-        <label for="initial">Initial investment ($)</label>
-        <input type="number" id="initial" value="1000" min="0">
 
-        <label for="monthly">Monthly contribution ($)</label>
-        <input type="number" id="monthly" value="100" min="0">
+        <label for="initial">
+            Initial investment ($)
+        </label>
 
-        <label for="rate">Expected annual return (%)</label>
-        <input type="number" id="rate" value="7" min="0" step="0.1">
+        <input
+            type="number"
+            id="initial"
+            value="1000"
+            min="0"
+            step="100"
+        >
 
-        <label for="years">Investment period (years)</label>
-        <input type="number" id="years" value="20" min="1" step="1">
+
+        <label for="monthly">
+            Monthly contribution ($)
+        </label>
+
+        <input
+            type="number"
+            id="monthly"
+            value="100"
+            min="0"
+            step="10"
+        >
+
+
+        <label for="rate">
+            Expected annual return (%)
+        </label>
+
+        <input
+            type="number"
+            id="rate"
+            value="7"
+            min="0"
+            step="0.1"
+        >
+
+
+        <label for="years">
+            Investment period (years)
+        </label>
+
+        <input
+            type="number"
+            id="years"
+            value="20"
+            min="1"
+            step="1"
+        >
+
 
         <button onclick="calculateCompoundInterest()">
             Calculate Compound Interest
         </button>
 
+
         <div class="results">
 
             <div class="result-box">
-                <strong>Future Investment Value</strong>
-                <div id="futureValue" class="result-value">$0.00</div>
+
+                <strong>
+                    Future Investment Value
+                </strong>
+
+                <div
+                    id="futureValue"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
             </div>
 
-            <div class="result-box">
-                <strong>Total Money Contributed</strong>
-                <div id="totalContributed" class="result-value">$0.00</div>
-            </div>
 
             <div class="result-box">
-                <strong>Estimated Compound Growth</strong>
-                <div id="compoundGrowth" class="result-value">$0.00</div>
+
+                <strong>
+                    Total Money Contributed
+                </strong>
+
+                <div
+                    id="totalContributed"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
             </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    Estimated Compound Growth
+                </strong>
+
+                <div
+                    id="compoundGrowth"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
 
             <div class="breakdown">
 
-                <strong>Contributions vs. compound growth</strong>
+                <strong>
+                    Contributions vs. compound growth
+                </strong>
 
                 <div class="bar-container">
-                    <div id="contributionBar" class="contributions-bar"></div>
-                    <div id="growthBar" class="growth-bar"></div>
+
+                    <div
+                        id="contributionBar"
+                        class="contributions-bar"
+                    ></div>
+
+                    <div
+                        id="growthBar"
+                        class="growth-bar"
+                    ></div>
+
                 </div>
+
 
                 <div class="legend">
 
                     <div class="legend-item">
+
                         <span class="legend-box contribution-color"></span>
+
                         Money contributed
+
                     </div>
 
+
                     <div class="legend-item">
+
                         <span class="legend-box growth-color"></span>
+
                         Compound growth
+
                     </div>
 
                 </div>
@@ -307,162 +508,235 @@
 
     </div>
 
+
     <div class="content">
 
-        <h2>What is compound interest?</h2>
+        <h2>
+            What Is Compound Interest?
+        </h2>
 
         <p>
-            Compound interest is the process of earning returns on your original
-            investment as well as on returns that have already accumulated.
-            When returns remain invested, they can generate additional returns
-            over time.
+            Compound interest is the process of earning returns on your
+            original investment as well as on returns that have already
+            accumulated. When returns remain invested, the accumulated
+            balance can generate additional returns over time.
         </p>
 
         <p>
-            The effect of compound growth generally becomes more noticeable over
-            longer periods. The amount invested, the rate of return, the frequency
-            of compounding and the time invested can all affect the final value.
+            The potential effect of compound growth generally becomes more
+            noticeable over longer periods. The amount invested, the assumed
+            rate of return, the timing of contributions and the time invested
+            can all affect the final value.
         </p>
 
-        <h2>How to Calculate Compound Interest</h2>
+
+        <h2>
+            Compound Interest Calculator With Monthly Contributions
+        </h2>
 
         <p>
-            A basic compound interest calculation can be used to estimate how an
-            initial amount grows when returns are reinvested over time.
+            A compound interest calculator with monthly contributions can help
+            you explore how regular additions to an investment may affect its
+            future value. Instead of considering only an initial lump sum,
+            this calculator adds the monthly contribution throughout the
+            selected investment period.
         </p>
 
         <p>
-            For a lump-sum investment, a commonly used formula is:
+            This makes it possible to compare different saving and investing
+            scenarios by changing the initial investment, monthly contribution,
+            expected annual return or investment period.
+        </p>
+
+
+        <h2>
+            How Does This Compound Interest Calculator Work?
+        </h2>
+
+        <p>
+            Enter your initial investment, monthly contribution, expected
+            annual return and investment period. The calculator converts the
+            annual return into a monthly rate and applies the assumed return
+            each month before adding the monthly contribution.
         </p>
 
         <p>
-            <strong>A = P(1 + r/n)<sup>nt</sup></strong>
+            The final result is separated into the total money contributed and
+            the estimated compound growth. This helps show how much of the
+            estimated balance comes from your own contributions and how much
+            comes from the assumed investment growth.
+        </p>
+
+
+        <h2>
+            How to Calculate Compound Interest
+        </h2>
+
+        <p>
+            A basic compound interest formula for a lump-sum investment is:
+        </p>
+
+        <p>
+            <strong>
+                A = P(1 + r/n)<sup>nt</sup>
+            </strong>
         </p>
 
         <p>
             In this formula, A is the final amount, P is the initial principal,
-            r is the annual interest rate, n is the number of compounding periods
-            per year and t is the investment period in years.
+            r is the annual interest rate, n is the number of compounding
+            periods per year and t is the investment period in years.
         </p>
 
         <p>
-            When regular monthly contributions are added, the calculation also
-            needs to account for the amount and timing of each contribution.
+            When regular monthly contributions are included, the calculation
+            also needs to account for the amount and timing of each contribution.
             This calculator uses a monthly calculation to estimate the future
-            value of the investment.
+            investment value.
         </p>
 
-        <h2>How does the compound interest calculator work?</h2>
+
+        <h2>
+            Why Does Time Matter With Compound Interest?
+        </h2>
 
         <p>
-            Enter your initial investment, monthly contribution, expected annual
-            return and investment period. The calculator applies the assumed annual
-            return on a monthly basis and adds your monthly contribution to estimate
-            the investment value over time.
-        </p>
-
-        <p>
-            The result separates the money you contributed from the estimated
-            compound growth. This helps you understand how much of the final
-            balance comes from your own contributions and how much comes from
-            estimated investment growth.
-        </p>
-
-        <h2>Why does time matter with compound interest?</h2>
-
-        <p>
-            Time can have a significant effect on compound growth because returns
-            that remain invested can generate additional returns in later periods.
-            As the investment period becomes longer, this compounding effect can
-            become increasingly important.
+            Time can have a significant effect on compound growth because
+            returns that remain invested can generate additional returns in
+            later periods. As the investment period becomes longer, the
+            compounding effect can become increasingly important.
         </p>
 
         <p>
-            Regular contributions can also increase the amount of money that remains
-            invested and potentially benefits from future growth.
+            Regular contributions can also increase the amount of money that
+            remains invested and potentially benefits from future growth.
         </p>
 
-        <h2>Example of compound growth</h2>
 
-        <p>
-            Suppose you invest $1,000 initially, contribute $100 each month and
-            achieve an average annual return of 7%. If you continue investing for
-            many years and reinvest the returns, the estimated value can become
-            substantially higher than the amount you personally contributed.
-        </p>
+        <h2>
+            Example of Compound Growth
+        </h2>
 
-        <p>
-            This is a hypothetical example. Investment returns can vary from year
-            to year, and past performance or assumed returns do not guarantee
-            future results.
-        </p>
+        <div class="example">
 
-        <h2>Frequently Asked Questions</h2>
+            <p>
+                Suppose you start with <strong>$1,000</strong>, contribute
+                <strong>$100 per month</strong>, assume an annual return of
+                <strong>7%</strong> and invest for <strong>20 years</strong>.
+            </p>
 
-        <h3>What is the compound interest formula?</h3>
+            <p>
+                Using the monthly calculation in this calculator, the estimated
+                future value would be approximately
+                <strong>$56,131.40</strong>.
+            </p>
 
-        <p>
-            A basic compound interest formula for a lump-sum investment is
-            <strong>A = P(1 + r/n)<sup>nt</sup></strong>, where P is the principal,
-            r is the annual interest rate, n is the number of compounding periods
-            per year and t is the investment period in years.
-        </p>
+            <p>
+                You would have contributed a total of
+                <strong>$25,000</strong>, meaning approximately
+                <strong>$31,131.40</strong> of the estimated final value would
+                come from compound growth.
+            </p>
 
-        <p>
-            When regular monthly contributions are included, the calculation also
-            needs to account for the amount and timing of each contribution.
-        </p>
+            <p>
+                This is a hypothetical example. Investment returns are not
+                guaranteed and actual results can vary significantly over time.
+            </p>
 
-        <h3>How does compound interest work with monthly contributions?</h3>
+        </div>
 
-        <p>
-            Each monthly contribution increases the amount invested. If returns
-            are reinvested, the accumulated balance can continue generating
-            additional returns over time.
-        </p>
 
-        <h3>Does this calculator include monthly contributions?</h3>
+        <div class="faq">
 
-        <p>
-            Yes. You can enter a regular monthly contribution to estimate how
-            recurring investments could affect the final value of your portfolio
-            over time.
-        </p>
+            <h2>
+                Frequently Asked Questions
+            </h2>
 
-        <h3>What is a good annual return to use in a compound interest calculator?</h3>
 
-        <p>
-            There is no guaranteed annual return for an investment. You can use
-            different assumptions to compare scenarios, but actual investment
-            returns vary over time and may be negative in some periods.
-        </p>
+            <h3>
+                What is the compound interest formula?
+            </h3>
 
-        <h3>Does compound interest guarantee investment growth?</h3>
+            <p>
+                A basic compound interest formula for a lump-sum investment is
+                <strong>
+                    A = P(1 + r/n)<sup>nt</sup>
+                </strong>.
+                When regular contributions are included, the calculation also
+                needs to account for the amount and timing of those contributions.
+            </p>
 
-        <p>
-            No. The calculator uses an assumed annual return to produce an estimate.
-            Actual investment returns can be higher or lower, and investments can
-            also lose value.
-        </p>
 
-        <h3>How long does it take for compound interest to work?</h3>
+            <h3>
+                How does compound interest work with monthly contributions?
+            </h3>
 
-        <p>
-            Compound growth does not have a fixed time period. The potential effect
-            generally becomes more noticeable as money remains invested for longer
-            periods and returns are reinvested.
-        </p>
+            <p>
+                Each monthly contribution increases the amount invested. If
+                returns are reinvested, the accumulated balance can continue
+                generating additional returns over time.
+            </p>
+
+
+            <h3>
+                Does this calculator include monthly contributions?
+            </h3>
+
+            <p>
+                Yes. You can enter a regular monthly contribution to estimate
+                how recurring investments could affect the future value of your
+                investment.
+            </p>
+
+
+            <h3>
+                What is a good annual return to use?
+            </h3>
+
+            <p>
+                There is no guaranteed annual return for an investment. You can
+                use different assumptions to compare scenarios, but actual
+                investment returns vary over time and can also be negative.
+            </p>
+
+
+            <h3>
+                Does compound interest guarantee investment growth?
+            </h3>
+
+            <p>
+                No. This calculator uses an assumed annual return to produce
+                an estimate. Actual investment returns can be higher or lower,
+                and investments can lose value.
+            </p>
+
+
+            <h3>
+                How long does it take for compound interest to work?
+            </h3>
+
+            <p>
+                Compound growth does not have a fixed time period. Its potential
+                effect generally becomes more noticeable when money remains
+                invested for longer periods and returns are reinvested.
+            </p>
+
+        </div>
 
     </div>
 
+
     <div class="more-tools">
 
-        <h2>More Financial Calculators</h2>
+        <h2>
+            More Financial Calculators
+        </h2>
 
         <p>
             Explore our other free financial calculators to compare different
-            saving, investing and financial planning scenarios.
+            saving, investing, mortgage and personal finance scenarios.
         </p>
+
 
         <p>
             <a href="savings-calculator.html">
@@ -472,36 +746,42 @@
             future savings balance.
         </p>
 
+
         <p>
             <a href="investment-calculator.html">
                 Investment Calculator
             </a>
-            — estimate how an initial investment and regular contributions
-            could grow over time.
+            — explore potential investment growth using an initial investment,
+            regular contributions, expected returns, fees and inflation.
         </p>
+
 
         <p>
             <a href="net-worth-calculator.html">
                 Net Worth Calculator
             </a>
-            — calculate your total assets minus your liabilities.
+            — calculate your assets minus your liabilities to estimate
+            your current net worth.
         </p>
+
 
         <p>
             <a href="mortgage-calculator.html">
                 Mortgage Calculator
             </a>
-            — estimate your monthly mortgage payment based on the loan amount,
-            interest rate and loan term.
+            — estimate monthly mortgage payments, total interest and
+            total loan cost.
         </p>
+
 
         <p>
             <a href="mortgage-affordability-calculator.html">
                 Mortgage Affordability Calculator
             </a>
-            — estimate how much you may be able to afford based on your income,
-            expenses and mortgage assumptions.
+            — estimate how much home you may be able to afford based on
+            income, debts and mortgage assumptions.
         </p>
+
 
         <p>
             <a href="index.html">
@@ -514,88 +794,171 @@
 
 </div>
 
+
 <footer>
+
     © 2026 Financial Calculators
+
     <br><br>
 
-    <a href="sobre-nosotros.html">About Us</a>
+    <a href="index.html">
+        Financial Calculators
+    </a>
+
     &nbsp; | &nbsp;
 
-    <a href="contacto.html">Contact</a>
+    <a href="sobre-nosotros.html">
+        About Us
+    </a>
+
     &nbsp; | &nbsp;
 
-    <a href="aviso-legal.html">Legal Notice</a>
+    <a href="contacto.html">
+        Contact
+    </a>
+
     &nbsp; | &nbsp;
 
-    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="aviso-legal.html">
+        Legal Notice
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="privacy-policy.html">
+        Privacy Policy
+    </a>
+
 </footer>
 
+
 <script>
+
     function getValue(id) {
-        const value = parseFloat(document.getElementById(id).value);
-        return Number.isFinite(value) && value >= 0 ? value : 0;
+
+        const value =
+            parseFloat(document.getElementById(id).value);
+
+        return Number.isFinite(value) && value >= 0
+            ? value
+            : 0;
     }
+
 
     function calculateCompoundInterest() {
 
-        const initial = getValue("initial");
-        const monthly = getValue("monthly");
-        const annualRate = getValue("rate");
-        const years = Math.max(1, getValue("years"));
+        const initial =
+            getValue("initial");
 
-        const monthlyRate = annualRate / 100 / 12;
-        const months = Math.round(years * 12);
+        const monthly =
+            getValue("monthly");
 
-        let balance = initial;
+        const annualRate =
+            getValue("rate");
 
-        for (let i = 0; i < months; i++) {
-            balance = balance * (1 + monthlyRate);
+        const years =
+            Math.max(
+                1,
+                getValue("years")
+            );
+
+
+        const monthlyRate =
+            annualRate / 100 / 12;
+
+        const months =
+            Math.round(years * 12);
+
+
+        let balance =
+            initial;
+
+
+        for (
+            let i = 0;
+            i < months;
+            i++
+        ) {
+
+            balance =
+                balance * (1 + monthlyRate);
+
             balance += monthly;
+
         }
+
 
         const totalContributed =
             initial + (monthly * months);
 
+
         const compoundGrowth =
-            Math.max(0, balance - totalContributed);
+            Math.max(
+                0,
+                balance - totalContributed
+            );
+
 
         document.getElementById("futureValue").textContent =
             formatMoney(balance);
 
+
         document.getElementById("totalContributed").textContent =
             formatMoney(totalContributed);
+
 
         document.getElementById("compoundGrowth").textContent =
             formatMoney(compoundGrowth);
 
-        const total = totalContributed + compoundGrowth;
 
-        let contributionPercentage = 100;
+        const total =
+            totalContributed + compoundGrowth;
+
+
+        let contributionPercentage =
+            100;
+
 
         if (total > 0) {
+
             contributionPercentage =
                 (totalContributed / total) * 100;
+
         }
+
 
         const growthPercentage =
             100 - contributionPercentage;
 
+
         document.getElementById("contributionBar").style.width =
             contributionPercentage + "%";
 
+
         document.getElementById("growthBar").style.width =
             growthPercentage + "%";
+
     }
+
 
     function formatMoney(amount) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(amount);
+
+        return new Intl.NumberFormat(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
+        ).format(amount);
+
     }
 
+
     calculateCompoundInterest();
+
 </script>
 
+
 </body>
+
 </html>
