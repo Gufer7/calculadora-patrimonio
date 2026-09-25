@@ -1,480 +1,879 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
-```
-<title>Net Worth Calculator - Calculate Your Net Worth</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta name="description" content="Use this free net worth calculator to calculate your net worth by adding your assets and subtracting your debts and other liabilities.">
+    <title>Net Worth Calculator - Calculate Your Net Worth</title>
 
-<link rel="canonical" href="https://gufer7.github.io/calculadora-patrimonio/net-worth-calculator.html">
+    <meta
+        name="description"
+        content="Use this free net worth calculator to calculate your net worth by adding your assets and subtracting your debts and other liabilities."
+    >
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        rel="canonical"
+        href="https://gufer7.github.io/calculadora-patrimonio/net-worth-calculator.html"
+    >
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-        color: #222;
-    }
+    <style>
 
-    header {
-        background: #111827;
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    header h2 {
-        margin: 0 0 15px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            color: #222;
+            line-height: 1.6;
+        }
 
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 8px;
-        font-size: 14px;
-    }
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
 
-    nav a:hover {
-        text-decoration: underline;
-    }
+        header h2 {
+            margin: 0 0 15px;
+        }
 
-    .container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .calculator,
-    .content,
-    .more-tools {
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        margin-bottom: 25px;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    .intro {
-        text-align: center;
-        color: #555;
-        margin-bottom: 30px;
-    }
-
-    .section-title {
-        margin-top: 25px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 8px;
-    }
-
-    label {
-        display: block;
-        margin-top: 15px;
-        margin-bottom: 6px;
-        font-weight: bold;
-    }
-
-    input {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 16px;
-    }
-
-    button {
-        width: 100%;
-        padding: 14px;
-        margin-top: 25px;
-        background: #2563eb;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #1d4ed8;
-    }
-
-    .results {
-        margin-top: 30px;
-    }
-
-    .result-box {
-        background: #f3f4f6;
-        padding: 18px;
-        border-radius: 8px;
-        margin-top: 12px;
-    }
-
-    .result-box strong {
-        display: block;
-        font-size: 14px;
-        color: #555;
-        margin-bottom: 5px;
-    }
-
-    .result-value {
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .positive {
-        color: #15803d;
-    }
-
-    .negative {
-        color: #b91c1c;
-    }
-
-    footer {
-        text-align: center;
-        padding: 30px;
-        color: #777;
-        font-size: 14px;
-    }
-
-    footer a {
-        color: #6b7280;
-        text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
         nav a {
-            display: inline-block;
-            margin: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
         }
 
         .container {
-            margin: 20px auto;
-            padding: 15px;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
         }
-    }
-</style>
-```
+
+        .calculator,
+        .content,
+        .more-tools {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .result-box {
+            background: #f3f4f6;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .result-box strong {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .positive {
+            color: #15803d;
+        }
+
+        .negative {
+            color: #b91c1c;
+        }
+
+        .formula {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .more-tools a {
+            color: #2563eb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .calculator,
+            .content,
+            .more-tools {
+                padding: 20px;
+            }
+
+            .result-value {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
+
 <header>
+
     <h2>Financial Calculators</h2>
 
-```
-<nav>
-    <a href="index.html">Home</a>
-    <a href="net-worth-calculator.html">Net Worth Calculator</a>
-    <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
-    <a href="savings-calculator.html">Savings Calculator</a>
-    <a href="investment-calculator.html">Investment Calculator</a>
-    <a href="mortgage-calculator.html">Mortgage Calculator</a>
-    <a href="mortgage-affordability-calculator.html">Mortgage Affordability Calculator</a>
-    <a href="sobre-nosotros.html">About Us</a>
-    <a href="contacto.html">Contact</a>
-</nav>
-```
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+
+        <a href="investment-calculator.html">
+            Investment Calculator
+        </a>
+
+        <a href="mortgage-calculator.html">
+            Mortgage Calculator
+        </a>
+
+        <a href="mortgage-affordability-calculator.html">
+            Mortgage Affordability Calculator
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
+    </nav>
 
 </header>
 
+
 <div class="container">
 
-```
-<div class="calculator">
 
-    <h1>Net Worth Calculator</h1>
+    <div class="calculator">
 
-    <p class="intro">
-        Use this free net worth calculator to estimate your current net worth
-        by adding your assets and subtracting your debts and other liabilities.
-    </p>
+        <h1>Net Worth Calculator</h1>
 
-    <p>
-        Enter the value of your cash, savings, investments, property and other
-        assets, then add your credit card debt, loans, mortgage balance and
-        other liabilities. The calculator will estimate your total assets,
-        total liabilities and net worth.
-    </p>
+        <p class="intro">
+            Use this free net worth calculator to calculate your personal net
+            worth by adding your assets and subtracting your debts and other
+            liabilities.
+        </p>
 
-    <p>
-        Your net worth is the value of everything you own minus everything you owe.
-        It gives you a simple snapshot of your overall financial position at a
-        specific point in time and can help you track changes in your finances
-        over time.
-    </p>
+        <p>
+            Enter the current value of your cash, savings, investments,
+            property and other assets. Then enter your outstanding credit
+            card balances, loans, mortgage balance and other debts.
+        </p>
 
-    <h2 class="section-title">Assets</h2>
+        <p>
+            The calculator adds your assets, subtracts your liabilities and
+            gives you an estimated net worth. You can use it as a simple
+            snapshot of your financial position at a specific point in time.
+        </p>
 
-    <label for="cash">Cash and checking accounts ($)</label>
-    <input type="number" id="cash" value="5000" min="0">
 
-    <label for="savings">Savings accounts ($)</label>
-    <input type="number" id="savings" value="10000" min="0">
+        <h2 class="section-title">
+            Assets
+        </h2>
 
-    <label for="investments">Investments ($)</label>
-    <input type="number" id="investments" value="5000" min="0">
 
-    <label for="property">Property value ($)</label>
-    <input type="number" id="property" value="0" min="0">
+        <label for="cash">
+            Cash and checking accounts ($)
+        </label>
 
-    <label for="otherAssets">Other assets ($)</label>
-    <input type="number" id="otherAssets" value="0" min="0">
+        <input
+            type="number"
+            id="cash"
+            value="5000"
+            min="0"
+            step="100"
+        >
 
-    <h2 class="section-title">Liabilities</h2>
 
-    <label for="creditCards">Credit card debt ($)</label>
-    <input type="number" id="creditCards" value="0" min="0">
+        <label for="savings">
+            Savings accounts ($)
+        </label>
 
-    <label for="loans">Personal or student loans ($)</label>
-    <input type="number" id="loans" value="0" min="0">
+        <input
+            type="number"
+            id="savings"
+            value="10000"
+            min="0"
+            step="100"
+        >
 
-    <label for="mortgage">Mortgage balance ($)</label>
-    <input type="number" id="mortgage" value="0" min="0">
 
-    <label for="otherDebts">Other debts ($)</label>
-    <input type="number" id="otherDebts" value="0" min="0">
+        <label for="investments">
+            Investments ($)
+        </label>
 
-    <button onclick="calculateNetWorth()">
-        Calculate Net Worth
-    </button>
+        <input
+            type="number"
+            id="investments"
+            value="5000"
+            min="0"
+            step="100"
+        >
 
-    <div class="results">
 
-        <div class="result-box">
-            <strong>Total Assets</strong>
-            <div id="totalAssets" class="result-value">$0.00</div>
-        </div>
+        <label for="property">
+            Property value ($)
+        </label>
 
-        <div class="result-box">
-            <strong>Total Liabilities</strong>
-            <div id="totalLiabilities" class="result-value">$0.00</div>
-        </div>
+        <input
+            type="number"
+            id="property"
+            value="0"
+            min="0"
+            step="1000"
+        >
 
-        <div class="result-box">
-            <strong>Net Worth</strong>
-            <div id="netWorth" class="result-value">$0.00</div>
+
+        <label for="otherAssets">
+            Other assets ($)
+        </label>
+
+        <input
+            type="number"
+            id="otherAssets"
+            value="0"
+            min="0"
+            step="100"
+        >
+
+
+        <h2 class="section-title">
+            Liabilities
+        </h2>
+
+
+        <label for="creditCards">
+            Credit card debt ($)
+        </label>
+
+        <input
+            type="number"
+            id="creditCards"
+            value="0"
+            min="0"
+            step="100"
+        >
+
+
+        <label for="loans">
+            Personal or student loans ($)
+        </label>
+
+        <input
+            type="number"
+            id="loans"
+            value="0"
+            min="0"
+            step="100"
+        >
+
+
+        <label for="mortgage">
+            Mortgage balance ($)
+        </label>
+
+        <input
+            type="number"
+            id="mortgage"
+            value="0"
+            min="0"
+            step="1000"
+        >
+
+
+        <label for="otherDebts">
+            Other debts ($)
+        </label>
+
+        <input
+            type="number"
+            id="otherDebts"
+            value="0"
+            min="0"
+            step="100"
+        >
+
+
+        <button onclick="calculateNetWorth()">
+            Calculate Net Worth
+        </button>
+
+
+        <div class="results">
+
+            <div class="result-box">
+
+                <strong>
+                    Total Assets
+                </strong>
+
+                <div
+                    id="totalAssets"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    Total Liabilities
+                </strong>
+
+                <div
+                    id="totalLiabilities"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <strong>
+                    Net Worth
+                </strong>
+
+                <div
+                    id="netWorth"
+                    class="result-value"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
+
+    <div class="content">
+
+
+        <h2>
+            What Is Net Worth?
+        </h2>
+
+        <p>
+            Net worth is the value of everything you own minus the money you
+            owe. It provides a snapshot of your overall financial position at
+            a particular point in time.
+        </p>
+
+        <p>
+            Your assets can include cash, savings accounts, investments,
+            property and other assets with financial value. Your liabilities
+            include debts such as credit card balances, personal loans,
+            student loans and mortgages.
+        </p>
+
+        <p>
+            Net worth is different from income. Income measures the money you
+            receive over a period of time, while net worth measures the value
+            of your assets after subtracting your liabilities.
+        </p>
+
+
+        <h2>
+            How to Calculate Net Worth
+        </h2>
+
+        <p>
+            To calculate your net worth, add the current value of all your
+            assets and subtract the total amount of your outstanding
+            liabilities.
+        </p>
+
+        <div class="formula">
+
+            <strong>
+                Net Worth = Total Assets − Total Liabilities
+            </strong>
+
+        </div>
+
+        <p>
+            For example, if you have $50,000 in total assets and $20,000 in
+            liabilities, your net worth would be $30,000.
+        </p>
+
+        <p>
+            If your liabilities are greater than your assets, your net worth
+            will be negative.
+        </p>
+
+
+        <h2>
+            What Does a Net Worth Calculator Include?
+        </h2>
+
+        <p>
+            A personal net worth calculator can include the major assets and
+            liabilities that make up your financial position. This calculator
+            separates them into two main categories so you can enter the
+            current value of each item.
+        </p>
+
+
+        <h3>
+            Assets
+        </h3>
+
+        <p>
+            Assets are things you own that have financial value. The
+            calculator includes cash, savings accounts, investments, property
+            and other assets.
+        </p>
+
+        <p>
+            When entering assets, use their current estimated value rather
+            than the amount you originally paid for them.
+        </p>
+
+
+        <h3>
+            Liabilities
+        </h3>
+
+        <p>
+            Liabilities are amounts you currently owe. These can include
+            credit card debt, personal or student loans, mortgage balances
+            and other debts.
+        </p>
+
+        <p>
+            Using your current outstanding balances gives you a more useful
+            estimate of your present net worth.
+        </p>
+
+
+        <h2>
+            Why Calculate Your Net Worth?
+        </h2>
+
+        <p>
+            Tracking your net worth can help you understand how your overall
+            financial position changes over time. Reviewing it periodically
+            can show whether your assets are increasing, your debts are
+            decreasing, or both.
+        </p>
+
+        <p>
+            Calculating your net worth can also give you a clearer picture of
+            your finances when setting savings goals, paying down debt or
+            planning for major financial decisions.
+        </p>
+
+
+        <h2>
+            Net Worth vs. Income
+        </h2>
+
+        <p>
+            Income and net worth measure different aspects of your finances.
+            Income is the money you receive during a period, such as a month
+            or year. Net worth represents the value of your assets minus your
+            liabilities at a particular point in time.
+        </p>
+
+        <p>
+            Someone can have a high income and a relatively low net worth if
+            they have significant debts or limited assets. Likewise, someone
+            with a lower current income can have a substantial net worth if
+            they have accumulated assets over time.
+        </p>
+
+
+        <h2>
+            How to Track Your Net Worth Over Time
+        </h2>
+
+        <p>
+            To track your net worth, calculate it using the same basic
+            categories at regular intervals. Record your total assets and
+            total liabilities and compare the results over time.
+        </p>
+
+        <p>
+            Changes in savings, investments, property values and outstanding
+            debt can all affect your net worth. Keeping a record of your
+            calculations can make these changes easier to see.
+        </p>
+
+
+        <h2>
+            Example of Calculating Net Worth
+        </h2>
+
+        <p>
+            Suppose you have $5,000 in cash, $10,000 in savings and $5,000 in
+            investments. Your total assets would be $20,000 if you have no
+            other assets.
+        </p>
+
+        <p>
+            If you also have $4,000 in outstanding debt, your estimated net
+            worth would be $16,000.
+        </p>
+
+        <p>
+            The calculation is:
+            <strong>
+                $20,000 − $4,000 = $16,000
+            </strong>.
+        </p>
+
+
+        <h2>
+            Frequently Asked Questions
+        </h2>
+
+
+        <h3>
+            What should I include in my net worth?
+        </h3>
+
+        <p>
+            Include your major assets such as cash, savings, investments and
+            property, as well as your outstanding debts and other liabilities.
+        </p>
+
+
+        <h3>
+            How do I calculate my net worth?
+        </h3>
+
+        <p>
+            Add the current value of your assets and subtract your outstanding
+            debts and other liabilities. The result is your net worth.
+        </p>
+
+
+        <h3>
+            Is a negative net worth possible?
+        </h3>
+
+        <p>
+            Yes. If your total liabilities are greater than your total assets,
+            your net worth will be negative.
+        </p>
+
+
+        <h3>
+            Does net worth include my income?
+        </h3>
+
+        <p>
+            No. Income is money you receive over a period of time, while net
+            worth is calculated from the value of your assets and liabilities
+            at a particular point in time.
+        </p>
+
+
+        <h3>
+            How often should I calculate my net worth?
+        </h3>
+
+        <p>
+            There is no required frequency. Reviewing your net worth every few
+            months or once or twice a year can help you track changes in your
+            assets and liabilities over time.
+        </p>
+
+
+        <h3>
+            Can my net worth change even if my income stays the same?
+        </h3>
+
+        <p>
+            Yes. Your net worth can change when your savings, investments,
+            property values or debts change, even if your income remains the
+            same.
+        </p>
+
+
+        <h3>
+            What is a personal net worth calculator?
+        </h3>
+
+        <p>
+            A personal net worth calculator is a tool that estimates your
+            financial position by adding your assets and subtracting your
+            liabilities. It can help you create a simple snapshot of your
+            current finances.
+        </p>
+
+
+    </div>
+
+
+    <div class="more-tools">
+
+        <h2>
+            More Financial Calculators
+        </h2>
+
+        <p>
+            Explore our other free financial calculators to compare different
+            saving, investing, mortgage and personal finance scenarios.
+        </p>
+
+
+        <p>
+
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+
+            — estimate how your savings could grow with regular contributions
+            and interest.
+
+        </p>
+
+
+        <p>
+
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
+
+            — explore how compound growth can affect investments over time.
+
+        </p>
+
+
+        <p>
+
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
+
+            — estimate how an initial investment and regular contributions
+            could grow over time.
+
+        </p>
+
+
+        <p>
+
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
+
+            — estimate your monthly mortgage payment based on the loan amount,
+            interest rate and loan term.
+
+        </p>
+
+
+        <p>
+
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
+
+            — estimate how much you may be able to afford based on your income,
+            expenses and mortgage assumptions.
+
+        </p>
+
+
+        <p>
+
+            <a href="index.html">
+                View all financial calculators
+            </a>
+
+            — explore the complete collection of free financial tools.
+
+        </p>
+
+    </div>
+
+
 </div>
 
-<div class="content">
-
-    <h2>What is net worth?</h2>
-
-    <p>
-        Net worth is the value of everything you own minus the money you owe.
-        It provides a snapshot of your overall financial position at a particular
-        point in time.
-    </p>
-
-    <p>
-        Your assets can include cash, savings accounts, investments, property
-        and other valuable assets. Your liabilities include debts such as credit
-        card balances, personal loans, student loans and mortgages.
-    </p>
-
-    <p>
-        Net worth is different from income. Income measures the money you receive
-        over a period of time, while net worth measures the value of your assets
-        after subtracting your liabilities.
-    </p>
-
-    <h2>How to Calculate Net Worth</h2>
-
-    <p>
-        To calculate your net worth, add the current value of all your assets
-        and subtract the total amount of your outstanding liabilities.
-    </p>
-
-    <p>
-        <strong>Net Worth = Total Assets − Total Liabilities</strong>
-    </p>
-
-    <p>
-        For example, if you have $50,000 in total assets and $20,000 in
-        liabilities, your net worth would be $30,000.
-    </p>
-
-    <p>
-        If your liabilities are greater than your assets, your net worth will
-        be negative.
-    </p>
-
-    <h2>Why calculate your net worth?</h2>
-
-    <p>
-        Tracking your net worth can help you understand how your overall
-        financial position changes over time. Reviewing it periodically can
-        show whether your assets are increasing, your debts are decreasing,
-        or both.
-    </p>
-
-    <p>
-        Calculating your net worth can also help you create a clearer picture
-        of your finances when setting savings goals, paying down debt or
-        planning for major financial decisions.
-    </p>
-
-    <h2>What should you include when calculating net worth?</h2>
-
-    <p>
-        Include the current value of your major assets, such as cash, savings,
-        investments and property. You can also include other assets that have
-        meaningful financial value.
-    </p>
-
-    <p>
-        Then list your outstanding liabilities, including credit card balances,
-        personal or student loans, mortgage balances and other debts. Using
-        current balances rather than original amounts will give you a more
-        useful estimate of your present net worth.
-    </p>
-
-    <h2>Frequently Asked Questions</h2>
-
-    <h3>What should I include in my net worth?</h3>
-
-    <p>
-        Include your major assets such as cash, savings, investments and
-        property, as well as your outstanding debts and other liabilities.
-    </p>
-
-    <h3>Is a negative net worth possible?</h3>
-
-    <p>
-        Yes. If your total liabilities are greater than your total assets,
-        your net worth will be negative.
-    </p>
-
-    <h3>How often should I calculate my net worth?</h3>
-
-    <p>
-        There is no required frequency. Reviewing your net worth every few
-        months or once or twice a year can help you track changes in your
-        assets and liabilities over time.
-    </p>
-
-    <h3>Does net worth include my income?</h3>
-
-    <p>
-        No. Income is money you receive over a period of time, while net worth
-        is calculated from the value of your assets and liabilities at a
-        particular point in time.
-    </p>
-
-    <h3>How do I calculate my net worth?</h3>
-
-    <p>
-        Add the current value of your assets, such as cash, savings, investments
-        and property. Then subtract your outstanding debts and other liabilities.
-        The result is your net worth.
-    </p>
-
-    <h3>Can my net worth change even if my income stays the same?</h3>
-
-    <p>
-        Yes. Your net worth can change when your savings, investments, property
-        values or debts change, even if your income remains the same.
-    </p>
-
-</div>
-
-<div class="more-tools">
-
-    <h2>More Financial Calculators</h2>
-
-    <p>
-        Explore our other free financial calculators to compare different
-        saving and investing scenarios.
-    </p>
-
-    <p>
-        <a href="savings-calculator.html">
-            Savings Calculator
-        </a>
-        — estimate how your savings could grow with regular contributions
-        and interest.
-    </p>
-
-    <p>
-        <a href="compound-interest-calculator.html">
-            Compound Interest Calculator
-        </a>
-        — explore how compound growth can affect investments over time.
-    </p>
-
-    <p>
-        <a href="investment-calculator.html">
-            Investment Calculator
-        </a>
-        — estimate how an initial investment and regular contributions
-        could grow over time.
-    </p>
-
-    <p>
-        <a href="mortgage-calculator.html">
-            Mortgage Calculator
-        </a>
-        — estimate your monthly mortgage payment based on the loan amount,
-        interest rate and loan term.
-    </p>
-
-    <p>
-        <a href="mortgage-affordability-calculator.html">
-            Mortgage Affordability Calculator
-        </a>
-        — estimate how much you may be able to afford based on your income,
-        expenses and mortgage assumptions.
-    </p>
-
-    <p>
-        <a href="index.html">
-            View all financial calculators
-        </a>
-        — explore the complete collection of free financial tools.
-    </p>
-
-</div>
-```
-
-</div>
 
 <footer>
+
     © 2026 Financial Calculators
+
     <br><br>
 
-```
-<a href="sobre-nosotros.html">About Us</a>
-&nbsp; | &nbsp;
+    <a href="sobre-nosotros.html">
+        About Us
+    </a>
 
-<a href="contacto.html">Contact</a>
-&nbsp; | &nbsp;
+    &nbsp; | &nbsp;
 
-<a href="aviso-legal.html">Legal Notice</a>
-&nbsp; | &nbsp;
+    <a href="contacto.html">
+        Contact
+    </a>
 
-<a href="privacy-policy.html">Privacy Policy</a>
-```
+    &nbsp; | &nbsp;
+
+    <a href="aviso-legal.html">
+        Legal Notice
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="privacy-policy.html">
+        Privacy Policy
+    </a>
 
 </footer>
 
+
 <script>
+
     function getValue(id) {
-        const value = parseFloat(document.getElementById(id).value);
-        return Number.isFinite(value) && value > 0 ? value : 0;
+
+        const value =
+            parseFloat(
+                document.getElementById(id).value
+            );
+
+        return Number.isFinite(value) && value > 0
+            ? value
+            : 0;
+
     }
+
 
     function calculateNetWorth() {
 
@@ -485,43 +884,79 @@
             getValue("property") +
             getValue("otherAssets");
 
+
         const liabilities =
             getValue("creditCards") +
             getValue("loans") +
             getValue("mortgage") +
             getValue("otherDebts");
 
-        const netWorth = assets - liabilities;
 
-        document.getElementById("totalAssets").textContent =
+        const netWorth =
+            assets - liabilities;
+
+
+        document.getElementById(
+            "totalAssets"
+        ).textContent =
             formatMoney(assets);
 
-        document.getElementById("totalLiabilities").textContent =
+
+        document.getElementById(
+            "totalLiabilities"
+        ).textContent =
             formatMoney(liabilities);
 
-        const netWorthElement = document.getElementById("netWorth");
+
+        const netWorthElement =
+            document.getElementById("netWorth");
+
 
         netWorthElement.textContent =
             formatMoney(netWorth);
 
-        netWorthElement.classList.remove("positive", "negative");
+
+        netWorthElement.classList.remove(
+            "positive",
+            "negative"
+        );
+
 
         if (netWorth > 0) {
-            netWorthElement.classList.add("positive");
+
+            netWorthElement.classList.add(
+                "positive"
+            );
+
         } else if (netWorth < 0) {
-            netWorthElement.classList.add("negative");
+
+            netWorthElement.classList.add(
+                "negative"
+            );
+
         }
+
     }
+
 
     function formatMoney(amount) {
-        return new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(amount);
+
+        return new Intl.NumberFormat(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
+        ).format(amount);
+
     }
 
+
     calculateNetWorth();
+
 </script>
 
+
 </body>
+
 </html>
