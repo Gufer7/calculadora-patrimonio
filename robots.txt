@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gufer7.github.io/calculadora-patrimonio/sitemap.xml
+Sitemap: https://moneygrowthcalculators.com/sitemap.xml
