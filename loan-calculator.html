@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9436726784500198"
+         crossorigin="anonymous"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8QYDQDS46"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-T8QYDQDS46');
+    </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Loan Calculator - Monthly Payment & Interest</title>
+
+    <meta
+        name="description"
+        content="Use this free loan calculator to estimate monthly payments, total interest and total loan cost based on the loan amount, interest rate and repayment term."
+    >
+
+    <link
+        rel="canonical"
+        href="https://moneygrowthcalculators.com/loan-calculator.html"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 36px;
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 750px;
+            color: #d1d5db;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .calculator,
+        section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        section {
+            margin-top: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .result-box {
+            background: #f3f4f6;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result-box.highlight {
+            background: #dbeafe;
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .result-value {
+            display: block;
+            margin-top: 6px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: right;
+        }
+
+        th:first-child,
+        td:first-child {
+            text-align: left;
+        }
+
+        th {
+            background: #f3f4f6;
+        }
+
+        .more-tools a {
+            color: #2563eb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        @media (max-width: 650px) {
+
+            .results {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 8px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 3px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>Loan Calculator</h1>
+
+    <p>
+        Estimate your monthly loan payment, total interest and total loan cost
+        based on the amount borrowed, interest rate and repayment term.
+    </p>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="net-worth-calculator.html">
+            Net Worth Calculator
+        </a>
+
+        <a href="compound-interest-calculator.html">
+            Compound Interest Calculator
+        </a>
+
+        <a href="savings-calculator.html">
+            Savings Calculator
+        </a>
+
+        <a href="investment-calculator.html">
+            Investment Calculator
+        </a>
+
+        <a href="mortgage-calculator.html">
+            Mortgage Calculator
+        </a>
+
+        <a href="mortgage-affordability-calculator.html">
+            Mortgage Affordability Calculator
+        </a>
+
+        <a href="loan-calculator.html">
+            Loan Calculator
+        </a>
+
+        <a href="sobre-nosotros.html">
+            About Us
+        </a>
+
+        <a href="contacto.html">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="calculator">
+
+        <h2>Loan Payment Calculator</h2>
+
+        <div class="input-group">
+
+            <label for="loanAmount">
+                Loan amount ($)
+            </label>
+
+            <input
+                type="number"
+                id="loanAmount"
+                value="25000"
+                min="0"
+                step="100"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="interestRate">
+                Annual interest rate (%)
+            </label>
+
+            <input
+                type="number"
+                id="interestRate"
+                value="7"
+                min="0"
+                step="0.01"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="loanTerm">
+                Loan term (years)
+            </label>
+
+            <input
+                type="number"
+                id="loanTerm"
+                value="5"
+                min="1"
+                max="40"
+                step="1"
+            >
+
+        </div>
+
+
+        <button onclick="calculateLoan()">
+            Calculate Loan
+        </button>
+
+
+        <div class="results">
+
+            <div class="result-box highlight">
+
+                <div class="result-label">
+                    Monthly payment
+                </div>
+
+                <div
+                    class="result-value"
+                    id="monthlyPayment"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <div class="result-label">
+                    Loan amount
+                </div>
+
+                <div
+                    class="result-value"
+                    id="displayLoanAmount"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <div class="result-label">
+                    Total interest
+                </div>
+
+                <div
+                    class="result-value"
+                    id="totalInterest"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <div class="result-label">
+                    Total amount paid
+                </div>
+
+                <div
+                    class="result-value"
+                    id="totalPaid"
+                >
+                    $0.00
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <section>
+
+        <h2>Loan Amortization Schedule</h2>
+
+        <p>
+            The table below shows how your estimated loan balance could change
+            each year based on the assumptions entered above.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Year</th>
+
+                        <th>Principal paid</th>
+
+                        <th>Interest paid</th>
+
+                        <th>Remaining balance</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="loanTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <h2>How does a loan calculator work?</h2>
+
+        <p>
+            A loan calculator estimates the regular payment required to repay
+            a loan over a specified period. The calculation uses the amount
+            borrowed, the interest rate and the repayment term.
+        </p>
+
+        <p>
+            With an amortizing loan, each payment normally includes an interest
+            portion and a principal portion. As the balance decreases, the
+            amount of interest charged can also decrease over time.
+        </p>
+
+        <p>
+            The results can help you compare different hypothetical loan
+            scenarios and understand how the interest rate and repayment term
+            affect borrowing costs.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>How does the interest rate affect a loan?</h2>
+
+        <p>
+            A higher interest rate generally increases the monthly payment and
+            the total interest paid over the life of the loan.
+        </p>
+
+        <p>
+            Comparing different assumed interest rates can show how borrowing
+            costs may change over the same repayment period.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>How does the loan term affect the total cost?</h2>
+
+        <p>
+            A longer repayment term can reduce the required monthly payment
+            but may increase the total amount of interest paid.
+        </p>
+
+        <p>
+            A shorter term can require higher monthly payments while reducing
+            the amount of time interest is charged.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>Example loan scenario</h2>
+
+        <p>
+            Suppose you borrow $25,000 at an assumed annual interest rate of 7%
+            and repay the loan over 5 years. The calculator estimates the
+            monthly payment, total interest and total amount paid.
+        </p>
+
+        <p>
+            This is a hypothetical example. Actual loan offers may include
+            additional fees, different interest rates, taxes, insurance or
+            other costs depending on the lender and type of loan.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>Frequently Asked Questions</h2>
+
+
+        <h3>What types of loans can I calculate?</h3>
+
+        <p>
+            This calculator can be used for general amortizing loan scenarios,
+            such as personal loans, auto loans and other installment loans.
+            Actual loan terms vary by lender and product.
+        </p>
+
+
+        <h3>Does this calculator include loan fees?</h3>
+
+        <p>
+            No. The calculator estimates principal and interest only.
+            Origination fees, application fees, insurance and other charges
+            are not included.
+        </p>
+
+
+        <h3>Does a lower interest rate reduce the monthly payment?</h3>
+
+        <p>
+            Generally, yes. For the same loan amount and repayment term, a
+            lower interest rate generally results in a lower monthly payment
+            and lower total interest.
+        </p>
+
+
+        <h3>Does a longer loan term reduce the monthly payment?</h3>
+
+        <p>
+            Generally, yes. Extending the repayment term can reduce the
+            monthly payment, but it can also increase the total interest paid.
+        </p>
+
+
+        <h3>Are the results guaranteed?</h3>
+
+        <p>
+            No. The results are estimates based on the assumptions entered.
+            Actual loan costs depend on the lender, loan agreement, interest
+            rate, fees and other conditions.
+        </p>
+
+
+        <h3>Can I compare different loan scenarios?</h3>
+
+        <p>
+            Yes. You can change the loan amount, interest rate and repayment
+            term to compare different hypothetical borrowing scenarios.
+        </p>
+
+    </section>
+
+
+    <section class="more-tools">
+
+        <h2>More Financial Calculators</h2>
+
+        <p>
+            Explore our other free financial calculators to compare different
+            saving, investing, mortgage and personal finance scenarios.
+        </p>
+
+
+        <p>
+
+            <a href="mortgage-calculator.html">
+                Mortgage Calculator
+            </a>
+
+            — estimate monthly mortgage payments, total interest and total
+            mortgage cost.
+
+        </p>
+
+
+        <p>
+
+            <a href="mortgage-affordability-calculator.html">
+                Mortgage Affordability Calculator
+            </a>
+
+            — estimate how much home you may be able to afford based on your
+            financial assumptions.
+
+        </p>
+
+
+        <p>
+
+            <a href="investment-calculator.html">
+                Investment Calculator
+            </a>
+
+            — estimate potential investment growth with regular contributions,
+            fees and inflation.
+
+        </p>
+
+
+        <p>
+
+            <a href="compound-interest-calculator.html">
+                Compound Interest Calculator
+            </a>
+
+            — explore how compound growth could affect an investment over time.
+
+        </p>
+
+
+        <p>
+
+            <a href="savings-calculator.html">
+                Savings Calculator
+            </a>
+
+            — estimate how regular contributions and interest could affect
+            future savings.
+
+        </p>
+
+
+        <p>
+
+            <a href="net-worth-calculator.html">
+                Net Worth Calculator
+            </a>
+
+            — calculate your current net worth by comparing assets and
+            liabilities.
+
+        </p>
+
+
+        <p>
+
+            <a href="index.html">
+                View all financial calculators
+            </a>
+
+            — explore the complete collection of free financial tools.
+
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>Loan Calculator Disclaimer</h2>
+
+        <p>
+            This loan calculator is provided for educational and informational
+            purposes only. It does not constitute financial, loan, tax or
+            legal advice.
+        </p>
+
+        <p>
+            Actual loan payments and total borrowing costs may differ because
+            of interest rates, lender fees, insurance, taxes and other expenses.
+        </p>
+
+    </section>
+
+
+</div>
+
+
+<footer>
+
+    © 2026 Financial Calculators
+
+    <br><br>
+
+    <a href="index.html">
+        Financial Calculators
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="sobre-nosotros.html">
+        About Us
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="contacto.html">
+        Contact
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="aviso-legal.html">
+        Legal Notice
+    </a>
+
+    &nbsp; | &nbsp;
+
+    <a href="privacy-policy.html">
+        Privacy Policy
+    </a>
+
+</footer>
+
+
+<script>
+
+function formatMoney(value) {
+
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2
+        }
+    ).format(value);
+
+}
+
+
+function calculateLoan() {
+
+    const loanAmount =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "loanAmount"
+                ).value
+            ) || 0
+        );
+
+
+    const annualRate =
+        Math.max(
+            0,
+            parseFloat(
+                document.getElementById(
+                    "interestRate"
+                ).value
+            ) || 0
+        );
+
+
+    const years =
+        Math.max(
+            1,
+            Math.min(
+                40,
+                parseInt(
+                    document.getElementById(
+                        "loanTerm"
+                    ).value
+                ) || 1
+            )
+        );
+
+
+    const months =
+        years * 12;
+
+
+    const monthlyRate =
+        annualRate / 100 / 12;
+
+
+    let monthlyPayment = 0;
+
+
+    if (loanAmount > 0) {
+
+        if (monthlyRate === 0) {
+
+            monthlyPayment =
+                loanAmount / months;
+
+        } else {
+
+            monthlyPayment =
+                loanAmount *
+                (
+                    monthlyRate *
+                    Math.pow(
+                        1 + monthlyRate,
+                        months
+                    )
+                ) /
+                (
+                    Math.pow(
+                        1 + monthlyRate,
+                        months
+                    ) - 1
+                );
+
+        }
+
+    }
+
+
+    const totalPaid =
+        monthlyPayment * months;
+
+
+    const totalInterest =
+        Math.max(
+            0,
+            totalPaid - loanAmount
+        );
+
+
+    document.getElementById(
+        "monthlyPayment"
+    ).textContent =
+        formatMoney(monthlyPayment);
+
+
+    document.getElementById(
+        "displayLoanAmount"
+    ).textContent =
+        formatMoney(loanAmount);
+
+
+    document.getElementById(
+        "totalInterest"
+    ).textContent =
+        formatMoney(totalInterest);
+
+
+    document.getElementById(
+        "totalPaid"
+    ).textContent =
+        formatMoney(totalPaid);
+
+
+    const table =
+        document.getElementById(
+            "loanTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    let balance =
+        loanAmount;
+
+
+    for (
+        let year = 1;
+        year <= years;
+        year++
+    ) {
+
+        let yearlyPrincipal = 0;
+
+        let yearlyInterest = 0;
+
+
+        for (
+            let month = 1;
+            month <= 12;
+            month++
+        ) {
+
+            if (balance <= 0) {
+                break;
+            }
+
+
+            const interest =
+                balance * monthlyRate;
+
+
+            const principal =
+                Math.min(
+                    Math.max(
+                        0,
+                        monthlyPayment - interest
+                    ),
+                    balance
+                );
+
+
+            yearlyInterest += interest;
+
+            yearlyPrincipal += principal;
+
+            balance -= principal;
+
+
+            if (balance < 0.01) {
+                balance = 0;
+            }
+
+        }
+
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+
+            <td>
+                ${year}
+            </td>
+
+            <td>
+                ${formatMoney(yearlyPrincipal)}
+            </td>
+
+            <td>
+                ${formatMoney(yearlyInterest)}
+            </td>
+
+            <td>
+                ${formatMoney(balance)}
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    }
+
+}
+
+
+calculateLoan();
+
+</script>
+
+
+</body>
+
+</html>
