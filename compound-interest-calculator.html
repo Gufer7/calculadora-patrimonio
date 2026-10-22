@@ -513,7 +513,27 @@
 
                     </div>
 
-                </div>
+                              </div>
+
+            </div>
+
+            <div class="growth-chart">
+
+            <h2>Investment Growth Over Time</h2>
+
+            <p>
+                See how your investment could grow over time with
+                your initial balance and monthly contributions.
+            </p>
+
+            <canvas
+                id="growthChart"
+                width="800"
+                height="360"
+                style="width: 100%; max-width: 800px; height: auto;"
+                role="img"
+                aria-label="Estimated investment growth over time"
+            ></canvas>
 
             </div>
 
@@ -904,10 +924,11 @@
         const months =
             Math.round(years * 12);
 
+        const chartData = [
+            { year: 0, balance: initial }
+        ];
 
-        let balance =
-            initial;
-
+        let balance = initial;
 
         for (
             let i = 0;
@@ -920,9 +941,118 @@
 
             balance += monthly;
 
+            if (
+                (i + 1) % 12 === 0 ||
+                i === months - 1
+            ) {
+
+                chartData.push({
+                    year: (i + 1) / 12,
+                    balance: balance
+                });
+
+            }
+
         }
+        const canvas = document.getElementById("growthChart");
 
+        if (canvas) {
+            const ctx = canvas.getContext("2d");
 
+            if (ctx) {
+                const width = canvas.width;
+                const height = canvas.height;
+
+                const padding = {
+                    top: 20,
+                    right: 25,
+                    bottom: 45,
+                    left: 100
+                };
+
+                const plotWidth =
+                    width - padding.left - padding.right;
+
+                const plotHeight =
+                    height - padding.top - padding.bottom;
+
+                const maxBalance = Math.max(
+                    1,
+                    ...chartData.map(point => point.balance)
+                );
+
+                const maxYear = Math.max(
+                    1,
+                    ...chartData.map(point => point.year)
+                );
+
+                ctx.clearRect(0, 0, width, height);
+                ctx.font = "12px Arial";
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "#dddddd";
+                ctx.fillStyle = "#555555";
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+
+                for (let i = 0; i <= 4; i++) {
+                    const value = maxBalance * i / 4;
+                    const y = padding.top + plotHeight -
+                        (value / maxBalance) * plotHeight;
+
+                    ctx.beginPath();
+                    ctx.moveTo(padding.left, y);
+                    ctx.lineTo(width - padding.right, y);
+                    ctx.stroke();
+
+                    ctx.fillText(
+                        formatMoney(value),
+                        padding.left - 10,
+                        y
+                    );
+                }
+
+                const xTicks = Math.min(
+                    5,
+                    Math.floor(maxYear) + 1
+                );
+
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+
+                for (let i = 0; i < xTicks; i++) {
+                    const year = maxYear * i / (xTicks - 1);
+                    const x = padding.left +
+                        (year / maxYear) * plotWidth;
+
+                    ctx.fillText(
+                        `${Math.round(year)} years`,
+                        x,
+                        height - padding.bottom + 12
+                    );
+                }
+
+                ctx.beginPath();
+
+                chartData.forEach((point, index) => {
+                    const x = padding.left +
+                        (point.year / maxYear) * plotWidth;
+
+                    const y = padding.top + plotHeight -
+                        (point.balance / maxBalance) * plotHeight;
+
+                    if (index === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+
+                ctx.strokeStyle = "#7651a8";
+                ctx.lineWidth = 3;
+                ctx.lineJoin = "round";
+                ctx.stroke();
+            }
+        }
         const totalContributed =
             initial + (monthly * months);
 
