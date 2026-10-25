@@ -514,11 +514,46 @@
             </table>
 
         </div>
+        <div class="mortgage-chart">
 
+            <h2>Mortgage Balance and Repayment Over Time</h2>
+
+            <p>
+                Track how your outstanding mortgage balance decreases
+                as you repay principal and pay interest over the loan term.
+            </p>
+
+            <canvas
+                id="mortgageChart"
+                width="900"
+                height="420"
+                style="display: block; width: 100%; height: auto;"
+                role="img"
+                aria-label="Mortgage chart showing remaining balance, cumulative principal repaid and cumulative interest paid"
+            ></canvas>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: 14px;">
+
+                <span>
+                    <span style="color: #7651a8;">━</span>
+                    Remaining mortgage balance
+                </span>
+
+                <span>
+                    <span style="color: #2563eb;">━</span>
+                    Principal repaid
+                </span>
+
+                <span>
+                    <span style="color: #0f9d8a;">━</span>
+                    Interest paid
+                </span>
+
+            </div>
+
+        </div>
     </section>
 
-
-    <section>
 <section>
 
     <h2>Monthly Mortgage Payment Calculator</h2>
@@ -1131,7 +1166,17 @@ function calculateMortgage() {
     let balance =
         loanAmount;
 
+    const mortgageChartData = [
+        {
+            year: 0,
+            balance: loanAmount,
+            principalPaid: 0,
+            interestPaid: 0
+        }
+    ];
 
+    let cumulativePrincipalPaid = 0;
+    let cumulativeInterestPaid = 0;
     for (
         let year = 1;
         year <= years;
@@ -1175,7 +1220,9 @@ function calculateMortgage() {
             yearlyPrincipal +=
                 principal;
 
+cumulativeInterestPaid += interest;
 
+cumulativePrincipalPaid += principal;
             balance -=
                 principal;
 
@@ -1185,7 +1232,12 @@ function calculateMortgage() {
             }
 
         }
-
+        mortgageChartData.push({
+            year: year,
+            balance: balance,
+            principalPaid: cumulativePrincipalPaid,
+            interestPaid: cumulativeInterestPaid
+        });
 
         const row =
             document.createElement("tr");
@@ -1215,7 +1267,140 @@ function calculateMortgage() {
         table.appendChild(row);
 
     }
+    // Draw the mortgage balance and repayment chart
+    const mortgageCanvas =
+        document.getElementById("mortgageChart");
 
+    if (mortgageCanvas) {
+        const ctx = mortgageCanvas.getContext("2d");
+
+        if (ctx && mortgageChartData.length > 0) {
+            const width = mortgageCanvas.width;
+            const height = mortgageCanvas.height;
+
+            const padding = {
+                top: 30,
+                right: 35,
+                bottom: 55,
+                left: 115
+            };
+
+            const plotWidth =
+                width - padding.left - padding.right;
+
+            const plotHeight =
+                height - padding.top - padding.bottom;
+
+            const maxYear = Math.max(
+                1,
+                ...mortgageChartData.map(point => point.year)
+            );
+
+            const maxValue = Math.max(
+                1,
+                ...mortgageChartData.flatMap(point => [
+                    point.balance,
+                    point.principalPaid,
+                    point.interestPaid
+                ])
+            );
+
+            const chartX = year =>
+                padding.left +
+                (year / maxYear) * plotWidth;
+
+            const chartY = value =>
+                padding.top +
+                plotHeight -
+                (value / maxValue) * plotHeight;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.font = "13px Arial";
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#e5e7eb";
+            ctx.fillStyle = "#4b5563";
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+
+            // Horizontal grid and dollar labels
+            for (let i = 0; i <= 4; i++) {
+                const value = maxValue * i / 4;
+                const posY = chartY(value);
+
+                ctx.beginPath();
+                ctx.moveTo(padding.left, posY);
+                ctx.lineTo(
+                    width - padding.right,
+                    posY
+                );
+                ctx.stroke();
+
+                ctx.fillText(
+                    formatMoney(value),
+                    padding.left - 12,
+                    posY
+                );
+            }
+
+            // Time axis
+            const xTicks = Math.min(
+                5,
+                Math.floor(maxYear) + 1
+            );
+
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            for (let i = 0; i < xTicks; i++) {
+                const year =
+                    maxYear * i / (xTicks - 1);
+
+                ctx.fillText(
+                    `${Math.round(year)} years`,
+                    chartX(year),
+                    height - padding.bottom + 14
+                );
+            }
+
+            // Plot the three mortgage series
+            const series = [
+                {
+                    key: "balance",
+                    color: "#7651a8"
+                },
+                {
+                    key: "principalPaid",
+                    color: "#2563eb"
+                },
+                {
+                    key: "interestPaid",
+                    color: "#0f9d8a"
+                }
+            ];
+
+            series.forEach(function(item) {
+                ctx.beginPath();
+
+                mortgageChartData.forEach(
+                    function(point, index) {
+                        const posX = chartX(point.year);
+                        const posY = chartY(point[item.key]);
+
+                        if (index === 0) {
+                            ctx.moveTo(posX, posY);
+                        } else {
+                            ctx.lineTo(posX, posY);
+                        }
+                    }
+                );
+
+                ctx.strokeStyle = item.color;
+                ctx.lineWidth = 3;
+                ctx.lineJoin = "round";
+                ctx.stroke();
+            });
+        }
+    }
 }
 
 
