@@ -1103,20 +1103,23 @@ function calculateLoan() {
                 );
             }
 
-            // Time axis
-            const xTicks = Math.min(
-                5,
-                Math.floor(maxYear) + 1
-            );
+                       // Time axis
+            const xTicks = maxYear <= 10
+                ? Math.floor(maxYear) + 1
+                : 5;
 
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
             for (let i = 0; i < xTicks; i++) {
-                const year = maxYear * i / (xTicks - 1);
+                const year = maxYear <= 10
+                    ? i
+                    : maxYear * i / (xTicks - 1);
+
+                const yearLabel = Number(year.toFixed(1));
 
                 ctx.fillText(
-                    `${Math.round(year)} years`,
+                    `${yearLabel} ${yearLabel === 1 ? "year" : "years"}`,
                     chartX(year),
                     height - padding.bottom + 14
                 );
