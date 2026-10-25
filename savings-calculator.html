@@ -428,7 +428,53 @@
             </div>
 
         </div>
+<div class="savings-visualization">
 
+    <h2>How Your Savings Grow Over Time</h2>
+
+    <p>
+        Compare your total savings with the money you have contributed
+        and see how estimated interest accumulates over time.
+    </p>
+
+    <canvas
+        id="savingsChart"
+        width="900"
+        height="420"
+        style="display: block; width: 100%; height: auto;"
+        role="img"
+        aria-label="Savings growth chart comparing total balance and contributions"
+    ></canvas>
+
+    <h3>Year-by-Year Savings Breakdown</h3>
+
+    <div style="overflow-x: auto;">
+
+        <table
+            id="savingsTable"
+            style="width: 100%; border-collapse: collapse;"
+        >
+            <thead>
+                <tr>
+                    <th style="padding: 10px; text-align: left;">Year</th>
+                    <th style="padding: 10px; text-align: right;">Total contributed</th>
+                    <th style="padding: 10px; text-align: right;">Interest earned</th>
+                    <th style="padding: 10px; text-align: right;">Final balance</th>
+                </tr>
+            </thead>
+
+            <tbody id="savingsTableBody">
+                <tr>
+                    <td colspan="4" style="padding: 10px;">
+                        Calculate your savings to see the annual breakdown.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
     </div>
 
 
@@ -879,9 +925,15 @@ function calculateSavings() {
         Math.round(years * 12);
 
 
-    let balance =
-        initial;
+       const chartData = [
+        {
+            year: 0,
+            balance: initial,
+            contributed: initial
+        }
+    ];
 
+    let balance = initial;
 
     for (
         let i = 0;
@@ -894,8 +946,20 @@ function calculateSavings() {
 
         balance += monthly;
 
-    }
+        if (
+            (i + 1) % 12 === 0 ||
+            i === months - 1
+        ) {
 
+            chartData.push({
+                year: (i + 1) / 12,
+                balance: balance,
+                contributed: initial + monthly * (i + 1)
+            });
+
+        }
+
+    }
 
     const totalContributed =
         initial + (monthly * months);
@@ -921,7 +985,210 @@ function calculateSavings() {
         "interestEarned"
     ).textContent =
         formatMoney(interestEarned);
+    // Draw the savings growth chart
+    const canvas = document.getElementById("savingsChart");
 
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+
+        if (ctx && chartData.length > 0) {
+            const width = canvas.width;
+            const height = canvas.height;
+
+            const padding = {
+                top: 55,
+                right: 30,
+                bottom: 55,
+                left: 115
+            };
+
+            const plotWidth =
+                width - padding.left - padding.right;
+
+            const plotHeight =
+                height - padding.top - padding.bottom;
+
+            const maxBalance = Math.max(
+                1,
+                ...chartData.map(point =>
+                    Math.max(point.balance, point.contributed)
+                )
+            );
+
+            const maxYear = Math.max(
+                1,
+                ...chartData.map(point => point.year)
+            );
+
+            const x = year =>
+                padding.left + (year / maxYear) * plotWidth;
+
+            const y = value =>
+                padding.top + plotHeight -
+                (value / maxBalance) * plotHeight;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.font = "13px Arial";
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#e5e7eb";
+            ctx.fillStyle = "#4b5563";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "right";
+
+            // Horizontal grid and value labels
+            for (let i = 0; i <= 4; i++) {
+                const value = maxBalance * i / 4;
+                const posY = y(value);
+
+                ctx.beginPath();
+                ctx.moveTo(padding.left, posY);
+                ctx.lineTo(width - padding.right, posY);
+                ctx.stroke();
+
+                ctx.fillText(
+                    formatMoney(value),
+                    padding.left - 12,
+                    posY
+                );
+            }
+
+            // Time axis
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            for (let i = 0; i <= 4; i++) {
+                const year = maxYear * i / 4;
+
+                ctx.fillText(
+                    `${Number(year.toFixed(1))} years`,
+                    x(year),
+                    height - padding.bottom + 14
+                );
+            }
+
+            // Shaded area between contributions and total savings
+            ctx.beginPath();
+
+            chartData.forEach((point, index) => {
+                if (index === 0) {
+                    ctx.moveTo(x(point.year), y(point.balance));
+                } else {
+                    ctx.lineTo(x(point.year), y(point.balance));
+                }
+            });
+
+            [...chartData].reverse().forEach(point => {
+                ctx.lineTo(x(point.year), y(point.contributed));
+            });
+
+            ctx.closePath();
+
+            const gradient = ctx.createLinearGradient(
+                0,
+                padding.top,
+                0,
+                height - padding.bottom
+            );
+
+            gradient.addColorStop(0, "rgba(118, 81, 168, 0.30)");
+            gradient.addColorStop(1, "rgba(118, 81, 168, 0.04)");
+
+            ctx.fillStyle = gradient;
+            ctx.fill();
+
+            // Draw both lines
+            function drawLine(key, color) {
+                ctx.beginPath();
+
+                chartData.forEach((point, index) => {
+                    const posX = x(point.year);
+                    const posY = y(point[key]);
+
+                    if (index === 0) {
+                        ctx.moveTo(posX, posY);
+                    } else {
+                        ctx.lineTo(posX, posY);
+                    }
+                });
+
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 3;
+                ctx.lineJoin = "round";
+                ctx.stroke();
+            }
+
+            drawLine("balance", "#7651a8");
+            drawLine("contributed", "#2563eb");
+
+            // Chart legend
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.lineWidth = 3;
+
+            ctx.beginPath();
+            ctx.moveTo(padding.left + 10, 22);
+            ctx.lineTo(padding.left + 35, 22);
+            ctx.strokeStyle = "#7651a8";
+            ctx.stroke();
+
+            ctx.fillStyle = "#374151";
+            ctx.fillText(
+                "Total savings",
+                padding.left + 42,
+                22
+            );
+
+            ctx.beginPath();
+            ctx.moveTo(padding.left + 190, 22);
+            ctx.lineTo(padding.left + 215, 22);
+            ctx.strokeStyle = "#2563eb";
+            ctx.stroke();
+
+            ctx.fillText(
+                "Money contributed",
+                padding.left + 222,
+                22
+            );
+        }
+    }
+
+    // Populate the year-by-year table
+    const tableBody = document.getElementById("savingsTableBody");
+
+    if (tableBody) {
+        tableBody.replaceChildren();
+
+        chartData.forEach(point => {
+            const row = document.createElement("tr");
+
+            const yearLabel =
+                point.year === 0
+                    ? "Starting balance"
+                    : Number.isInteger(point.year)
+                        ? `Year ${point.year}`
+                        : `Final (${point.year.toFixed(1)} years)`;
+
+            const values = [
+                yearLabel,
+                formatMoney(point.contributed),
+                formatMoney(point.balance - point.contributed),
+                formatMoney(point.balance)
+            ];
+
+            values.forEach((value, index) => {
+                const cell = document.createElement("td");
+
+                cell.textContent = value;
+                cell.style.padding = "12px 10px";
+                cell.style.borderBottom = "1px solid #e5e7eb";
+                cell.style.textAlign = index === 0 ? "left" : "right";
+
+                row.appendChild(cell);
+            });
+
+            tableBody.appendChild(row);
+        });
+    }
 }
 
 
