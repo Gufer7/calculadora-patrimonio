@@ -526,7 +526,7 @@
             </div>
 
 
-            <div class="legend">
+                       <div class="legend">
 
                 <span>
                     ■ Money contributed
@@ -538,6 +538,80 @@
 
             </div>
 
+        </div>
+
+        <div class="investment-scenarios">
+
+            <h2>Investment Growth Scenarios</h2>
+
+            <p>
+                Compare three hypothetical investment outcomes using
+                lower, selected and higher annual return assumptions.
+                Monthly contributions, fees and the investment period
+                remain the same across all scenarios.
+            </p>
+
+            <canvas
+                id="investmentScenarioChart"
+                width="900"
+                height="420"
+                style="display: block; width: 100%; height: auto;"
+                role="img"
+                aria-label="Chart comparing three hypothetical investment growth scenarios"
+            ></canvas>
+
+            <h3>Scenario Comparison</h3>
+
+            <div style="overflow-x: auto;">
+
+                <table
+                    style="width: 100%; border-collapse: collapse;"
+                >
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; text-align: left;">
+                                Scenario
+                            </th>
+
+                            <th style="padding: 10px; text-align: right;">
+                                Annual return
+                            </th>
+
+                            <th style="padding: 10px; text-align: right;">
+                                Final value after fees
+                            </th>
+
+                            <th style="padding: 10px; text-align: right;">
+                                Value after inflation
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="investmentScenarioTable">
+                        <tr>
+                            <td colspan="4" style="padding: 10px;">
+                                Calculate your investment to compare scenarios.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <p>
+                These scenarios are estimates, not forecasts. Actual
+                investment returns can fluctuate, including losses.
+            </p>
+
+        </div>
+
+    </div>
+            <p>
+                These scenarios are estimates, not forecasts. Actual
+                investment returns can fluctuate, including losses.
+            </p>
+
+        </div>
         </div>
 
     </div>
@@ -1381,7 +1455,295 @@ function calculateInvestment() {
     ).style.width =
         growthPercentage + "%";
 
+    // Calculate three hypothetical investment scenarios
+    const scenarioDefinitions = [
+        {
+            label: "Lower return",
+            annualReturn: Math.max(0, annualReturn - 2),
+            color: "#2563eb"
+        },
+        {
+            label: "Selected return",
+            annualReturn: annualReturn,
+            color: "#7651a8"
+        },
+        {
+            label: "Higher return",
+            annualReturn: annualReturn + 2,
+            color: "#0f9d8a"
+        }
+    ];
 
+    const scenarioResults = scenarioDefinitions.map(
+        function(scenario) {
+            let scenarioBalance = initial;
+            let scenarioRealBalance = initial;
+
+            const scenarioData = [
+                {
+                    year: 0,
+                    value: initial
+                }
+            ];
+
+            const scenarioMonthlyRate =
+                Math.pow(
+                    1 + scenario.annualReturn / 100,
+                    1 / 12
+                ) - 1;
+
+            const scenarioMonths =
+                Math.floor(years * 12);
+
+            for (
+                let month = 1;
+                month <= scenarioMonths;
+                month++
+            ) {
+                const growth =
+                    scenarioBalance * scenarioMonthlyRate;
+
+                scenarioBalance += growth;
+
+                const fee =
+                    scenarioBalance * monthlyFeeRate;
+
+                scenarioBalance -= fee;
+                scenarioBalance += monthly;
+
+                scenarioRealBalance =
+                    scenarioBalance /
+                    Math.pow(
+                        1 + inflationMonthlyRate,
+                        month
+                    );
+
+                if (
+                    month % 12 === 0 ||
+                    month === scenarioMonths
+                ) {
+                    scenarioData.push({
+                        year: month / 12,
+                        value: scenarioBalance
+                    });
+                }
+            }
+
+            return {
+                label: scenario.label,
+                annualReturn: scenario.annualReturn,
+                color: scenario.color,
+                finalValue: scenarioBalance,
+                realValue: scenarioRealBalance,
+                data: scenarioData
+            };
+        }
+    );
+
+
+    // Draw the scenario comparison chart
+    const scenarioCanvas =
+        document.getElementById("investmentScenarioChart");
+
+    if (scenarioCanvas) {
+        const ctx = scenarioCanvas.getContext("2d");
+
+        if (ctx) {
+            const width = scenarioCanvas.width;
+            const height = scenarioCanvas.height;
+
+            const padding = {
+                top: 65,
+                right: 35,
+                bottom: 55,
+                left: 115
+            };
+
+            const plotWidth =
+                width - padding.left - padding.right;
+
+            const plotHeight =
+                height - padding.top - padding.bottom;
+
+            const scenarioMaxYear = Math.max(
+                1,
+                ...scenarioResults.flatMap(
+                    scenario =>
+                        scenario.data.map(point => point.year)
+                )
+            );
+
+            const scenarioMaxValue = Math.max(
+                1,
+                ...scenarioResults.flatMap(
+                    scenario =>
+                        scenario.data.map(point => point.value)
+                )
+            );
+
+            const chartX = year =>
+                padding.left +
+                (year / scenarioMaxYear) * plotWidth;
+
+            const chartY = value =>
+                padding.top +
+                plotHeight -
+                (value / scenarioMaxValue) * plotHeight;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.font = "13px Arial";
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#e5e7eb";
+            ctx.fillStyle = "#4b5563";
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+
+            // Horizontal grid and dollar labels
+            for (let i = 0; i <= 4; i++) {
+                const value =
+                    scenarioMaxValue * i / 4;
+
+                const posY = chartY(value);
+
+                ctx.beginPath();
+                ctx.moveTo(padding.left, posY);
+                ctx.lineTo(
+                    width - padding.right,
+                    posY
+                );
+                ctx.stroke();
+
+                ctx.fillText(
+                    formatMoney(value),
+                    padding.left - 12,
+                    posY
+                );
+            }
+
+            // Horizontal time axis
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            for (let i = 0; i <= 4; i++) {
+                const year =
+                    scenarioMaxYear * i / 4;
+
+                ctx.fillText(
+                    `${Number(year.toFixed(1))} years`,
+                    chartX(year),
+                    height - padding.bottom + 14
+                );
+            }
+
+            // Draw one line for each return scenario
+            scenarioResults.forEach(
+                function(scenario) {
+                    ctx.beginPath();
+
+                    scenario.data.forEach(
+                        function(point, index) {
+                            const posX = chartX(point.year);
+                            const posY = chartY(point.value);
+
+                            if (index === 0) {
+                                ctx.moveTo(posX, posY);
+                            } else {
+                                ctx.lineTo(posX, posY);
+                            }
+                        }
+                    );
+
+                    ctx.strokeStyle = scenario.color;
+                    ctx.lineWidth = 3;
+                    ctx.lineJoin = "round";
+                    ctx.stroke();
+
+                    // Mark the final value
+                    const lastPoint =
+                        scenario.data[
+                            scenario.data.length - 1
+                        ];
+
+                    ctx.beginPath();
+                    ctx.arc(
+                        chartX(lastPoint.year),
+                        chartY(lastPoint.value),
+                        4,
+                        0,
+                        Math.PI * 2
+                    );
+
+                    ctx.fillStyle = scenario.color;
+                    ctx.fill();
+                }
+            );
+
+            // Legend
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+
+            scenarioResults.forEach(
+                function(scenario, index) {
+                    const legendX =
+                        padding.left + index * 230;
+
+                    ctx.beginPath();
+                    ctx.moveTo(legendX, 25);
+                    ctx.lineTo(legendX + 25, 25);
+                    ctx.strokeStyle = scenario.color;
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#374151";
+                    ctx.fillText(
+                        `${scenario.label} (${scenario.annualReturn.toFixed(2)}%)`,
+                        legendX + 33,
+                        25
+                    );
+                }
+            );
+        }
+    }
+
+
+    // Populate the scenario comparison table
+    const scenarioTable =
+        document.getElementById("investmentScenarioTable");
+
+    if (scenarioTable) {
+        scenarioTable.replaceChildren();
+
+        scenarioResults.forEach(
+            function(scenario) {
+                const row = document.createElement("tr");
+
+                const values = [
+                    scenario.label,
+                    `${scenario.annualReturn.toFixed(2)}%`,
+                    formatMoney(scenario.finalValue),
+                    formatMoney(scenario.realValue)
+                ];
+
+                values.forEach(
+                    function(value, index) {
+                        const cell = document.createElement("td");
+
+                        cell.textContent = value;
+                        cell.style.padding = "12px 10px";
+                        cell.style.borderBottom =
+                            "1px solid #e5e7eb";
+
+                        cell.style.textAlign =
+                            index === 0 ? "left" : "right";
+
+                        row.appendChild(cell);
+                    }
+                );
+
+                scenarioTable.appendChild(row);
+            }
+        );
+    }
     const table =
         document.getElementById(
             "yearTable"
