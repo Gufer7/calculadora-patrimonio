@@ -488,6 +488,43 @@
 
             </div>
 
+        </div>
+
+        <div class="affordability-visualization">
+
+            <h2>How Your Mortgage Budget Is Calculated</h2>
+
+            <p>
+                Compare the housing payment limit based on 28% of
+                monthly income with the amount available after
+                existing debts under the simplified 36% total debt
+                limit. The estimated maximum payment uses the lower
+                of these two amounts.
+            </p>
+
+            <canvas
+                id="affordabilityChart"
+                width="900"
+                height="380"
+                style="display: block; width: 100%; height: auto;"
+                role="img"
+                aria-label="Comparison of housing payment limits based on income and existing debts"
+            ></canvas>
+
+            <p
+                id="affordabilityChartNote"
+                aria-live="polite"
+            >
+                Enter your financial details and calculate affordability
+                to see the comparison.
+            </p>
+
+            <p>
+                This is an illustrative estimate based on a simplified
+                28/36 affordability approach. Lenders may use different
+                criteria, and actual housing costs can include taxes,
+                insurance and other expenses.
+            </p>
 
         </div>
 
@@ -1031,7 +1068,166 @@ function calculateAffordability() {
                 currency: "USD"
             }
         );
+    // Draw the mortgage affordability comparison chart
+    const affordabilityCanvas =
+        document.getElementById("affordabilityChart");
 
+    if (affordabilityCanvas) {
+        const ctx = affordabilityCanvas.getContext("2d");
+
+        if (ctx) {
+            const width = affordabilityCanvas.width;
+            const height = affordabilityCanvas.height;
+
+            const padding = {
+                top: 30,
+                right: 35,
+                bottom: 65,
+                left: 310
+            };
+
+            const plotWidth =
+                width - padding.left - padding.right;
+
+            const maxValue = Math.max(
+                1,
+                housingLimit,
+                debtBasedHousingLimit,
+                maximumHousingPayment
+            );
+
+            const money = value =>
+                new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 0
+                }).format(value);
+
+            const data = [
+                {
+                    label: "28% of gross monthly income",
+                    value: housingLimit,
+                    color: "#7651a8"
+                },
+                {
+                    label: "36% limit after existing debts",
+                    value: debtBasedHousingLimit,
+                    color: "#2563eb"
+                },
+                {
+                    label: "Estimated maximum payment",
+                    value: maximumHousingPayment,
+                    color: "#0f9d8a"
+                }
+            ];
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.font = "14px Arial";
+            ctx.textBaseline = "middle";
+
+            // Draw grid and dollar scale
+            for (let i = 0; i <= 4; i++) {
+                const value = maxValue * i / 4;
+
+                const x =
+                    padding.left +
+                    (value / maxValue) * plotWidth;
+
+                ctx.beginPath();
+                ctx.moveTo(x, padding.top);
+                ctx.lineTo(x, height - padding.bottom);
+
+                ctx.strokeStyle = "#e5e7eb";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.fillStyle = "#4b5563";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+
+                ctx.fillText(
+                    money(value),
+                    x,
+                    height - padding.bottom + 15
+                );
+            }
+
+            // Draw one bar for each affordability limit
+            data.forEach((item, index) => {
+                const y = padding.top + 35 + index * 85;
+
+                const barWidth =
+                    (item.value / maxValue) * plotWidth;
+
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = "#374151";
+
+                ctx.fillText(
+                    item.label,
+                    padding.left - 15,
+                    y + 17
+                );
+
+                ctx.fillStyle = item.color;
+
+                ctx.fillRect(
+                    padding.left,
+                    y,
+                    barWidth,
+                    34
+                );
+
+                ctx.fillStyle =
+                    barWidth > 100 ? "#ffffff" : "#374151";
+
+                ctx.textAlign =
+                    barWidth > 100 ? "right" : "left";
+
+                const valueX =
+                    barWidth > 100
+                        ? padding.left + barWidth - 10
+                        : padding.left + barWidth + 8;
+
+                ctx.fillText(
+                    money(item.value),
+                    valueX,
+                    y + 17
+                );
+            });
+
+            // Explain which limit determines the maximum payment
+            const note =
+                document.getElementById("affordabilityChartNote");
+
+            if (note) {
+                let explanation;
+
+                if (
+                    Math.abs(
+                        housingLimit - debtBasedHousingLimit
+                    ) < 0.01
+                ) {
+                    explanation =
+                        "Both limits produce the same maximum payment.";
+                } else if (
+                    housingLimit < debtBasedHousingLimit
+                ) {
+                    explanation =
+                        "The 28% housing limit determines the maximum payment.";
+                } else {
+                    explanation =
+                        "The 36% total-debt limit after existing debts determines the maximum payment.";
+                }
+
+                note.textContent =
+                    "Estimated maximum monthly housing payment: " +
+                    money(maximumHousingPayment) +
+                    ". " +
+                    explanation;
+            }
+        }
+    }
 }
 
 
