@@ -994,20 +994,188 @@ html
 
         }
 
-    }
+    
+    // Draw assets, liabilities and net worth chart
+    const canvas = document.getElementById("netWorthChart");
 
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
 
-    function formatMoney(amount) {
+        if (ctx) {
+            const width = canvas.width;
+            const height = canvas.height;
 
-        return new Intl.NumberFormat(
-            "en-US",
-            {
-                style: "currency",
-                currency: "USD"
+            const padding = {
+                top: 35,
+                right: 35,
+                bottom: 65,
+                left: 115
+            };
+
+            const plotWidth =
+                width - padding.left - padding.right;
+
+            const plotHeight =
+                height - padding.top - padding.bottom;
+
+            const minValue = Math.min(0, netWorth);
+            const maxValue = Math.max(
+                1,
+                assets,
+                liabilities,
+                netWorth
+            );
+
+            const range = Math.max(
+                1,
+                maxValue - minValue
+            );
+
+            const chartY = value =>
+                padding.top +
+                ((maxValue - value) / range) * plotHeight;
+
+            const chartX = index =>
+                padding.left +
+                plotWidth * (index + 0.5) / 3;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.font = "13px Arial";
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#e5e7eb";
+            ctx.fillStyle = "#4b5563";
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+
+            // Horizontal grid and dollar labels
+            for (let i = 0; i <= 4; i++) {
+                const value =
+                    minValue + range * i / 4;
+
+                const y = chartY(value);
+
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(width - padding.right, y);
+                ctx.stroke();
+
+                ctx.fillText(
+                    formatMoney(value),
+                    padding.left - 12,
+                    y
+                );
             }
-        ).format(amount);
 
+            // Zero baseline
+            const zeroY = chartY(0);
+
+            ctx.beginPath();
+            ctx.moveTo(padding.left, zeroY);
+            ctx.lineTo(width - padding.right, zeroY);
+            ctx.strokeStyle = "#6b7280";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Draw the three financial values
+            const values = [
+                {
+                    label: "Assets",
+                    value: assets,
+                    color: "#7651a8"
+                },
+                {
+                    label: "Liabilities",
+                    value: liabilities,
+                    color: "#2563eb"
+                },
+                {
+                    label: "Net worth",
+                    value: netWorth,
+                    color: netWorth < 0 ? "#dc2626" : "#0f9d8a"
+                }
+            ];
+
+            const barWidth = 100;
+
+            values.forEach((item, index) => {
+                const x = chartX(index) - barWidth / 2;
+                const valueY = chartY(item.value);
+
+                ctx.fillStyle = item.color;
+
+                ctx.fillRect(
+                    x,
+                    Math.min(zeroY, valueY),
+                    barWidth,
+                    Math.max(2, Math.abs(zeroY - valueY))
+                );
+
+                // Value label
+                ctx.fillStyle = "#374151";
+                ctx.textAlign = "center";
+                ctx.textBaseline =
+                    item.value < 0 ? "top" : "bottom";
+
+                let labelY =
+                    item.value < 0
+                        ? valueY + 5
+                        : valueY - 6;
+
+                if (Math.abs(item.value) < 0.01) {
+                    labelY = zeroY - 6;
+                }
+
+                ctx.fillText(
+                    formatMoney(item.value),
+                    chartX(index),
+                    labelY
+                );
+
+                // Category label
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+                ctx.fillStyle = "#4b5563";
+
+                ctx.fillText(
+                    item.label,
+                    chartX(index),
+                    height - padding.bottom + 20
+                );
+            });
+
+                        // Explain the result
+            const note =
+                document.getElementById("netWorthChartNote");
+
+            if (note) {
+                if (netWorth > 0) {
+                    note.textContent =
+                        "Your assets exceed your liabilities by " +
+                        formatMoney(netWorth) +
+                        ".";
+                } else if (netWorth < 0) {
+                    note.textContent =
+                        "Your liabilities exceed your assets by " +
+                        formatMoney(Math.abs(netWorth)) +
+                        ". Your estimated net worth is negative.";
+                } else {
+                    note.textContent =
+                        "Your assets and liabilities are equal, so your net worth is zero.";
+                }
+            }
+        }
     }
+}
+function formatMoney(amount) {
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD"
+        }
+    ).format(amount);
+
+}
 
 
     calculateNetWorth();
