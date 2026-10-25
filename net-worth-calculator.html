@@ -493,7 +493,30 @@ html
             </div>
 
         </div>
+        <div class="net-worth-visualization">
 
+            <h2>Assets, Liabilities and Net Worth</h2>
+
+            <p>
+                Compare the total value of your assets with your
+                liabilities and see the difference represented by
+                your estimated net worth.
+            </p>
+
+            <canvas
+                id="netWorthChart"
+                width="900"
+                height="360"
+                style="display: block; width: 100%; height: auto;"
+                role="img"
+                aria-label="Chart comparing total assets, total liabilities and net worth"
+            ></canvas>
+
+            <p id="netWorthChartNote" aria-live="polite">
+                Enter your financial details to see your net worth comparison.
+            </p>
+
+        </div>
     </div>
 
 
