@@ -384,6 +384,8 @@
 </label>
 
 <select id="frequency">
+    <option value="weekly">Weekly</option>
+    <option value="biweekly">Every two weeks (biweekly)</option>
     <option value="monthly" selected>Monthly</option>
     <option value="annual">Annually (at the end of each year)</option>
 </select>
@@ -544,8 +546,7 @@
             <h2>Investment Growth Over Time</h2>
 
             <p>
-                See how your investment could grow over time with
-                your initial balance and monthly contributions.
+                See how your investment could grow over time with your initial balance and contributions at your selected frequency.
             </p>
 
             <canvas
@@ -956,11 +957,17 @@ const annualIncrease =
             );
 
 
-        const monthlyRate =
-            annualRate / 100 / 12;
+       
+const periodsPerYear =
+    frequency === "weekly" ? 52 :
+    frequency === "biweekly" ? 26 :
+    frequency === "monthly" ? 12 : 1;
 
-        const months =
-            Math.round(years * 12);
+const totalPeriods =
+    Math.round(years * periodsPerYear);
+
+const periodicRate =
+    annualRate / 100 / periodsPerYear;
 const chartData = [
     {
         year: 0,
@@ -968,36 +975,31 @@ const chartData = [
         contributed: initial
     }
 ];        
-      let balance = initial;
+             let balance = initial;
         let totalContributed = initial;
 
         for (
             let i = 0;
-            i < months;
+            i < totalPeriods;
             i++
         ) {
-            balance = balance * (1 + monthlyRate);
+            balance = balance * (1 + periodicRate);
 
-            const completedMonths = i + 1;
-            const yearIndex = Math.floor(i / 12);
+            const completedPeriods = i + 1;
+            const yearIndex = Math.floor(i / periodsPerYear);
 
             const contributionAmount =
                 monthly * Math.pow(1 + annualIncrease, yearIndex);
 
-            if (frequency === "monthly") {
-                balance += contributionAmount;
-                totalContributed += contributionAmount;
-            } else if (completedMonths % 12 === 0) {
-                balance += contributionAmount;
-                totalContributed += contributionAmount;
-            }
+            balance += contributionAmount;
+            totalContributed += contributionAmount;
 
             if (
-                completedMonths % 12 === 0 ||
-                i === months - 1
+                completedPeriods % periodsPerYear === 0 ||
+                i === totalPeriods - 1
             ) {
                 chartData.push({
-                    year: completedMonths / 12,
+                    year: completedPeriods / periodsPerYear,
                     balance: balance,
                     contributed: totalContributed
                 });
