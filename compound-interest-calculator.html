@@ -379,17 +379,39 @@
         >
 
 
-        <label for="monthly">
-            Monthly contribution ($)
-        </label>
+<label for="frequency">
+    Contribution frequency
+</label>
 
-        <input
-            type="number"
-            id="monthly"
-            value="100"
-            min="0"
-            step="10"
-        >
+<select id="frequency">
+    <option value="monthly" selected>Monthly</option>
+    <option value="annual">Annually (at the end of each year)</option>
+</select>
+
+<label for="monthly">
+    Contribution amount ($)
+</label>
+
+<input
+    type="number"
+    id="monthly"
+    value="100"
+    min="0"
+    step="10"
+>
+
+<label for="increase">
+    Annual increase in contribution (%)
+</label>
+
+<input
+    type="number"
+    id="increase"
+    value="0"
+    min="0"
+    step="1"
+>
+
 
 
         <label for="rate">
@@ -919,7 +941,11 @@
 
         const monthly =
             getValue("monthly");
+const frequency =
+    document.getElementById("frequency").value;
 
+const annualIncrease =
+    getValue("increase") / 100;
         const annualRate =
             getValue("rate");
 
@@ -941,32 +967,41 @@ const chartData = [
         balance: initial,
         contributed: initial
     }
-];
-
-        let balance = initial;
+];        
+      let balance = initial;
+        let totalContributed = initial;
 
         for (
             let i = 0;
             i < months;
             i++
         ) {
+            balance = balance * (1 + monthlyRate);
 
-            balance =
-                balance * (1 + monthlyRate);
+            const completedMonths = i + 1;
+            const yearIndex = Math.floor(i / 12);
 
-            balance += monthly;
+            const contributionAmount =
+                monthly * Math.pow(1 + annualIncrease, yearIndex);
 
-            if (
-                (i + 1) % 12 === 0 ||
-                i === months - 1
-            ) {
-chartData.push({
-    year: (i + 1) / 12,
-    balance: balance,
-    contributed: initial + monthly * (i + 1)
-});
+            if (frequency === "monthly") {
+                balance += contributionAmount;
+                totalContributed += contributionAmount;
+            } else if (completedMonths % 12 === 0) {
+                balance += contributionAmount;
+                totalContributed += contributionAmount;
             }
 
+            if (
+                completedMonths % 12 === 0 ||
+                i === months - 1
+            ) {
+                chartData.push({
+                    year: completedMonths / 12,
+                    balance: balance,
+                    contributed: totalContributed
+                });
+            }
         }
         const canvas = document.getElementById("growthChart");
 
@@ -1074,8 +1109,6 @@ chartData.push({
                 drawSeries("contributed", "#2563eb");
             }
         }
-        const totalContributed =
-            initial + (monthly * months);
 
 
         const compoundGrowth =
