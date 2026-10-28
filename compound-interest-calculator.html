@@ -975,7 +975,10 @@ const totalPeriods =
     Math.round(years * periodsPerYear);
 
 const periodicRate =
-    annualRate / 100 / periodsPerYear;
+    Math.pow(
+        1 + annualRate / 100,
+        1 / periodsPerYear
+    ) - 1;
 const chartData = [
     {
         year: 0,
