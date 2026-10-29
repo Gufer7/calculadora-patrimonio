@@ -1291,12 +1291,8 @@ function calculateInvestment() {
                 value:
                     balance,
 
-                growth:
-                    Math.max(
-                        0,
-                        balance - totalContributed
-                    )
-
+               growth:
+    balance - totalContributed
             });
 
         }
@@ -1304,11 +1300,8 @@ function calculateInvestment() {
     }
 
 
-    const investmentGrowth =
-        Math.max(
-            0,
-            balance - totalContributed
-        );
+   const investmentGrowth =
+    balance - totalContributed;
 
 
     document.getElementById(
@@ -1362,33 +1355,20 @@ function calculateInvestment() {
         + "%";
 
 
-    const contributionPercentage =
-        balance > 0
-            ? (
-                totalContributed /
-                balance
-            ) * 100
+           const contributionPercentage =
+        balance > totalContributed && balance > 0
+            ? (totalContributed / balance) * 100
             : 100;
 
-
     const growthPercentage =
-        balance > 0
-            ? (
-                investmentGrowth /
-                balance
-            ) * 100
+        balance > totalContributed && balance > 0
+            ? (investmentGrowth / balance) * 100
             : 0;
 
-
-    document.getElementById(
-        "contributionsBar"
-    ).style.width =
+    document.getElementById("contributionsBar").style.width =
         contributionPercentage + "%";
 
-
-    document.getElementById(
-        "growthBar"
-    ).style.width =
+    document.getElementById("growthBar").style.width =
         growthPercentage + "%";
 
     // Calculate three hypothetical investment scenarios
